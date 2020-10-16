@@ -40,6 +40,11 @@ export const postLogin = catchAsync(async (req, res, next) => {
 	res.status(200).json({
 		status: 'success',
 		message: 'you are now logged in',
+		user: {
+			createdAt: user.createdAt,
+			userType: user.userType,
+			username: user.username
+		}
 	});
 });
 
@@ -69,8 +74,6 @@ export const postSignUp = catchAsync(async (req, res, next) => {
 	});
 	//sign a jwt token
 	const token = createJWT(jwt, newUser.id, newUser.userType);
-	newUser.password = undefined;
-	newUser.__v = undefined;
 	res.cookie('jwt', token, {
 		httpOnly: true,
 		expires: new Date(
@@ -80,7 +83,11 @@ export const postSignUp = catchAsync(async (req, res, next) => {
 	res.status(201).json({
 		status: 'success',
 		message: 'You are now signed Up',
-		user: newUser,
+		user: {
+			createdAt: newUser.createdAt,
+			userType: newUser.userType,
+			username: newUser.username
+		}
 	});
 });
 

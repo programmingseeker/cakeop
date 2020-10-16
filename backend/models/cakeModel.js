@@ -48,14 +48,14 @@ const cakeSchema = new mongoose.Schema(
 );
 
 //virtually connecting the cake id
-tourSchema.virtual('reviews', {
+cakeSchema.virtual('reviews', {
 	ref: 'Review',
 	foreignField: 'cake',
 	localField: '_id'
 });
 
 //Populating the reviews
-reviewSchema.pre(/^find/, function (next) {
+cakeSchema.pre(/^find/, function (next) {
 	this.populate({
 		path: 'reviews',
 		select: '-__v'
