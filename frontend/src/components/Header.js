@@ -27,19 +27,34 @@ const Header = () => {
       setNavbar(false)
     } 
   }
+  
   return (
-    <div>
-      <Navbar variant='light' expand="md" className='bg-dark'>
-        <Container>
-        <Navbar.Brand className='h1'>
-          <Link to='/' className='text-decoration-none text-white'><span className="text-danger">You </span>Movies</Link>
-        </Navbar.Brand>          
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto h5">
+  <Navbar expand='lg' bg='white' fixed='top' className="shadow">
+  <Container className="text-center">
+    <Navbar.Brand href='/'>
+      <img alt=""src="/img/icon/logo.svg" className="d-inline-block align-middle"/>{'  '}
+      <span className="align-middle h2 font-weight-bold text-dark">Cake Op</span>
+    </Navbar.Brand>
+    <Navbar.Toggle aria-controls="#navbarSupportedContent"/>
+    <Navbar.Collapse id="navbarSupportedContent">
+      <Nav className='ml-auto text-center'>
+        <Nav.Link href="#home">
+          <i className="fas fa-users fa-lg px-2"></i>
+          About Us</Nav.Link>
+        <Nav.Link href="#link1">
+          <i className="fas fa-phone-alt px-2"></i>
+          Contact Us
+        </Nav.Link>
+        <Nav.Link href="#link2">
+          <i className="fas fa-shopping-cart px-2"></i>
+          Cart
+        </Nav.Link>
+        <Nav.Link href="#link3" >
+          <Nav className="ml-auto">
           {
             user ? 
             (
+              <>
               <NavDropdown title={user.username} id='username'>
                 <NavDropdown.Item>
                   <Link to='/profile' className='text-decoration-none text-dark'>Profile</Link>
@@ -48,22 +63,27 @@ const Header = () => {
                   Log Out
                 </NavDropdown.Item>
               </NavDropdown>
-            ):(
-              <>
-              <Nav.Link className='pr-5'>
-                <Link to='/login' className='text-decoration-none text-white'>Log In</Link>
-              </Nav.Link>
-              <Nav.Link className='pr-3'>
-                <Link to='/signup' className='text-decoration-none text-white'>Sign Up</Link>
-              </Nav.Link>
               </>
+            ):(
+              <Nav className=" align-middle">
+              <Nav.Link  className='align-middle' >
+                <Link to='/login' className='text-decoration-none text-secondary'>Log In</Link>
+              </Nav.Link>
+              <Nav.Link className='align-middle'>
+                <Link to='/signup' className='text-decoration-none text-secondary'>Sign Up</Link>
+              </Nav.Link>
+              </Nav>
             )}
         </Nav>
-        </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
-  )
+        </Nav.Link>
+      </Nav>
+    </Navbar.Collapse>
+  </Container>
+</Navbar>
+)
+  
+  
 }
+
 
 export default Header
