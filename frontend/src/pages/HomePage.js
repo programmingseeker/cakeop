@@ -1,9 +1,6 @@
-/* eslint-disable jsx-a11y/heading-has-content */
-import React from 'react'
+import React from 'react';
 import { Container, Row, Col, Card, Pagination, Image, Form, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-
-import ProductCard from '../components/ProductCard'
+import { Link } from 'react-router-dom';
 
 function HomePage() {
   return (
@@ -30,29 +27,29 @@ function HomePage() {
       </div>
 
       <div className="bg-light py-3">
-        <h2 className=" h1 mx-auto py-3 text-center text-dark font-weight-bolder"><span className="text-primary">Our</span> Facilities</h2>
+        <h2 className=" h1 mx-auto py-3" style={{width: "fit-content"}}><span className="textprimary">Our</span> Facilities</h2>
         <Container>
           <Row>
             <Col sm className='fac-con'>
               <div className="img-container">
-                <img src="/img/icons/spanner.svg" alt="spanner" />
+                <img className="icon-img" src="/img/icons/spanner.svg" alt="spanner" />
               </div>
-              <h4 className="my-2 text-dark fac-title">Customized</h4>
-              <p className="text-wrap text-center fac-para" style={{width: "15rem"}}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus voluptatem at sint saepe id dolorem aut pariatur quas!</p>
+              <h4 className="textprimary my-2">Customized</h4>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus voluptatem at sint saepe id dolorem aut pariatur quas!</p>
             </Col>
             <Col sm className='fac-con'>
               <div className="img-container">
                 <img className="icon-img" src="/img/icons/cake.svg" alt="cake" />
               </div>
-              <h4 className="my-2 text-dark fac-title">Wedding cakes</h4>
-              <p className="text-wrap text-center fac-para" style={{width: "15rem"}}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus voluptatem at sint saepe id dolorem aut pariatur quas!</p>
+              <h4 className="textprimary my-2">Wedding cakes</h4>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus voluptatem at sint saepe id dolorem aut pariatur quas!</p>
             </Col>
             <Col sm className='fac-con'>
               <div className="img-container">
                 <img className="icon-img" src="/img/icons/truck.svg" alt=" truck" />
               </div>
-              <h4 className="my-2 text-dark fac-title">Door step Delivery</h4>
-              <p className="text-wrap text-center fac-para" style={{width: "15rem"}}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus voluptatem at sint saepe id dolorem aut pariatur quas!</p>
+              <h4 className="textprimary my-2">Door step Delivery</h4>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus voluptatem at sint saepe id dolorem aut pariatur quas!</p>
             </Col>
           </Row>
         </Container>
@@ -60,11 +57,9 @@ function HomePage() {
 
 
       <div>
-        <h2 className=" h1 mx-auto py-3 text-center text-dark font-weight-bolder"><span className="text-primary">Our</span> Products</h2>
-        <ProductCard/>
-        
+        <h2 className=" h1 mx-auto my-4" style={{ width: "fit-content" }}><span className="textprimary ">Our</span> Products</h2>
         <Container>
-          {/* <Row>
+          <Row>
 
             <Col sm>
               <Card className='p-2 rounded-lg mt-2'>
@@ -99,7 +94,7 @@ function HomePage() {
               </Card>
             </Col>
          
-          </Row> */}
+          </Row>
           <Row className="mt-2">
             <Col sm={7}>
               <Pagination className='float-right'>
@@ -144,7 +139,6 @@ function HomePage() {
         </Container>
       </div>
 
-      {/* Contact Us Section */}
       <Container>
         <h2 className="h1 mx-auto py-3" style={{width:"fit-content"}}>Contact <span className="textprimary">Us</span></h2>
           <Row className='mt-4 mb-4 pb-5'>
