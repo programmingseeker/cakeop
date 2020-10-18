@@ -33,7 +33,7 @@ const Header = () => {
   <Container className="text-center">
     <Navbar.Brand href='/'>
       <img alt=""src="/img/icon/logo.svg" className="d-inline-block align-middle"/>{'  '}
-      <span className="align-middle h2 font-weight-bold text-dark">Cake Op</span>
+      <span className="align-middle h2 font-weight-bold text-dark">CakeOp</span>
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="#navbarSupportedContent"/>
     <Navbar.Collapse id="navbarSupportedContent">

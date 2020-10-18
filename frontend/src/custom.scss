@@ -4,8 +4,61 @@
 }
 $primary: #00bcd4;
 
-	.navbar-expand-lg .navbar-nav .nav-link {
-		padding:0rem 0rem;
+.navbar-expand-lg .nav-link {
+	padding:0rem 0rem;
+}
+
+
+.banner {
+	background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+		url('/img/cover.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 100vh;
+
+    div {
+	position: relative;
+	top: 33%;
+    }
+	.hr-bar {
+	border: white solid 1px;
+    }
+	.banner-btn {
+	  color: white;
+	  border: white 2px solid;
+	  padding: 0.75rem 1.5rem;
+	  text-decoration: none;
+	  border-radius: 50px;
+	  &:hover {
+	  background-color: #fff;
+	  color: #00bcd4;
+      }
+	  &:hover .hr-bar {
+	  border: #00bcd4 solid 1px;
+      }
+  }
+}
+
+.fac-con {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    .img-container {
+	padding: 1.25rem;
+	border-radius: 100%;
+	border: var(--primary-color) 2px solid;
+    .icon-img {
+	height: 6rem;
+       } 
 	}
+	.fac-para{
+		font-weight:200;
+	}
+	.fac-title{
+		font-weight:600;
+	}
+}
+
 
 @import 'bootstrap/scss/bootstrap';
