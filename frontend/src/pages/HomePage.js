@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch , useSelector} from 'react-redux'
 
 import { listProducts } from './../actions/productActions'
-import ProductCard from '../components/ProductCard'
+import ProductCard from '../components/ProductCardUI'
 
 function HomePage() {
   const dispatch = useDispatch()
