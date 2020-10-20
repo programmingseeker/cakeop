@@ -6,16 +6,18 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // IMPORT REDUCERS
 
 import { authReducer } from './reducers/userReducer'
+import { productListReducer } from './reducers/productReducers'
 
 const reducers = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  productList: productListReducer
 });
 
 const userFromStorage = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : undefined;
 const initialState = {  
   auth: {
     user: userFromStorage
-  }
+  } 
 }
 
 const middleware = [thunk];

@@ -1,8 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Container, Row, Col, Card, Pagination, Image, Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
+import { useDispatch , useSelector} from 'react-redux'
+
+import { listProducts } from './../actions/productActions'
+import ProductCard from '../components/ProductCard'
 
 function HomePage() {
+  const dispatch = useDispatch()
+  
+  const productList = useSelector(state => state.productList);
+  const products= useSelector(state => state.productList.products);
+  const data= products.data||[];
+  const { loading,error } = productList;
+  useEffect(() => {
+    dispatch(listProducts());
+    
+  }, [dispatch])
+  
   return (
     <>
 
@@ -26,30 +41,30 @@ function HomePage() {
         </Container>
       </div>
 
-      <div className="bg-light py-3">
-        <h2 className=" h1 mx-auto py-3" style={{width: "fit-content"}}><span className="textprimary">Our</span> Facilities</h2>
+            <div className="bg-light py-3">
+        <h2 className=" h1 mx-auto py-3 text-center text-color font-weight-bolder"><span className="text-primary">Our</span> Facilities</h2>
         <Container>
           <Row>
             <Col sm className='fac-con'>
               <div className="img-container">
                 <img className="icon-img" src="/img/icons/spanner.svg" alt="spanner" />
               </div>
-              <h4 className="textprimary my-2">Customized</h4>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus voluptatem at sint saepe id dolorem aut pariatur quas!</p>
+              <h4 className="my-2 text-color fac-title">Customized</h4>
+              <p className="text-wrap text-center fac-para" style={{width: "15rem"}}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus voluptatem at sint saepe id dolorem aut pariatur quas!</p>
             </Col>
             <Col sm className='fac-con'>
               <div className="img-container">
                 <img className="icon-img" src="/img/icons/cake.svg" alt="cake" />
               </div>
-              <h4 className="textprimary my-2">Wedding cakes</h4>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus voluptatem at sint saepe id dolorem aut pariatur quas!</p>
+              <h4 className="my-2 text-color fac-title">Wedding cakes</h4>
+              <p className="text-wrap text-center fac-para" style={{width: "15rem"}}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus voluptatem at sint saepe id dolorem aut pariatur quas!</p>
             </Col>
             <Col sm className='fac-con'>
               <div className="img-container">
                 <img className="icon-img" src="/img/icons/truck.svg" alt=" truck" />
               </div>
-              <h4 className="textprimary my-2">Door step Delivery</h4>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus voluptatem at sint saepe id dolorem aut pariatur quas!</p>
+              <h4 className="my-2 text-color fac-title">Door step Delivery</h4>
+              <p className="text-wrap text-center fac-para" style={{width: "15rem"}}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus voluptatem at sint saepe id dolorem aut pariatur quas!</p>
             </Col>
           </Row>
         </Container>
@@ -57,7 +72,30 @@ function HomePage() {
 
 
       <div>
-        <h2 className=" h1 mx-auto my-4" style={{ width: "fit-content" }}><span className="textprimary ">Our</span> Products</h2>
+        <h2 className=" h1 mx-auto py-3 text-center text-color font-weight-bolder"><span className="text-primary">Our</span> Products</h2>
+        <Container>
+          <Row>
+              {
+                data.map((product)=>{
+                  return(<ProductCard product={product}/>)
+                })
+              }
+          </Row>
+          <Row className="mt-2">
+            <Col sm={7}>
+              <Pagination className='float-right'>
+                <Pagination.Item disabled > Previous </Pagination.Item>
+                <Pagination.Item active > 1 </Pagination.Item>
+                <Pagination.Item > 2 </Pagination.Item>
+                <Pagination.Item > Next </Pagination.Item>
+              </Pagination>
+            </Col>
+            <Col sm >
+              <Link className='float-right text-decoration-none' to='/cakes'>see all</Link>
+            </Col>
+          </Row>
+        </Container>
+{/*         
         <Container>
           <Row>
 
@@ -108,13 +146,13 @@ function HomePage() {
               <Link className='float-right text-decoration-none' to='/cakes'>see all</Link>
             </Col>
           </Row>
-        </Container>
+        </Container> */}
 
       </div>
 
       <div className="bg-light">
-        <h2 className=" h1 mx-auto py-3" style={{width: "fit-content"}}>About <span className="textprimary ">Us</span></h2>
-        <h2 className="about-header mx-auto" style={{ width: "fit-content" }}>
+        <h2 className=" h1 mx-auto pt-4 text-center text-color font-weight-bolder">About <span className="text-primary">Us</span></h2>
+        <h2 className="about-header text-center">
           We bake <br />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it right
         </h2>

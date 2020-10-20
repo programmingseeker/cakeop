@@ -14,7 +14,6 @@ export const getAllCake = catchAsync(async (req, res, next) => {
 	const cake = await features.query;
 	// Response
 	res.status(200).json({
-		length: cake.length,
 		data: cake,
 	});
 });

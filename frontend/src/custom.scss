@@ -77,7 +77,7 @@ li {
 	.img-container {
 		padding: 1.25rem;
 		border-radius: 100%;
-		border: var(--primary-color) 2px solid;
+        border: $primary 2px solid;
 		.icon-img {
 			height: 6rem;
 		}

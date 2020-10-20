@@ -5,10 +5,10 @@
 	"description": "complete backend api for an ecommerce application which sells cakes",
 	"main": "server.js",
 	"scripts": {
-    "start": "NODE_ENV=production node backend/app",
-    "server": "nodemon backend/app",
-    "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+		"start": "NODE_ENV=production node backend/app",
+		"server": "nodemon backend/app",
+		"client": "npm start --prefix frontend",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"data:import": "node data/seeder.js --import",
 		"data:delete": "node data/seeder.js --delete"
 	},
