@@ -3,6 +3,13 @@
 
 $primary: #00bcd4;
 $text-color: #5f6368;
+$primary-color: #00bcd4;
+$section-bg: #f9f9f9;
+$form-placeholder: #888;
+$menu-bar-content: #16679a;
+$footer-primary-bg: #3c444c;
+$footer-secondary-bg: #5f6368;
+
 
 :root {
 	font-family: 'Lato', sans-serif;
@@ -107,4 +114,18 @@ li {
    width:100	
 }
 
+.close{
+padding:0.5rem!important;
+}
+
+.hr-bar{
+	width:20%;
+	background-color:text-muted;
+	margin:0.5rem;
+	align-items:center;	
+}
+
+.form-label{
+	color:$text-color;
+}
 @import 'bootstrap/scss/bootstrap';

@@ -17,12 +17,20 @@ const LoginPage = ({history}) => {
 
   return (
     <>
-      <div className="d-flex justify-content-center flex-column">
-        <FormContainer>
-        <h1>Log In</h1>
+      <div className="d-flex justify-content-center flex-column ">
+        <FormContainer className="col-sm-center ">
+        <h1 className="text-center">Log In</h1>
+        <span>
+          <img src="/img/login/googleoauth.svg" alt="Google Login" />
+        </span>
+        <span className="d-flex align-items-center">
+          <hr className="hr-bar"/> 
+          <span className="text-muted" style={{"letter-spacing": "0.5px"}}>LOGIN WITH EMAIL</span>
+          <hr className="hr-bar"/>
+        </span>
           <Form onSubmit={onSubmitHandler}>
             <Form.Group>
-              <Form.Label>Email</Form.Label>
+              <Form.Label className="form-label">Email</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="user@example.com"
@@ -30,7 +38,7 @@ const LoginPage = ({history}) => {
                 />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Password</Form.Label>
+              <Form.Label className="form-label">Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"

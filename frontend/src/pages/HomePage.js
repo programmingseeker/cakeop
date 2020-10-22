@@ -100,9 +100,6 @@ function HomePage() {
           </Row>
         </Container>
 {/*         
-        <Container>
-          <Row>
-
             <Col sm>
               <Card className='p-2 rounded-lg mt-2'>
                 <Card.Img variant="top" src="/img/product-img-1.png" alt="..." />
@@ -113,44 +110,7 @@ function HomePage() {
                 </Card.Body>
               </Card>
             </Col>
-           
-            <Col sm>
-              <Card className='p-2 rounded-lg mt-2'>
-                <Card.Img variant="top" src="/img/product-img-2.png" alt="..." />
-                <Card.Body>
-                  <Card.Title>Rose Delux</Card.Title>
-                  <Card.Text>Some quick example.</Card.Text>
-                  <h3>₹ 120</h3>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            <Col sm>
-              <Card className='p-2 rounded-lg mt-2'>
-                <Card.Img variant="top" src="/img/product-img-3.png" alt="..." />
-                <Card.Body>
-                  <Card.Title>Vanilla Setp Cake</Card.Title>
-                  <Card.Text>Some quick example.</Card.Text>
-                  <h3>₹ 120</h3>
-                </Card.Body>
-              </Card>
-            </Col>
-         
-          </Row>
-          <Row className="mt-2">
-            <Col sm={7}>
-              <Pagination className='float-right'>
-                <Pagination.Item disabled > Previous </Pagination.Item>
-                <Pagination.Item active > 1 </Pagination.Item>
-                <Pagination.Item > 2 </Pagination.Item>
-                <Pagination.Item > Next </Pagination.Item>
-              </Pagination>
-            </Col>
-            <Col sm >
-              <Link className='float-right text-decoration-none' to='/cakes'>see all</Link>
-            </Col>
-          </Row>
-        </Container> */}
+*/}
 
       </div>
 

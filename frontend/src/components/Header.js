@@ -1,21 +1,27 @@
 import React, {useEffect, useState} from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
-import {Link } from 'react-router-dom'
+import {Link ,Route} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from './../actions/userActions';
-
+import FormContent from './FormContent';
 const Header = () => {
   const [user, setUser] = useState({})
   const dispatch = useDispatch();
   const userdata = useSelector(state => state.auth.user)
-
+  const [showModal,setshowModal ]=useState(false);
   useEffect(() => {
     setUser(userdata);
   },[userdata])
 
+  const showModalHandler = ()=>{
+    setshowModal(true);
+  };
+  const hideModalHandler = ()=>{
+    setshowModal(false);
+  };
   const onClickLogoutHandler = () => { 
     dispatch(logout())
-  }
+  };
 
   
   return (
@@ -50,11 +56,13 @@ const Header = () => {
                   Log Out
                 </NavDropdown.Item>
               </NavDropdown>  
-            ) : (
-                  <Nav.Link href='/login'>
+            ) : (<>
+                  <Nav.Link onClick={showModalHandler}>
                     <i className="fas fa-user pr-2"></i>
-                Log In / Sign Up
-              </Nav.Link>                    
+                    Log In / Sign Up
+                  </Nav.Link>
+                    <Route render={({history})=><FormContent show={showModal} handleClose={hideModalHandler} history={history}></FormContent>}/>
+                </>
             )
           }
       </Nav>
