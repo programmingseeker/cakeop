@@ -17,7 +17,7 @@ const LoginPage = ({history}) => {
 
   return (
     <>
-      <div className="banner d-flex justify-content-center flex-column">
+      <div className="d-flex justify-content-center flex-column">
         <FormContainer>
         <h1>Log In</h1>
           <Form onSubmit={onSubmitHandler}>

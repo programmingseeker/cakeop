@@ -73,11 +73,15 @@ function HomePage() {
 
       <div>
         <h2 className=" h1 mx-auto py-3 text-center text-color font-weight-bolder"><span className="text-primary">Our</span> Products</h2>
-        <Container>
-          <Row>
+        <Container >
+          <Row className="justify-content-center">
               {
                 data.map((product)=>{
-                  return(<ProductCard product={product}/>)
+                  return(
+                  <div className="col-sm-center mx-4">
+                    <ProductCard product={product}/>
+                  </div>
+                  )
                 })
               }
           </Row>
