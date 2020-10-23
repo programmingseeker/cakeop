@@ -22,15 +22,23 @@ const SignupPage = ({history}) => {
       history.push('/')
     }
   }
-
+// d-flex justify-content-start
   return (
     <>
-      <div className="banner d-flex justify-content-center flex-column">
-        <FormContainer>
-          <h1>Sign Up</h1>
-          <Form onSubmit={onSubmitHandler}>
+      <div className="d-flex justify-content-center flex-column mt-5 pt-3">
+        <FormContainer className="d-flex justify-content-center ">
+          <h1 className="d-flex align-items-center justify-content-center text-color fac-title">Sign Up</h1>
+        <span className="d-flex justify-content-center">
+          <img className="image-cursor" src="/img/login/googleoauth.svg" alt="Google Login" />
+        </span>
+        <span className="d-flex align-items-center">
+          <hr className="hr-barl d-flex justify-content-start"/> 
+          <span className="text-muted " style={{"letter-spacing": "0.5px"}}>SIGNUP WITH EMAIL</span>
+          <hr className="hr-barr d-flex justify-content-end"/>
+        </span>
+          <Form onSubmit={onSubmitHandler} className="container px-5">
             <Form.Group>
-              <Form.Label>username</Form.Label>
+              <Form.Label>Username</Form.Label>
               <Form.Control type="text" placeholder="username"
               onChange={(e) => setUsername(e.target.value)}
               />

@@ -3,8 +3,11 @@ import FormContainer from './../components/FormContainer';
 import { Form, Button } from 'react-bootstrap';
 import { login } from './../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux'
+import SignupPage from './SignupPage'
+import {Route,Link} from 'react-router-dom'
+import FormContent from '../components/FormContent'
 
-const LoginPage = ({history}) => {
+const LoginPage = ({history, isPage=false}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -14,22 +17,26 @@ const LoginPage = ({history}) => {
     dispatch(login(email, password));
     history.push('/')
   }
+  
+  const a={
+    "font-size":"1rem"
+  }
 
   return (
     <>
-      <div className="d-flex justify-content-center flex-column ">
+      <div className={`d-flex flex-column ${isPage? "mt-5 pt-3 ":null}`} >
         <FormContainer className="col-sm-center ">
-        <h1 className="text-center">Log In</h1>
-        <span>
+        <h1 className="d-flex align-items-center justify-content-center text-color fac-title">Log In</h1>
+        <span className="d-flex justify-content-center">
           <img src="/img/login/googleoauth.svg" alt="Google Login" />
         </span>
         <span className="d-flex align-items-center">
-          <hr className="hr-bar"/> 
+          <hr className="hr-barl"/> 
           <span className="text-muted" style={{"letter-spacing": "0.5px"}}>LOGIN WITH EMAIL</span>
-          <hr className="hr-bar"/>
+          <hr className="hr-barr"/>
         </span>
-          <Form onSubmit={onSubmitHandler}>
-            <Form.Group>
+          <Form onSubmit={onSubmitHandler} className={`${isPage? "container px-5":null}`}>
+            <Form.Group >
               <Form.Label className="form-label">Email</Form.Label>
               <Form.Control
                 type="email"
@@ -37,17 +44,23 @@ const LoginPage = ({history}) => {
                 onChange={e=> setEmail(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group>
+            <Form.Group >
               <Form.Label className="form-label">Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"
                 onChange={e=> setPassword(e.target.value)}
               />
-            </Form.Group>
+            </Form.Group >
             <Button type="submit">
               Submit
             </Button>
+            <Form.Group className="d-flex align-items-center justify-content-end">
+            <span style={a} className="d-flex align-items-center" >Are you a new user  </span>
+            <a href="/signup" style={a} >
+                     OR Sign Up
+            </a>
+            </Form.Group>
           </Form>
         </FormContainer>
 

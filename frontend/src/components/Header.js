@@ -48,20 +48,24 @@ const Header = () => {
           {
             user ?
             (
-              <NavDropdown title={user.username} id='username'>
+              <NavDropdown title={user.username} id='username' onClick={hideModalHandler}>
                 <NavDropdown.Item>
                   <Link to='/profile' className='text-decoration-none text-dark'>Profile</Link>
                 </NavDropdown.Item>
-                <NavDropdown.Item onClick={onClickLogoutHandler}>
+                <NavDropdown.Item onClick={onClickLogoutHandler} href="/">
                   Log Out
                 </NavDropdown.Item>
               </NavDropdown>  
             ) : (<>
-                  <Nav.Link onClick={showModalHandler}>
+                  
+                    <Nav.Link onClick={showModalHandler}>
                     <i className="fas fa-user pr-2"></i>
                     Log In / Sign Up
                   </Nav.Link>
-                    <Route render={({history})=><FormContent show={showModal} handleClose={hideModalHandler} history={history}></FormContent>}/>
+                  {
+                    showModal?
+                    <Route render={({history})=><FormContent show={showModal} handleClose={hideModalHandler} history={history}></FormContent>}/>:null
+                  }
                 </>
             )
           }

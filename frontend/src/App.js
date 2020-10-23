@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
-        <Route exact path='/login' component={LoginPage} />
+        <Route exact path='/login' render={()=>{return(<LoginPage isPage={true}/>)}} />
         <Route exact path='/signup' component={SignupPage} />
       </Switch>
     </Router>

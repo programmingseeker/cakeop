@@ -89,13 +89,13 @@ li {
 			height: 6rem;
 		}
 	}
+}
 	.fac-para {
 		font-weight: 200;
 	}
 	.fac-title {
 		font-weight: 600;
 	}
-}
 
 .about-header {
 	font-size: 5rem;
@@ -118,14 +118,23 @@ li {
 padding:0.5rem!important;
 }
 
-.hr-bar{
-	width:20%;
+.hr-barl{
+	width:40%;
 	background-color:text-muted;
 	margin:0.5rem;
-	align-items:center;	
+}
+
+.hr-barr{
+	width:40%;
+	background-color:text-muted;
+	margin:0.5rem;
 }
 
 .form-label{
 	color:$text-color;
+}
+
+.image-cursor{
+	cursor:pointer;
 }
 @import 'bootstrap/scss/bootstrap';
