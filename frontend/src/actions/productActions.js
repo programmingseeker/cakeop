@@ -11,7 +11,7 @@ export const listProducts = (pageNumber='')=> async(dispatch)=>{
     try {
         dispatch({type:PRODUCT_LIST_REQUEST});
 
-        const { data } = await axios.get('/api/cake?page=1&limit=6');
+        const { data } = await axios.get('/api/cake');
 
         dispatch({
             type:PRODUCT_LIST_SUCCESS,

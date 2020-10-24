@@ -21,25 +21,32 @@ function HomePage() {
     
   }, [dispatch])
   
-  const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1
-  }
-};
+  const responsive ={
+        desktop: {
+          breakpoint: {
+            max: 3000,
+            min: 1024
+          },
+          items: 3,
+          partialVisibilityGutter: 40
+        },
+        mobile: {
+          breakpoint: {
+            max: 464,
+            min: 0
+          },
+          items: 1,
+          partialVisibilityGutter: 30
+        },
+        tablet: {
+          breakpoint: {
+            max: 1024,
+            min: 464
+          },
+          items: 2,
+          partialVisibilityGutter: 30
+        }
+  };
   
   return (
     <>
@@ -113,32 +120,7 @@ function HomePage() {
              minimumTouchDrag={80}
              renderButtonGroupOutside={false}
              renderDotsOutside={false}
-             responsive={{
-               desktop: {
-                 breakpoint: {
-                   max: 3000,
-                   min: 1024
-                 },
-                 items: 3,
-                 partialVisibilityGutter: 40
-               },
-               mobile: {
-                 breakpoint: {
-                   max: 464,
-                   min: 0
-                 },
-                 items: 1,
-                 partialVisibilityGutter: 30
-               },
-               tablet: {
-                 breakpoint: {
-                   max: 1024,
-                   min: 464
-                 },
-                 items: 2,
-                 partialVisibilityGutter: 30
-               }
-             }}
+             responsive={responsive}
              showDots={false}
              slidesToSlide={1}
              swipeable
@@ -153,7 +135,11 @@ function HomePage() {
                 })
               }
           </Carousel>
-          {/* </Row> */}
+          <Row>
+            <Col sm >
+              <Link className='float-right text-decoration-none' to='/cakes'>See all</Link>
+            </Col>
+          </Row>
           {/* <Row className="mt-2">
             <Col sm={7}>
               <Pagination className='float-right'>
@@ -184,7 +170,7 @@ function HomePage() {
       </div>
 
       <div className="bg-light">
-        <h2 className=" h1 mx-auto pt-4 text-center text-color font-weight-bolder">About <span className="text-primary">Us</span></h2>
+        <h2 className=" h1 mx-auto pt-4 text-center text-color font-weight-bolder" id="About">About <span className="text-primary">Us</span></h2>
         <h2 className="about-header text-center">
           We bake <br />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it right
