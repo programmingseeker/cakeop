@@ -10,8 +10,8 @@ import {
 export const listProducts = (pageNumber='')=> async(dispatch)=>{
     try {
         dispatch({type:PRODUCT_LIST_REQUEST});
-        
-        const { data } = await axios.get('/api/cake');
+
+        const { data } = await axios.get('/api/cake?page=1&limit=6');
 
         dispatch({
             type:PRODUCT_LIST_SUCCESS,

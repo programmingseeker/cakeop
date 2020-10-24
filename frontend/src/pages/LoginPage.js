@@ -3,9 +3,6 @@ import FormContainer from './../components/FormContainer';
 import { Form, Button } from 'react-bootstrap';
 import { login } from './../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux'
-import SignupPage from './SignupPage'
-import {Route,Link} from 'react-router-dom'
-import FormContent from '../components/FormContent'
 
 const LoginPage = ({history, isPage=false}) => {
   const [email, setEmail] = useState('');

@@ -37,7 +37,7 @@ class ProductCardGallery extends React.Component {
   {
     // gallery-item active 
 	  photos.map((photo, i) => {
-      const a=this.state.activeItem===i ? "active":"";
+      const a=this.state.activeItem===i ? "active-state":"";
       console.log(photo);
       return (
 	      <div
