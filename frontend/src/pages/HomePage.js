@@ -6,6 +6,9 @@ import { useDispatch , useSelector} from 'react-redux'
 import { listProducts } from './../actions/productActions'
 import ProductCard from '../components/ProductCardUI'
 
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+
 function HomePage() {
   const dispatch = useDispatch()
   
@@ -17,6 +20,26 @@ function HomePage() {
     dispatch(listProducts());
     
   }, [dispatch])
+  
+  const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1
+  }
+};
   
   return (
     <>
@@ -73,19 +96,65 @@ function HomePage() {
 
       <div>
         <h2 className=" h1 mx-auto py-3 text-center text-color font-weight-bolder"><span className="text-primary">Our</span> Products</h2>
-        <Container >
-          <Row className="justify-content-center">
+        <Container className="justify-content-center">
+          {/* <Row className="justify-content-center"> */}
+          <Carousel
+             additionalTransfrom={0}
+             arrows
+             autoPlaySpeed={3000}
+             centerMode={false}
+             className=""
+             containerClass="container-with-dots"
+             dotListClass=""
+             draggable
+             focusOnSelect={false}
+             itemClass=""
+             keyBoardControl
+             minimumTouchDrag={80}
+             renderButtonGroupOutside={false}
+             renderDotsOutside={false}
+             responsive={{
+               desktop: {
+                 breakpoint: {
+                   max: 3000,
+                   min: 1024
+                 },
+                 items: 3,
+                 partialVisibilityGutter: 40
+               },
+               mobile: {
+                 breakpoint: {
+                   max: 464,
+                   min: 0
+                 },
+                 items: 1,
+                 partialVisibilityGutter: 30
+               },
+               tablet: {
+                 breakpoint: {
+                   max: 1024,
+                   min: 464
+                 },
+                 items: 2,
+                 partialVisibilityGutter: 30
+               }
+             }}
+             showDots={false}
+             slidesToSlide={1}
+             swipeable
+           >
               {
                 data.map((product)=>{
                   return(
-                  <div className="col-sm-center mx-4">
+                  <div className="col-sm-center mx-4 justify-content-center">
                     <ProductCard product={product}/>
                   </div>
                   )
                 })
               }
-          </Row>
-          <Row className="mt-2">
+          </Carousel>
+          {/* </Row> */}
+          {/* <Row className="mt-2">
             <Col sm={7}>
               <Pagination className='float-right'>
                 <Pagination.Item disabled > Previous </Pagination.Item>
@@ -97,7 +166,7 @@ function HomePage() {
             <Col sm >
               <Link className='float-right text-decoration-none' to='/cakes'>see all</Link>
             </Col>
-          </Row>
+          </Row> */}
         </Container>
 {/*         
             <Col sm>
