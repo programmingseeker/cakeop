@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import Header from './components/Header';
-
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
         <Route exact path='/login' render={()=>{return(<LoginPage isPage={true}/>)}} />
         <Route exact path='/signup' component={SignupPage} />
       </Switch>
+      <Footer/>
     </Router>
   );
 }

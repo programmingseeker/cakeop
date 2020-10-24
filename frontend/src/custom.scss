@@ -137,4 +137,44 @@ padding:0.5rem!important;
 .image-cursor{
 	cursor:pointer;
 }
+
+
+.footer-primary-bg {
+	background-color: #3c444c;
+	h3{
+		font-weight:600;
+		margin-bottom:0rem!important;
+	}
+	p{
+		font-weight:400;
+		font-size:16px;
+		line-height:20px;
+		width:70%
+	}
+}
+
+.footer-secondary-bg {
+	background-color: #5f6368;
+    ul{
+		margin:0.4rem 0rem!important;
+	}
+	h5{
+		margin:0.4rem 0rem!important;
+		font-size:16px
+	}
+
+}
+.footer h5 {
+	color: white;
+	cursor:context-menu;
+}
+
+.footer-links > li > a {
+	margin: 1rem 0;
+	text-decoration: none;
+	color: #ffffffbb;
+}
+.footer-links > li > a:hover {
+	color: #fff;
+}
 @import 'bootstrap/scss/bootstrap';
