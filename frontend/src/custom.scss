@@ -3,7 +3,6 @@
 
 $primary: #00bcd4;
 $text-color: #5f6368;
-$primary-color: #00bcd4;
 $section-bg: #f9f9f9;
 $form-placeholder: #888;
 $menu-bar-content: #16679a;
@@ -138,8 +137,14 @@ padding:0.5rem!important;
 	cursor:pointer;
 }
 
+.footer{
+  position: relative;
+  bottom: 0;
+}
 
 .footer-primary-bg {
+	z-index:100!important;
+	position:relative;
 	background-color: #3c444c;
 	h3{
 		font-weight:600;
@@ -154,6 +159,8 @@ padding:0.5rem!important;
 }
 
 .footer-secondary-bg {
+	z-index:10000!important;
+	position:relative;
 	background-color: #5f6368;
     ul{
 		margin:0.4rem 0rem!important;
@@ -177,4 +184,7 @@ padding:0.5rem!important;
 .footer-links > li > a:hover {
 	color: #fff;
 }
+
+@import '../public/accountpage';
+@import '../public/sidenav';
 @import 'bootstrap/scss/bootstrap';

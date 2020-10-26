@@ -15,7 +15,7 @@ function ProductCards({product}) {
   };
     return (
       <Col sm>
-          <ProductCard photos={returnArrayOfImg(product.images)} price={`₹${product.price}`} productName={product.name} description={product.description} buttonText="Add To Cart" />
+          <ProductCard photos={returnArrayOfImg(product.images)} price={`₹${product.price}`} productName={product.name} description={product.theme} buttonText="Add To Cart" />
       </Col>
     );
 }

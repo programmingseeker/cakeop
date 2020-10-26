@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch , useSelector} from 'react-redux'
 
 import { listProducts } from './../actions/productActions'
-import ProductCard from '../components/ProductCardUI'
+import ProductCardUI from '../components/ProductCardUI'
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -129,7 +129,7 @@ function HomePage() {
                 data.map((product)=>{
                   return(
                   <div className="col-sm-center mx-4 justify-content-center">
-                    <ProductCard product={product}/>
+                    <ProductCardUI product={product}/>
                   </div>
                   )
                 })
@@ -140,33 +140,7 @@ function HomePage() {
               <Link className='float-right text-decoration-none' to='/cakes'>See all</Link>
             </Col>
           </Row>
-          {/* <Row className="mt-2">
-            <Col sm={7}>
-              <Pagination className='float-right'>
-                <Pagination.Item disabled > Previous </Pagination.Item>
-                <Pagination.Item active > 1 </Pagination.Item>
-                <Pagination.Item > 2 </Pagination.Item>
-                <Pagination.Item > Next </Pagination.Item>
-              </Pagination>
-            </Col>
-            <Col sm >
-              <Link className='float-right text-decoration-none' to='/cakes'>see all</Link>
-            </Col>
-          </Row> */}
         </Container>
-{/*         
-            <Col sm>
-              <Card className='p-2 rounded-lg mt-2'>
-                <Card.Img variant="top" src="/img/product-img-1.png" alt="..." />
-                <Card.Body>
-                  <Card.Title>Strawberry cup cake</Card.Title>
-                  <Card.Text>Some quick example.</Card.Text>
-                  <h3>₹ 120</h3>
-                </Card.Body>
-              </Card>
-            </Col>
-*/}
-
       </div>
 
       <div className="bg-light">

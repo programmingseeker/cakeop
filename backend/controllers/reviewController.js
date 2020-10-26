@@ -1,5 +1,6 @@
 import Review from './../models/reviewModel.js';
 import catchAsync from './../utils/catchAsync.js';
+import APIFeatures from './../utils/apiFeatures.js';
 
 export const createReview = catchAsync(async (req, res, next) => {
 	const review = {
@@ -15,9 +16,14 @@ export const createReview = catchAsync(async (req, res, next) => {
 	});
 });
 
-//get review for a cake
+//get review for all cakes
 export const getAllReviews = catchAsync(async (req, res, next) => {
-	const reviews = await Review.find();
+		const features = new APIFeatures(Review.find(), req.query)
+		.filter()
+		.sort()
+		.paginate()
+		.limitFields();
+	const reviews = await features.query;
 	res.status(200).json(
 		{
 			status: 'success',
@@ -48,7 +54,7 @@ export const getReview = catchAsync(async (req, res, next) => {
 	res.status(200).json({
 		status: 'success',
 		data: {
-			data: doc
+			data: query
 		}
 	});
 })
