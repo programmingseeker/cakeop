@@ -1,10 +1,9 @@
 import React,{useState,useEffect} from 'react'
-import {Container,Nav , Tab}from 'react-bootstrap'
-import { Link ,Route, Switch} from 'react-router-dom';
+import {Container,Nav,Tab}from 'react-bootstrap'
 
-import Settings from './Settings'
-import Reviews from './Reviews'
-import Bookings from './Bookings'
+import Settings from '../components/Settings'
+import Reviews from '../components/Reviews'
+import Bookings from '../components/Bookings'
 
 function AllCakes({tab}='settings') {
     const [sideNav,setsideNav]=useState(false);
@@ -22,16 +21,12 @@ function AllCakes({tab}='settings') {
         switch (screen) {
             case 'settings':
            return <Settings/>;
-           break;
             case 'reviews':
            return <Reviews/>;
-           break;
             case 'bookings':
            return <Bookings/>;
-           break;
             default:
             return <div> this is a wrong page</div>;
-            break;
         }
     }
     return (
@@ -40,13 +35,13 @@ function AllCakes({tab}='settings') {
         <aside id="sidebar-wrapper">
           <Nav className="sidebar-nav" as="ul">
             <Nav.Item as="li" >
-              <Nav.Link as="a" href='/cakes/settings' className={`sidenav-icon ${(tab === 'settings')? 'active':''}`}><i className="fa fa-user-cog" />Settings</Nav.Link>
+              <Nav.Link as="a" href='/settings' className={`sidenav-icon ${(tab === 'settings')? 'active':''}`}><i className="fa fa-user-cog" />Settings</Nav.Link>
             </Nav.Item>
             <Nav.Item as="li">
-              <Nav.Link as="a"  href='/cakes/reviews' className={`sidenav-icon ${(tab === 'reviews')? 'active':''}`}><i className="fa fa-star" />Reviews</Nav.Link>
+              <Nav.Link as="a"  href='/reviews' className={`sidenav-icon ${(tab === 'reviews')? 'active':''}`}><i className="fa fa-star" />Reviews</Nav.Link>
             </Nav.Item>
             <Nav.Item as="li">
-              <Nav.Link as="a"  href='/cakes/bookings' className={`sidenav-icon ${(tab === 'bookings')? 'active':''}`}><i class="fa fa-shopping-bag"></i>Bookings</Nav.Link>
+              <Nav.Link as="a"  href='/bookings' className={`sidenav-icon ${(tab === 'bookings')? 'active':''}`}><i class="fa fa-shopping-bag"></i>Bookings</Nav.Link>
             </Nav.Item>
           </Nav>
         </aside>
@@ -57,7 +52,7 @@ function AllCakes({tab}='settings') {
             </div>
           </Nav>
         </div>
-        <section id="content-wrapper">
+        <section id="content-wrapper" className="overflow-auto">
             <div className="col-lg-12">
                <Tab.Content>
                  {handlescreen(screen)}

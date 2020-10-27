@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 
 const Footer = () => {
   return (
-    <div className="footer container-fluid page-footer">
+    <footer className="footer container-fluid page-footer">
         <Row className='d-flex footer-primary-bg p-5  mt-4'>
             <Col sm={4} >
               <div className="d-flex mb-3">
@@ -54,7 +54,7 @@ const Footer = () => {
             </Col>
       </Row>
       <Row className='footer-secondary-bg d-flex justify-content-sm-between'>
-        <div className="ml-5 align-self-center " >
+        <div className=" footer-copyright ml-5 " >
             <h5>Copyright &#169; 2020 CakeOP. All rights reserved.</h5>
         </div>
         <div >
@@ -68,7 +68,7 @@ const Footer = () => {
           </ul>
         </div>
       </Row>
-    </div>
+    </footer>
   )
 }
 

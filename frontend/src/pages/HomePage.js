@@ -71,7 +71,7 @@ function HomePage() {
         </Container>
       </div>
 
-            <div className="bg-light py-3">
+      <div className="bg-light py-3">
         <h2 className=" h1 mx-auto py-3 text-center text-color font-weight-bolder"><span className="text-primary">Our</span> Facilities</h2>
         <Container>
           <Row>
@@ -171,10 +171,10 @@ function HomePage() {
       </div>
 
       <Container>
-        <h2 className="h1 mx-auto py-3" style={{width:"fit-content"}}>Contact <span className="textprimary">Us</span></h2>
+         <h2 className=" h1 mx-auto py-3 text-center text-color font-weight-bolder">Contact<span className="text-primary">Us</span> </h2>
           <Row className='mt-4 mb-4 pb-5'>
             <Col sm={5}>
-              <Form>
+              <Form >
 
                 <Form.Group>
                   <Form.Label>Name</Form.Label>
@@ -206,7 +206,7 @@ function HomePage() {
               </div>
             </Col>
             <Col sm={5} className="d-flex flex-column justify-content-sm-center align-items-sm-center">
-              <Container className='d-flex flex-column align-items-center pt-3 linktags'>
+              <Container className='d-flex flex-column align-items-center justify-content-start pt-3 linktags'>
                 <Link className="align-self-center my-2 text-decoration-none text-reset">
                   <img src="/img/icons/Facebook.svg" alt="facebook"/>&nbsp;&nbsp;Facebook
                 </Link>

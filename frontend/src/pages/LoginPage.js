@@ -16,21 +16,22 @@ const LoginPage = ({history, isPage=false}) => {
   }
   
   const a={
-    "font-size":"1rem"
+    "font-size":"1rem",
+    "padding":"0px 2px"
   }
 
   return (
     <>
-      <div className={`d-flex flex-column ${isPage? "mt-5 pt-3 ":null}`} >
-        <FormContainer className="col-sm-center ">
+      <div className={`d-flex flex-column ${isPage? 'mt-5 pt-3 ':''}`} >
+        <FormContainer className="col-sm-center w-75">
         <h1 className="d-flex align-items-center justify-content-center text-color fac-title">Log In</h1>
         <span className="d-flex justify-content-center">
           <img src="/img/login/googleoauth.svg" alt="Google Login" />
         </span>
         <span className="d-flex align-items-center">
-          <hr className="hr-barl"/> 
+          <hr className="hr-bar w-25"/> 
           <span className="text-muted" style={{"letter-spacing": "0.5px"}}>LOGIN WITH EMAIL</span>
-          <hr className="hr-barr"/>
+          <hr className="hr-bar w-25"/>
         </span>
           <Form onSubmit={onSubmitHandler} className={`${isPage? "container px-5":null}`}>
             <Form.Group >
@@ -53,7 +54,7 @@ const LoginPage = ({history, isPage=false}) => {
               Submit
             </Button>
             <Form.Group className="d-flex align-items-center justify-content-end">
-            <span style={a} className="d-flex align-items-center" >Are you a new user  </span>
+            <span style={a} className="d-flex align-items-center" >Are you a new user</span>
             <a href="/signup" style={a} >
                      OR Sign Up
             </a>

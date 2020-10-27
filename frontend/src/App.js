@@ -6,7 +6,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import AllCakes from './components/AllCakes';
+import ProfilePage from './pages/ProfilePage';
 function App() {
   return (
     <Router>
@@ -15,10 +15,10 @@ function App() {
         <Route exact path='/' component={HomePage} />
         <Route exact path='/login' render={()=><LoginPage isPage={true}/>} />
         <Route exact path='/signup' component={SignupPage} />
-        <Route exact path='/cakes' component={AllCakes} />
-        <Route exact path='/cakes/settings' render={()=><AllCakes tab={'settings'}/>} />
-        <Route exact path='/cakes/reviews' render={()=><AllCakes tab={'reviews'}/>} />
-        <Route exact path='/cakes/bookings' render={()=><AllCakes tab={'bookings'}/>} />
+        <Route exact path='/profile' render={()=><ProfilePage tab={'settings'}/>} />
+        <Route exact path='/settings' render={()=><ProfilePage tab={'settings'}/>}  />
+        <Route exact path='/reviews' render={()=><ProfilePage tab={'reviews'}/>} />
+        <Route exact path='/bookings' render={()=><ProfilePage tab={'bookings'}/>} />
       </Switch>
       <Footer/>
     </Router>

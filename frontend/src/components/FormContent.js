@@ -7,11 +7,10 @@ function FormContent({show, handleClose,history}) {
         <Modal
         show={show}
         onHide={handleClose}
-        backdrop="static"
         centered
       >
         <Modal.Body>
-        <button className="close d-flex " onClick={handleClose}>×</button>
+        <button className="close" onClick={handleClose}>×</button>
            <LoginPage history={history}/>
         </Modal.Body>
       </Modal>
