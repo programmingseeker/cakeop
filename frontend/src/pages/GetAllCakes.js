@@ -9,21 +9,41 @@ import { listProducts } from './../actions/productActions'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-function GetAllCakes() {
+function GetAllCakes({history}) {
     const dispatch = useDispatch()
     const [sideNav,setsideNav]=useState(false);
     const sideNavtoggle=()=>{
     const a = sideNav?false:true;
         setsideNav(a);
     }
+  const [price,setprice]=useState({minimum:50,maximum:950});
+  const filterPriceHandler=(e,minimum,maximum)=>{
+    console.log(e);
+    e.preventDefault();
+    const newvalue={minimum,maximum}
+    setprice(newvalue);
+    if(newvalue.minimum || newvalue.maximum){
+      history.push(`/cakes?${newvalue.minimum}&${newvalue.maximum}`);
+    }
+    console.log(newvalue.minimum, newvalue.maximum);
+    console.log(price.minimum, price.maximum);
+  }
+  
+  
+  const [weight,setweight]=useState(1000);
+  const filterWeight=(weightValue)=>{
+    setweight(weightValue);
+    
+  }
+  
   
   const productList = useSelector(state => state.productList);
   const products= useSelector(state => state.productList.products);
   const data= products.data||[];
   const { loading,error } = productList;
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch])
+    dispatch(listProducts(price,weight));
+  }, [dispatch,price,weight])
 
   const responsive ={
         desktop: {
@@ -52,36 +72,34 @@ function GetAllCakes() {
         }
   };
     return (
-        <div classname="mt-5 pt-5">
+        <div className="mt-2">
        <Container id='wrapper' className={`${sideNav? 'toggled ':''}`} >
         <aside id="sidebar-wrapper">
           <Nav className="sidebar-nav justify-content-center" as="ul">
             <div className="d-flex align-items-center ">
               <img src='/img/icons/filter.svg' alt='filter icon'/>              
-              <h3 className="text-white px-2" style={{"font-weight":"600"}}>Filter</h3>
+              <h3 className="text-white px-2" style={{"fontWeight":"600"}}>Filter</h3>
             </div>
-            <RangeSlider/>
+            <RangeSlider filterPriceHandler={filterPriceHandler}/>
           </Nav>
-        
         <br/>
-        
         <Nav className="d-flex align-items-center justify-content-around">
-        <h2 className="text-white pl-2" style={{"font-weight":"600"}}>Weight</h2>
+        <h2 className="text-white pl-2" style={{"fontWeight":"600"}}>Weight</h2>
         <Dropdown >
            <Dropdown.Toggle  className="button-sidenav " id="dropdown-basic" style={{"width":"10rem!important"}}>
-             500g
+             {weight>=1000? weight/1000:weight}
            </Dropdown.Toggle>
            <Dropdown.Menu>
-             <Dropdown.Item href="#/action-1">500g</Dropdown.Item>
-             <Dropdown.Item href="#/action-2">1kg</Dropdown.Item>
-             <Dropdown.Item href="#/action-2">1.5kg</Dropdown.Item>
-             <Dropdown.Item href="#/action-3">2kg</Dropdown.Item>
+             <Dropdown.Item onClick={() =>filterWeight(500)}>500g</Dropdown.Item>
+             <Dropdown.Item onClick={() =>filterWeight(1000)}>1kg</Dropdown.Item>
+             <Dropdown.Item onClick={() =>filterWeight(1500)}>1.5kg</Dropdown.Item>
+             <Dropdown.Item onClick={() =>filterWeight(2000)}>2kg</Dropdown.Item>
            </Dropdown.Menu>
          </Dropdown>
         </Nav>
         <br/>
         <Nav className="d-flex flex-column align-items-center justify-content-center ">
-        <h2 className="text-white pl-2" style={{"font-weight":"600"}}>Reviews</h2>
+        <h2 className="text-white pl-2" style={{"fontWeight":"600"}}>Reviews</h2>
           <Nav.Item className="d-flex align-items-center justify-content-center review-item ">
         <span style={{"color":"#ffdf00"}} class="fa fa-star"></span>
         <span style={{"color":"#ffdf00"}} class="fa fa-star"></span>
@@ -123,7 +141,7 @@ function GetAllCakes() {
             <div onClick={sideNavtoggle} className={`${sideNav? '':'navbar-inverse'}`}>
                 <span className="sidenav-icon" ><i className="fa fa-angle-double-right" /></span>
             </div>
-            <h2 className="text-color pl-2" style={{"font-weight":"600"}}>Filters</h2>
+            <h2 className="text-color pl-2" style={{"fontWeight":"600"}}>Filters</h2>
           </Nav>
         </div>
 
@@ -152,7 +170,7 @@ function GetAllCakes() {
               {
                 data.map((product,i)=>{
                   return(
-                  <div className="col-sm-center mx-4 justify-content-center">
+                  <div className="justify-content-center">
                     <ProductCardUI product={product}/>
                   </div>
                   )

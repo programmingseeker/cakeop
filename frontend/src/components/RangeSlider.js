@@ -1,18 +1,18 @@
 import React from 'react'
 
 class RangeSlider extends React.Component {
+
   state = {
     sliderWidth: 0,
     offsetSliderWidht: 0,
     min: 0,
-    max: 200,
+    max: 1000,
     minValueBetween: 10,
     currentMin: 55,
     inputMin: 55,
     currentMax: 100,
-    inputMax: 100
+    inputMax: 100,
   };
-
  componentDidMount() {
    const { currentMin, currentMax, max } = this.state;
    
@@ -37,7 +37,6 @@ class RangeSlider extends React.Component {
       this.setState({
         currentMin: parseInt(inputMin)
       }); 
-
       this.minValue.style.width = (inputMin*100)/max + "%";
     }
   }
@@ -59,11 +58,11 @@ class RangeSlider extends React.Component {
     const dragedWidhtInPercent = (dragedWidht*100)/sliderWidth;
     const currentMin = Math.abs(parseInt((max * dragedWidhtInPercent)/100));
     
-    console.log(e.pageX, e.clientX, offsetSliderWidht);
+    // console.log(e.pageX, e.clientX, offsetSliderWidht);
     
-    console.log(currentMin , (currentMax-minValueBetween));
+    // console.log(currentMin , (currentMax));
     
-    console.log((max * dragedWidhtInPercent)/100);
+    // console.log((max * dragedWidhtInPercent)/100);
  
     if( (currentMin >= min) && (currentMin <= (currentMax-minValueBetween))){
       this.minValue.style.width = dragedWidhtInPercent + "%";
@@ -77,11 +76,16 @@ class RangeSlider extends React.Component {
   }
 
   onMouseUpMin = () => {
+    const { currentMin, currentMax} = this.state;
+    
+    console.log(currentMin , (currentMax));
+    
     document.removeEventListener('mouseup', this.onMouseUpMin);
     document.removeEventListener('mousemove', this.onMouseMoveMin);
     
     document.removeEventListener('touchend', this.onMouseMoveMin);
     document.removeEventListener('touchmove', this.onMouseUpMin);
+    
   }
   
   
@@ -166,11 +170,11 @@ class RangeSlider extends React.Component {
         <div ref={ref => this.slider = ref} id="slider">
 
           <div ref={ref => this.minValue = ref} id="min" data-content={currentMin}>
-            <div ref={ref => this.minValueDrag = ref} id="min-drag" onMouseDown ={this.changeMinValue} onTouchStart={this.changeMinValue}></div>
+            <div ref={ref => this.minValueDrag = ref} id="min-drag" onMouseDown ={this.changeMinValue} onTouchStart={this.changeMinValue} onMouseUp={(e)=>this.props.filterPriceHandler(e,currentMin, currentMax)}></div>
           </div>
 
           <div ref={ref => this.maxValue = ref} id="max" data-content={currentMax}>
-            <div ref={ref => this.maxValueDrag = ref} id="max-drag" onMouseDown={this.changeMaxValue} onTouchStart={this.changeMaxValue}></div>
+            <div ref={ref => this.maxValueDrag = ref} id="max-drag" onMouseDown={this.changeMaxValue} onTouchStart={this.changeMaxValue} onMouseUp={(e)=>this.props.filterPriceHandler(e,currentMin, currentMax)}></div>
           </div>
 
         </div>

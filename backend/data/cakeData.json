@@ -1,7 +1,7 @@
 [
   {
     "name": "Black Forest Gateau",
-    "weight": 2,
+    "weight": 2000,
     "theme": "nature",
     "price": 100,
     "description": "This classic cake never fails to impress",
@@ -9,7 +9,7 @@
   },
   {
     "name": "Pineapple Cake",
-    "weight": 2.1,
+    "weight": 2100,
     "theme": "anime",
     "price": 120,
     "description": "This classic cake is made to suck",
@@ -17,7 +17,7 @@
   },
   {
     "name": "Eggless Truffle Cake",
-    "weight": 1.2,
+    "weight": 1200,
     "theme": "normal",
     "price": 300,
     "description": "eggless cake for pure veggie people 1000%",
@@ -25,7 +25,7 @@
   },
   {
     "name": "Coffee Cake with Mocha Frosting",
-    "weight": 1,
+    "weight": 1000,
     "theme": "couples",
     "price": 100,
     "description": "A delectable coffee cake treat to relish with friends and family",
@@ -33,7 +33,7 @@
   },
   {
     "name": "Oreo Cheesecake",
-    "weight": 1.23,
+    "weight": 1230,
     "theme": "biscuit",
     "price": 130,
     "description": "There's no better way to enjoy oreo biscuits than to stick them in a creamy cheesecake",
@@ -41,7 +41,7 @@
   },
   {
     "name": "dryfruit sunday icecake",
-    "weight": 0.7,
+    "weight": 700,
     "theme": "healthy",
     "price": 500,
     "description": "Made with dry fruits and icecream one you eat this there is no holding back..!",
@@ -49,7 +49,7 @@
   },
   {
     "name": "yellow butter cake",
-    "weight": 50,
+    "weight": 500,
     "theme": "yellow",
     "price": 300,
     "description": "Yellow butter cakes often involve creaming the butter and sugar together",
@@ -57,7 +57,7 @@
   },
   {
     "name": "Pound cake",
-    "weight": 70,
+    "weight": 700,
     "theme": "greenish",
     "price": 300,
     "description": "Yellow butter cakes often involve creaming the butter and sugar together",
@@ -65,7 +65,7 @@
   },
   {
     "name": "Red velvet",
-    "weight": 60,
+    "weight": 600,
     "theme": "red",
     "price": 400,
     "description": "This is a true favorite, especially in the south. Made with either butter or oil",
@@ -74,7 +74,7 @@
 
   {
     "name": "carrot cake",
-    "weight": 90,
+    "weight": 900,
     "theme": "orange",
     "price": 150,
     "description": "This shortened cake uses oil as its main fat rather than butter",
@@ -82,7 +82,7 @@
   },
   {
     "name": "sponge cake",
-    "weight": 100,
+    "weight": 1000,
     "theme": "orangish",
     "price": 500,
     "description": "This is a foam-style cake that has no artificial leaveners",
@@ -90,9 +90,9 @@
   },
   {
     "name": "Genoise Cake",
-    "weight": 70,
+    "weight": 700,
     "theme": "yellow",
-    "price": 7000,
+    "price": 900,
     "description": "Genoise is what a sponge cake is called in Italy or France",
     "images": ["prod-1.jpeg", "prod-2.jpeg"]
   }
