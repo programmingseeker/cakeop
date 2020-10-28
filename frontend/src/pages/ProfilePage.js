@@ -1,11 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import {Container,Nav,Tab}from 'react-bootstrap'
 
+import ReactDOM from 'react-dom';
+
 import Settings from '../components/Settings'
 import Reviews from '../components/Reviews'
 import Bookings from '../components/Bookings'
 
-function AllCakes({tab}='settings') {
+function ProfilePage({tab}='settings') {
     const [sideNav,setsideNav]=useState(false);
     const sideNavtoggle=()=>{
         const a = sideNav?false:true;
@@ -16,7 +18,7 @@ function AllCakes({tab}='settings') {
     useEffect(() => {
     setscreen(tab)
     }, [screen])
-
+    
     const handlescreen=(screen = 'settings')=>{
         switch (screen) {
             case 'settings':
@@ -43,6 +45,7 @@ function AllCakes({tab}='settings') {
             <Nav.Item as="li">
               <Nav.Link as="a"  href='/bookings' className={`sidenav-icon ${(tab === 'bookings')? 'active':''}`}><i class="fa fa-shopping-bag"></i>Bookings</Nav.Link>
             </Nav.Item>
+
           </Nav>
         </aside>
         <div id="navbar-wrapper">
@@ -64,4 +67,4 @@ function AllCakes({tab}='settings') {
 )
 }
 
-export default AllCakes
+export default ProfilePage

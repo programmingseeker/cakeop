@@ -7,6 +7,7 @@ import SignupPage from './pages/SignupPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProfilePage from './pages/ProfilePage';
+import GetAllCakes from './pages/GetAllCakes'
 function App() {
   return (
     <Router>
@@ -19,6 +20,7 @@ function App() {
         <Route exact path='/settings' render={()=><ProfilePage tab={'settings'}/>}  />
         <Route exact path='/reviews' render={()=><ProfilePage tab={'reviews'}/>} />
         <Route exact path='/bookings' render={()=><ProfilePage tab={'bookings'}/>} />
+        <Route exact path='/cakes' component={GetAllCakes}/>
       </Switch>
       <Footer/>
     </Router>

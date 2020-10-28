@@ -18,9 +18,8 @@ function HomePage() {
   const { loading,error } = productList;
   useEffect(() => {
     dispatch(listProducts());
-    
   }, [dispatch])
-  
+
   const responsive ={
         desktop: {
           breakpoint: {
