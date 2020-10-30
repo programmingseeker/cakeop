@@ -51,7 +51,10 @@ function Settings() {
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label className="form-label-profile ">New Password</Form.Label>
-          <Form.Control  className="text-muted drop-shadow input" type="password" placeholder="Password" />
+          <Form.Control  className="text-muted drop-shadow input" type="password" placeholder="Password" id="inputPassword5" className="form-control" aria-describedby="passwordHelpBlock"/>
+        <small id="passwordHelpBlock" className="form-text text-muted">
+          Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+         </small>
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label className="form-label-profile ">Confirm Password</Form.Label>

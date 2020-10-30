@@ -169,8 +169,8 @@ function HomePage() {
         </Container>
       </div>
 
-      <Container>
-         <h2 className=" h1 mx-auto py-3 text-center text-color font-weight-bolder">Contact<span className="text-primary">Us</span> </h2>
+      <Container >
+         <h2 id="#Contact" className=" h1 mx-auto py-3 text-center text-color font-weight-bolder">Contact<span className="text-primary">Us</span> </h2>
           <Row className='mt-4 mb-4 pb-5'>
             <Col sm={5}>
               <Form >
@@ -200,7 +200,7 @@ function HomePage() {
               </Form>
             </Col>
             <Col sm={2} className='p-1'>
-              <div className="mx-auto position-relative" style={{width:'fit-content',top:'50%'}}>
+              <div className="mx-auto position-relative text-center" style={{width:'fit-content',top:'50%'}}>
                 <span>-- or --</span>
               </div>
             </Col>

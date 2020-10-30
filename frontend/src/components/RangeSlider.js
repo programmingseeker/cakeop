@@ -8,10 +8,10 @@ class RangeSlider extends React.Component {
     min: 0,
     max: 1000,
     minValueBetween: 10,
-    currentMin: 55,
-    inputMin: 55,
-    currentMax: 100,
-    inputMax: 100,
+    currentMin: 50,
+    inputMin: 50,
+    currentMax: 950,
+    inputMax: 950,
   };
  componentDidMount() {
    const { currentMin, currentMax, max } = this.state;

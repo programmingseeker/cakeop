@@ -34,14 +34,14 @@ const Header = () => {
     <Navbar.Toggle aria-controls="#navbarSupportedContent"/>
     <Navbar.Collapse id="navbarSupportedContent">
       <Nav className='ml-auto text-center'>
-        <Nav.Link href="#About">
+        <Nav.Link href="/#About">
           <i className="fas fa-users fa-lg px-2"></i>
           About Us</Nav.Link>
-        <Nav.Link href="#link1">
+        <Nav.Link href="/#Contact">
           <i className="fas fa-phone-alt px-2"></i>
           Contact Us
         </Nav.Link>
-        <Nav.Link href="#link2">
+        <Nav.Link href="/cart">
           <i className="fas fa-shopping-cart px-2"></i>
           Cart
         </Nav.Link>

@@ -1,10 +1,4 @@
-$border-radius: 20px;
-
-$base: #071739;
 $lighter-shadow: rgba($primary, .2);
-$white: #fff;
-$gray: #8c8c8c;
-$lighter-gray: rgba($gray, .1);
 $time-line-width: 240px;
 $transition: .3s all ease;
 
@@ -37,7 +31,7 @@ $transition: .3s all ease;
         text-align: center;
         color: white;
         background: $text-color;
-        border-radius: $border-radius;
+        border-radius: 20px;
     }
     &::after{
       opacity: 0;
@@ -66,14 +60,6 @@ $transition: .3s all ease;
     }
   }
 }
-
-body{
-  color: $base;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: $lighter-gray;
   .card-slider{
     display: flex;
     flex-direction: column;
@@ -95,7 +81,7 @@ body{
           color: white!important;
           padding: 0px 10px;
           border: 1px solid white!important;
-          border-radius: 10px!important;
+          border-radius: 5px!important;
           background: $primary!important;
           box-shadow: 1px 3px 3px 2px rgba(0, 0, 0, 0.1);
         }
@@ -118,10 +104,10 @@ body{
       cursor: pointer;
 
       @include dragIndicator("#min", white, 2);
-      @include dragIndicator("#max", $text-color, 1);
+      @include dragIndicator("#max", rgba(0, 0, 0, 0.5) , 1);
     }
   }
-}
+
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
