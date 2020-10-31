@@ -52,10 +52,8 @@ function HomePage() {
 
       <div className="banner">
         <Container className="text-white">
-          <h1 className="h1 ">Best Customized cakes in 
-            <span className="text-primary"> Bangalore</span>
-          </h1>
-          <p className="h5 my-3 mb-2">
+          <h1 className="h1 text-white ">Best Customized cakes in<span className="text-primary"> Bangalore</span></h1>
+          <p className="h5 my-3 mb-2 text-white">
             Have your dream<span className="text-primary"> Custom cakes </span>
              made just for you with
             <br />

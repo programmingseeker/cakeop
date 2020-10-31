@@ -1,14 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
+import Header from './components/Header';
+import Footer from './components/Footer';
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
-import Header from './components/Header';
-import Footer from './components/Footer';
 import ProfilePage from './pages/ProfilePage';
-import GetAllCakes from './pages/GetAllCakes'
+import GetAllCakes from './pages/GetAllCakes';
+import ProductPage from './pages/ProductPage';
 import Cart from './pages/Cart';
+import NotFound404 from './pages/NotFound404';
+
+
 function App() {
   return (
     <Router>
@@ -22,7 +26,9 @@ function App() {
         <Route exact path='/reviews' render={()=><ProfilePage tab={'reviews'}/>} />
         <Route exact path='/bookings' render={()=><ProfilePage tab={'bookings'}/>} />
         <Route exact path='/cakes' component={GetAllCakes}/>
-        <Route exact path='/cart'component={Cart}/>
+        <Route exact path='/cakes/:id' component={ProductPage}/>
+        <Route exact path='/cart' component={Cart} />
+        <Route path='*' component={NotFound404} />
       </Switch>
       <Footer/>
     </Router>

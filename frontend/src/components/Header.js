@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import {Link ,Route} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
+import { LinkContainer} from 'react-router-bootstrap';
 import { logout } from './../actions/userActions';
 import FormContent from './FormContent';
 const Header = () => {
@@ -27,24 +28,37 @@ const Header = () => {
   return (
   <Navbar expand='lg' bg='white' fixed='top' className="shadow">
   <Container className="text-center">
-    <Navbar.Brand href='/'>
-      <img alt="Logo"src="/img/icons/logo.svg" className="d-inline-block align-middle"/>{'  '}
-      <span className="align-middle h2 font-weight-bold">CakeOp</span>
-    </Navbar.Brand>
+    <LinkContainer to='/'>
+      <Navbar.Brand>
+        <img alt="Logo"src="/img/icons/logo.svg" className="d-inline-block align-middle"/>{'  '}
+        <span className="align-middle h2 font-weight-bold">CakeOp</span>
+      </Navbar.Brand>
+    </LinkContainer>
     <Navbar.Toggle aria-controls="#navbarSupportedContent"/>
     <Navbar.Collapse id="navbarSupportedContent">
       <Nav className='ml-auto text-center'>
-        <Nav.Link href="/#About">
-          <i className="fas fa-users fa-lg px-2"></i>
-          About Us</Nav.Link>
-        <Nav.Link href="/#Contact">
-          <i className="fas fa-phone-alt px-2"></i>
-          Contact Us
-        </Nav.Link>
-        <Nav.Link href="/cart">
-          <i className="fas fa-shopping-cart px-2"></i>
-          Cart
-        </Nav.Link>
+        <LinkContainer to='/#About'>
+          <Nav.Link>
+            <i className="fas fa-users fa-lg px-2"></i>
+            About Us
+          </Nav.Link>
+        </LinkContainer>
+        
+        <LinkContainer to='/#contact'>
+          <Nav.Link>
+            <i className="fas fa-phone-alt px-2"></i>
+            Contact Us
+          </Nav.Link>
+        </LinkContainer>
+        
+        
+        <LinkContainer to='/cart'>
+          <Nav.Link>
+            <i className="fas fa-shopping-cart px-2"></i>
+            Cart
+          </Nav.Link>
+        </LinkContainer>
+        
           {
             user ?
             (
@@ -69,6 +83,7 @@ const Header = () => {
                 </>
             )
           }
+          
       </Nav>
     </Navbar.Collapse>
   </Container>

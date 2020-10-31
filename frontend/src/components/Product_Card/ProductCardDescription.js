@@ -1,6 +1,5 @@
-
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 const ProductCardDescription = ({
   productName,
   description,
@@ -8,6 +7,7 @@ const ProductCardDescription = ({
   rating,
   url
 }) => {
+
   const renderButton = () => {
     if (buttonText) {
       return (
@@ -23,7 +23,10 @@ const ProductCardDescription = ({
   };
   return (
     <div className="product-card-description-box">
-      <div className="product-card-name">{productName}</div>
+      <div className="product-card-name">
+          {productName}
+
+      </div>
       <p className="product-card-description">{description}</p>
       {renderButton()}
     </div>

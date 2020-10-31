@@ -1,14 +1,13 @@
-import React,{useState,useEffect} from 'react'
-import {Container,Nav,Tab,Dropdown}from 'react-bootstrap'
-import RangeSlider from '../components/RangeSlider'
-import { useDispatch , useSelector} from 'react-redux'
+import React,{useState, useEffect} from 'react';
+import {Container, Nav, Dropdown}from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 
-import ProductCardUI from '../components/ProductCardUI'
-import { listProducts } from './../actions/productActions'
-import { listReviews } from './../actions/productActions'
-
+import ProductCardUI from './../components/ProductCardUI';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import RangeSlider from './../components/RangeSlider'
+import { listProducts } from './../actions/productActions';
+import { listReviews } from './../actions/productActions';
 
 function GetAllCakes({history}) {
   const dispatch = useDispatch()
@@ -185,7 +184,7 @@ function GetAllCakes({history}) {
                 dataprod.map((product)=>{
                   return(
                   <div className="justify-content-center">
-                    <ProductCardUI product={product}/>
+                    <ProductCardUI product={product} />
                   </div>
                   )
                 })
