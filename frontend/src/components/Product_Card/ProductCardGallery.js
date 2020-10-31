@@ -39,7 +39,8 @@ class ProductCardGallery extends React.Component {
 	  photos.map((photo, i) => {
       const a=this.state.activeItem===i ? "active-state":"";
       return (
-	      <div
+        <div
+          key={photo}
 		    className={`gallery-item ${a}`}
 	     style={{
 		   backgroundImage: `url(${photo})`

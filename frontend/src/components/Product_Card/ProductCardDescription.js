@@ -5,7 +5,8 @@ const ProductCardDescription = ({
   description,
   buttonText,
   rating,
-  url
+  url,
+  id
 }) => {
 
   const renderButton = () => {
@@ -22,14 +23,15 @@ const ProductCardDescription = ({
     }
   };
   return (
+    <>
     <div className="product-card-description-box">
-      <div className="product-card-name">
+        <Link to={`/cakes/${id}`} className="product-card-name" style={{ textDecoration:'none'}}>
           {productName}
-
-      </div>
+        </Link>
       <p className="product-card-description">{description}</p>
       {renderButton()}
     </div>
+    </>
   );
 };
 

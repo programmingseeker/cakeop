@@ -11,7 +11,7 @@ class ProductCard extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  
   render() {
     let {
       photos,
@@ -19,9 +19,9 @@ class ProductCard extends React.Component {
       productName,
       description,
       buttonText,
-      url
+      url,
+      id
     } = this.props;
-
     return (
       <div className="product-card float card">
         <ProductCardGallery photos={photos} />
@@ -31,19 +31,20 @@ class ProductCard extends React.Component {
           description={description}
           buttonText={buttonText}
           url={url}
+          id={id}
         />
       </div>
     );
   }
 }
 
-ProductCard.propTypes = {
-  photos: PropTypes.arrayOf(PropTypes.string),
-  price: PropTypes.number,
-  productName: PropTypes.string,
-  description: PropTypes.string,
-  buttonText: PropTypes.string,
-  url: PropTypes.string
-};
+// ProductCard.propTypes = {
+//   photos: PropTypes.arrayOf(PropTypes.string),
+//   price: PropTypes.string,
+//   productName: PropTypes.string,
+//   description: PropTypes.string,
+//   buttonText: PropTypes.string,
+//   url: PropTypes.string
+// };
 
 export default ProductCard;

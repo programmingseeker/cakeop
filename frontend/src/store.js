@@ -6,12 +6,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // IMPORT REDUCERS
 
 import { authReducer } from './reducers/userReducer'
-import { productListReducer } from './reducers/productReducers'
+import { productListReducer,productDetailsReducer } from './reducers/productReducers'
 import { reviewListReducer } from './reducers/productReducers'
 
 const reducers = combineReducers({
   auth: authReducer,
   productList: productListReducer,
+  productDetails:productDetailsReducer,
   reviewList:reviewListReducer,
 });
 

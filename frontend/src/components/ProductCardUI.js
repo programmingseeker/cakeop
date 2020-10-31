@@ -1,6 +1,6 @@
 // import GalleryToggle from './GalleryToggle';
 import React from 'react'
-import { Col, Card,Button} from 'react-bootstrap'
+import { Col} from 'react-bootstrap'
 
 import ProductCard from './Product_Card/ProductCard'
 
@@ -15,7 +15,7 @@ function ProductCards({product}) {
   };
     return (
       <Col sm>
-          <ProductCard photos={returnArrayOfImg(product.images)} price={`₹${product.price}`} productName={product.name} description={product.theme} buttonText="Add To Cart" />
+          <ProductCard photos={returnArrayOfImg(product.images)} price={`₹${product.price}`} productName={product.name} description={product.theme} id={product._id} buttonText="Add To Cart" />
       </Col>
     );
 }
