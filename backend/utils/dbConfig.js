@@ -10,7 +10,7 @@ export default async () => {
 			`MongoDB Connected: ${connection.connection.host}`.cyan.bold
 		);
 	} catch (error) {
-		console.error(`Error: ${error.message}`.red.underline.bold);
+		console.error(`Error: ${error}`.red.underline.bold);
 		process.exit(1);
 	}
 };

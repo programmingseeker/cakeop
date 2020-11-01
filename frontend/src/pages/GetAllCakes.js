@@ -7,7 +7,6 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import RangeSlider from './../components/RangeSlider';
 import { listProducts } from './../actions/productActions';
-import { listReviews } from './../actions/productActions';
 
 function GetAllCakes({ history }) {
 	const dispatch = useDispatch();
@@ -49,7 +48,6 @@ function GetAllCakes({ history }) {
 
 	useEffect(() => {
 		dispatch(listProducts(price, weight));
-		dispatch(listReviews(rating));
 	}, [dispatch, price, weight, rating]);
 
 	const responsive = {

@@ -33,7 +33,7 @@ const ProductPage = ({ match }) => {
 							autoPlaySpeed={3000}
 							centerMode={false}
 							className=''
-							containerClass='container'
+							containerClass='carousel-container'
 							dotListClass=''
 							draggable
 							focusOnSelect={false}
@@ -75,11 +75,14 @@ const ProductPage = ({ match }) => {
 								product.images.map((image) => {
 									return (
 										<Image
+											fluid
 											src={`/img/${image}`}
 											style={{
-												height: '100%',
-												width: '100%',
-												textAlign: 'center',
+												width: '50%',
+												height: 'auto',
+												objectPosition: '50% 50%',
+												objectFit: 'contain',
+												margin: '0 auto',
 											}}
 										/>
 									);

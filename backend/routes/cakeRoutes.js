@@ -8,7 +8,10 @@ import {
 	updateCake,
 	deleteCake,
 } from './../controllers/cakeController.js';
-import { createReview, getCakeReviews } from './../controllers/reviewController.js';
+import {
+	createReview,
+	getCakeReviews,
+} from './../controllers/reviewController.js';
 
 router.route('/').get(getAllCake).post(restrictTo('admin'), createCake);
 router
