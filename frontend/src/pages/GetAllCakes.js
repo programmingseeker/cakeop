@@ -279,7 +279,9 @@ function GetAllCakes({ history }) {
 									className='justify-content-center'
 									key={product.id}
 								>
-									<ProductCardUI product={product} />
+									<ProductCardUI
+										product={product}
+									/>
 								</div>
 							);
 						})}

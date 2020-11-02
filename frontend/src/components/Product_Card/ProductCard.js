@@ -20,7 +20,8 @@ class ProductCard extends React.Component {
       description,
       buttonText,
       url,
-      id
+      id,
+      history
     } = this.props;
     return (
       <div className="product-card float card">

@@ -5,7 +5,8 @@
     "theme": "nature",
     "price": 100,
     "description": "This classic cake never fails to impress",
-    "images": ["prod-1.jpeg", "prod-2.jpeg"]
+    "images": ["prod-1.jpeg", "prod-2.jpeg"],
+    "inStock": "true"
   },
   {
     "name": "Pineapple Cake",
@@ -13,7 +14,8 @@
     "theme": "anime",
     "price": 120,
     "description": "This classic cake is made to suck",
-    "images": ["prod-1.jpeg", "prod-2.jpeg"]
+    "images": ["prod-1.jpeg", "prod-2.jpeg"],
+    "inStock": "true"
   },
   {
     "name": "Eggless Truffle Cake",
@@ -21,7 +23,8 @@
     "theme": "normal",
     "price": 300,
     "description": "eggless cake for pure veggie people 1000%",
-    "images": ["prod-1.jpeg", "prod-2.jpeg"]
+    "images": ["prod-1.jpeg", "prod-2.jpeg"],
+    "inStock": "true"
   },
   {
     "name": "Coffee Cake with Mocha Frosting",
@@ -29,7 +32,8 @@
     "theme": "couples",
     "price": 100,
     "description": "A delectable coffee cake treat to relish with friends and family",
-    "images": ["prod-1.jpeg", "prod-2.jpeg"]
+    "images": ["prod-1.jpeg", "prod-2.jpeg"],
+    "inStock": "false"
   },
   {
     "name": "Oreo Cheesecake",
@@ -37,7 +41,8 @@
     "theme": "biscuit",
     "price": 130,
     "description": "There's no better way to enjoy oreo biscuits than to stick them in a creamy cheesecake",
-    "images": ["prod-1.jpeg", "prod-2.jpeg"]
+    "images": ["prod-1.jpeg", "prod-2.jpeg"],
+    "inStock": "true"
   },
   {
     "name": "dryfruit sunday icecake",
@@ -45,7 +50,8 @@
     "theme": "healthy",
     "price": 500,
     "description": "Made with dry fruits and icecream one you eat this there is no holding back..!",
-    "images": ["prod-1.jpeg", "prod-2.jpeg"]
+    "images": ["prod-1.jpeg", "prod-2.jpeg"],
+    "inStock": "true"
   },
   {
     "name": "yellow butter cake",
@@ -53,7 +59,8 @@
     "theme": "yellow",
     "price": 300,
     "description": "Yellow butter cakes often involve creaming the butter and sugar together",
-    "images": ["prod-1.jpeg", "prod-2.jpeg"]
+    "images": ["prod-1.jpeg", "prod-2.jpeg"],
+    "inStock": "false"
   },
   {
     "name": "Pound cake",
@@ -61,7 +68,8 @@
     "theme": "greenish",
     "price": 300,
     "description": "Yellow butter cakes often involve creaming the butter and sugar together",
-    "images": ["prod-1.jpeg", "prod-2.jpeg"]
+    "images": ["prod-1.jpeg", "prod-2.jpeg"],
+    "inStock": "true"
   },
   {
     "name": "Red velvet",
@@ -69,7 +77,8 @@
     "theme": "red",
     "price": 400,
     "description": "This is a true favorite, especially in the south. Made with either butter or oil",
-    "images": ["prod-1.jpeg", "prod-2.jpeg"]
+    "images": ["prod-1.jpeg", "prod-2.jpeg"],
+    "inStock": "false"
   },
 
   {
@@ -78,7 +87,8 @@
     "theme": "orange",
     "price": 150,
     "description": "This shortened cake uses oil as its main fat rather than butter",
-    "images": ["prod-1.jpeg", "prod-2.jpeg"]
+    "images": ["prod-1.jpeg", "prod-2.jpeg"],
+    "inStock": "true"
   },
   {
     "name": "sponge cake",
@@ -86,7 +96,8 @@
     "theme": "orangish",
     "price": 500,
     "description": "This is a foam-style cake that has no artificial leaveners",
-    "images": ["prod-1.jpeg", "prod-2.jpeg"]
+    "images": ["prod-1.jpeg", "prod-2.jpeg"],
+    "inStock": "false"
   },
   {
     "name": "Genoise Cake",
@@ -94,6 +105,7 @@
     "theme": "yellow",
     "price": 900,
     "description": "Genoise is what a sponge cake is called in Italy or France",
-    "images": ["prod-1.jpeg", "prod-2.jpeg"]
+    "images": ["prod-1.jpeg", "prod-2.jpeg"],
+    "inStock": "false"
   }
 ]
