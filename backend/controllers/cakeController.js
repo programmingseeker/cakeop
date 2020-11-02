@@ -28,6 +28,7 @@ export const getCake = catchAsync(async (req, res, next) => {
 		);
 	} else {
 		cake.reviews = cakeReviews;
+		cake.ratingsQuantity=cakeReviews.length;
 		res.status(200).json({
 			status: 'success',
 			data: cake,

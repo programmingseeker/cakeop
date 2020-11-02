@@ -155,21 +155,21 @@ function GetAllCakes({ history }) {
 						>
 							<span
 								style={{ color: '#ffdf00' }}
-								class='fa fa-star'
+								className='fa fa-star'
 							></span>
 							<span
 								style={{ color: '#ffdf00' }}
-								class='fa fa-star'
+								className='fa fa-star'
 							></span>
 							<span
 								style={{ color: '#ffdf00' }}
-								class='fa fa-star'
+								className='fa fa-star'
 							></span>
 							<span
 								style={{ color: '#ffdf00' }}
-								class='fa fa-star'
+								className='fa fa-star'
 							></span>
-							<span class='fa fa-star text-white'></span>
+							<span className='fa fa-star text-white'></span>
 							<h4 className='text-white pl-2 '>&Up</h4>
 						</Nav.Item>
 						<Nav.Item
@@ -179,18 +179,18 @@ function GetAllCakes({ history }) {
 						>
 							<span
 								style={{ color: '#ffdf00' }}
-								class='fa fa-star'
+								className='fa fa-star'
 							></span>
 							<span
 								style={{ color: '#ffdf00' }}
-								class='fa fa-star'
+								className='fa fa-star'
 							></span>
 							<span
 								style={{ color: '#ffdf00' }}
-								class='fa fa-star'
+								className='fa fa-star'
 							></span>
-							<span class='fa fa-star text-white'></span>
-							<span class='fa fa-star text-white'></span>
+							<span className='fa fa-star text-white'></span>
+							<span className='fa fa-star text-white'></span>
 							<h4 className='text-white pl-2 '>&Up</h4>
 						</Nav.Item>
 						<Nav.Item
@@ -200,15 +200,15 @@ function GetAllCakes({ history }) {
 						>
 							<span
 								style={{ color: '#ffdf00' }}
-								class='fa fa-star'
+								className='fa fa-star'
 							></span>
 							<span
 								style={{ color: '#ffdf00' }}
-								class='fa fa-star'
+								className='fa fa-star'
 							></span>
-							<span class='fa fa-star text-white'></span>
-							<span class='fa fa-star text-white'></span>
-							<span class='fa fa-star text-white'></span>
+							<span className='fa fa-star text-white'></span>
+							<span className='fa fa-star text-white'></span>
+							<span className='fa fa-star text-white'></span>
 							<h4 className='text-white pl-2 '>&Up</h4>
 						</Nav.Item>
 						<Nav.Item
@@ -218,12 +218,12 @@ function GetAllCakes({ history }) {
 						>
 							<span
 								style={{ color: '#ffdf00' }}
-								class='fa fa-star'
+								className='fa fa-star'
 							></span>
-							<span class='fa fa-star text-white'></span>
-							<span class='fa fa-star text-white'></span>
-							<span class='fa fa-star text-white'></span>
-							<span class='fa fa-star text-white'></span>
+							<span className='fa fa-star text-white'></span>
+							<span className='fa fa-star text-white'></span>
+							<span className='fa fa-star text-white'></span>
+							<span className='fa fa-star text-white'></span>
 							<h4 className='text-white pl-2 '>&Up</h4>
 						</Nav.Item>
 					</Nav>

@@ -102,6 +102,12 @@ export const deleteReview = catchAsync(async (req, res, next) => {
 		return next(new AppError('No document found with that ID', 404));
 	}
 
+	cake.ratingsQuantity -= 1;
+	cake.ratingsAverage =
+		(cake.ratingsAverage + newReview.ratings) / cake.ratingsQuantity;
+		
+	await cake.save();
+	
 	res.status(204).json({
 		status: 'success',
 		data: null,
