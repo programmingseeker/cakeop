@@ -11,7 +11,8 @@ import GetAllCakes from './pages/GetAllCakes';
 import ProductPage from './pages/ProductPage';
 import Cart from './pages/Cart';
 import NotFound404 from './pages/NotFound404';
-
+import AdminDashboard from './pages/AdminDashboard';
+import AddProdForm from './components/AddProdForm';
 function App() {
 	return (
 		<Router>
@@ -47,6 +48,8 @@ function App() {
 				<Route exact path='/cakes' component={GetAllCakes} />
 				<Route exact path='/cakes/:id' component={ProductPage} />
 				<Route exact path='/cart/:id?' component={Cart} />
+				<Route path='/admindash' component={AdminDashboard}/>
+				<Route path='/addprodform' component={AddProdForm} />
 				<Route path='*' component={NotFound404} />
 			</Switch>
 			<Footer />

@@ -33,7 +33,6 @@ const ProductPage = ({ history, match }) => {
 				ratings: ratings,
 			})
 		);
-		dispatch(listProductDetails(match.params.id));
 	};
 
 	const dispatch = useDispatch();
@@ -146,6 +145,7 @@ const ProductPage = ({ history, match }) => {
 											<Image
 												fluid
 												src={`/img/${image}`}
+												className="center-screen"
 												style={{
 													width: '50%',
 													height: 'auto',
