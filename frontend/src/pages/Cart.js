@@ -21,6 +21,8 @@ function Cart({ match, location, history }) {
 	const cart = useSelector((state) => state.cart);
 	const { cartItems } = cart;
 
+	const {user} = useSelector((state) => state.auth);
+
 	useEffect(() => {
 		if (productId) {
 			dispatch(addToCart(productId, qty));
@@ -32,7 +34,12 @@ function Cart({ match, location, history }) {
 	};
 
 	const paymentHandler = () => {
-		history.push('/login?redirect=shipping');
+		if (user) {
+			history.push('/shipping')
+		} else {
+			
+			history.push('/login?redirect=shipping');
+		}
 	};
 	return (
 		<Container className='d-flex flex-wrap page-def'>
