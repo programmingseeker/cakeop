@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const FormContainer = ({children}) => {
   return (
     <div >
-      <Container className="center-screen bg-light w-30 rounded-lg">
+      <Container className="center-screen bg-light rounded-lg">
         <div className="pl-4 pr-2 pt-4 pb-4">
           {children}
         </div>  

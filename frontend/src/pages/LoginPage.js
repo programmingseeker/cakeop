@@ -23,9 +23,9 @@ const LoginPage = ({ history, isPage = false }) => {
 	return (
 		<>
 			<div
-				className={`d-flex flex-column  ${isPage ? 'mt-5 pt-3 ' : ''}`}
+				className={`d-flex flex-column  ${isPage ? 'mt-5 pt-3 w-30 ' : ''}`}
 			>
-				<FormContainer className='col-sm-center w-75'>
+				<FormContainer className='col-sm-center w-75 '>
 					<h1 className='d-flex align-items-center justify-content-center text-color fac-title'>
 						Log In
 					</h1>
