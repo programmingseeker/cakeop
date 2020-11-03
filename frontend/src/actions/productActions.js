@@ -9,7 +9,6 @@ import {
 	PRODUCT_DETAILS_FAIL,
 	PRODUCT_CREATE_REVIEW_FAIL,
 	PRODUCT_CREATE_REVIEW_REQUEST,
-	PRODUCT_CREATE_REVIEW_RESET,
 	PRODUCT_CREATE_REVIEW_SUCCESS,
 } from './../constants/productConstants';
 
@@ -85,4 +84,16 @@ export const createProductReview = (productId, review) => async (
 			payload: message,
 		});
 	}
+};
+
+export const createProduct = async (productInfo) => {
+	await axios.post(`/api/products`, productInfo);
+};
+
+export const updateProduct = async (productInfo) => {
+	await axios.patch(`/api/products/${productInfo._id}`, productInfo);
+};
+
+export const deleteProduct = async (id) => {
+	await axios.delete(`/api/products/${id}`);
 };
