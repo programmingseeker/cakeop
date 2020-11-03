@@ -17,6 +17,7 @@ export const createReview = catchAsync(async (req, res, next) => {
 		const review = {
 			...req.body,
 			user: req.user.id,
+			userName: req.user.username,
 			cake: req.params.id,
 		};
 		const newReview = await Review.create(review);
@@ -105,9 +106,9 @@ export const deleteReview = catchAsync(async (req, res, next) => {
 	cake.ratingsQuantity -= 1;
 	cake.ratingsAverage =
 		(cake.ratingsAverage + newReview.ratings) / cake.ratingsQuantity;
-		
+
 	await cake.save();
-	
+
 	res.status(204).json({
 		status: 'success',
 		data: null,

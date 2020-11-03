@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Row, Col, Image, Form, Button, ListGroup ,Card} from 'react-bootstrap';
+import {
+	Row,
+	Col,
+	Image,
+	Form,
+	Button,
+	ListGroup,
+	Card,
+} from 'react-bootstrap';
 import Carousel from 'react-multi-carousel';
 import Ratings from './../components/Ratings';
 import Loader from './../components/Loader';
@@ -17,10 +25,15 @@ const ProductPage = ({ history, match }) => {
 	const [qty, setQty] = useState(1);
 	const [ratings, setRatings] = useState(0);
 	const [comment, setComment] = useState('');
-	const reviewSubmitHandler=(e)=>{
+	const reviewSubmitHandler = (e) => {
 		e.preventDefault();
-		dispatch(createProductReview(match.params.id,{review:comment,ratings:ratings}))
-	}
+		dispatch(
+			createProductReview(match.params.id, {
+				review: comment,
+				ratings: ratings,
+			})
+		);
+	};
 
 	const dispatch = useDispatch();
 	const productDetails = useSelector((state) => state.productDetails);
@@ -37,32 +50,32 @@ const ProductPage = ({ history, match }) => {
 		error: errorProductReview,
 	} = productDetails;
 
-	const responsive={
+	const responsive = {
 		desktop: {
-		breakpoint: {
-			max: 3000,
-			min: 1024
-		},
-		items: 3,
-		partialVisibilityGutter: 40
+			breakpoint: {
+				max: 3000,
+				min: 1024,
+			},
+			items: 3,
+			partialVisibilityGutter: 40,
 		},
 		mobile: {
-		breakpoint: {
-			max: 464,
-			min: 0
-		},
-		items: 1,
-		partialVisibilityGutter: 30
+			breakpoint: {
+				max: 464,
+				min: 0,
+			},
+			items: 1,
+			partialVisibilityGutter: 30,
 		},
 		tablet: {
-		breakpoint: {
-			max: 1024,
-			min: 464
+			breakpoint: {
+				max: 1024,
+				min: 464,
+			},
+			items: 2,
+			partialVisibilityGutter: 30,
 		},
-		items: 2,
-		partialVisibilityGutter: 30
-		}
-	}
+	};
 	useEffect(() => {
 		dispatch(listProductDetails(match.params.id));
 	}, [dispatch, match]);
@@ -82,50 +95,50 @@ const ProductPage = ({ history, match }) => {
 				<>
 					<Row className='mt-4'>
 						<Col sm={12} md={6}>
-						<Carousel
-							additionalTransfrom={0}
-							arrows
-							autoPlaySpeed={3000}
-							centerMode={false}
-							className=""
-							containerClass="container"
-							dotListClass=""
-							draggable
-							focusOnSelect={false}
-							infinite
-							itemClass=""
-							keyBoardControl
-							minimumTouchDrag={80}
-							renderButtonGroupOutside={false}
-							renderDotsOutside
-							responsive={{
-							desktop: {
-								breakpoint: {
-								max: 3000,
-								min: 1024
-								},
-								items: 1
-							},
-							mobile: {
-								breakpoint: {
-								max: 464,
-								min: 0
-								},
-								items: 1
-							},
-							tablet: {
-								breakpoint: {
-								max: 1024,
-								min: 464
-								},
-								items: 1
-							}
-							}}
-							showDots
-							sliderClass=""
-							slidesToSlide={1}
-							swipeable
-						>
+							<Carousel
+								additionalTransfrom={0}
+								arrows
+								autoPlaySpeed={3000}
+								centerMode={false}
+								className=''
+								containerClass='container'
+								dotListClass=''
+								draggable
+								focusOnSelect={false}
+								infinite
+								itemClass=''
+								keyBoardControl
+								minimumTouchDrag={80}
+								renderButtonGroupOutside={false}
+								renderDotsOutside
+								responsive={{
+									desktop: {
+										breakpoint: {
+											max: 3000,
+											min: 1024,
+										},
+										items: 1,
+									},
+									mobile: {
+										breakpoint: {
+											max: 464,
+											min: 0,
+										},
+										items: 1,
+									},
+									tablet: {
+										breakpoint: {
+											max: 1024,
+											min: 464,
+										},
+										items: 1,
+									},
+								}}
+								showDots
+								sliderClass=''
+								slidesToSlide={1}
+								swipeable
+							>
 								{product.images &&
 									product.images.map((image) => {
 										return (
@@ -238,67 +251,109 @@ const ProductPage = ({ history, match }) => {
 					</Row>
 					<Row>
 						<Col md={6}>
-						<br/>
-							{(user)?
-						<Form onSubmit={reviewSubmitHandler}>
-							<Form.Group>
-								<Form.Label className="form-label h4">Write a Review</Form.Label>
-								<div><Image src={user.image}></Image></div>
-								<Form.Control as="select" size="sm" onChange={(e)=>{setRatings(e.target.value)}}>
-									<option selected disabled>---Select Rating---</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</Form.Control>
-								<Form.Text className="text-muted">Enter the rating</Form.Text>
-								<br/>
-								<Form.Control as="textarea"  placeholder="Write a Review" rows={3} onChange={(e)=>{setComment(e.target.value)}}/>
-							</Form.Group>
-							<Button variant="primary" type="submit">
-								Submit
-							</Button>
-						</Form>
-						:<span className="font-weight-bold text-dark ">Please login to To Write a review <Link to="/login" className="font-weight-normal">login</Link></span>}
-						<br/>
+							<br />
+							{user ? (
+								<Form onSubmit={reviewSubmitHandler}>
+									<Form.Group>
+										<Form.Label className='form-label h4'>
+											Write a Review
+										</Form.Label>
+										<div>
+											<Image src={user.image}></Image>
+										</div>
+										<Form.Control
+											as='select'
+											size='sm'
+											onChange={(e) => {
+												setRatings(e.target.value);
+											}}
+										>
+											<option selected disabled>
+												---Select Rating---
+											</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+										</Form.Control>
+										<Form.Text className='text-muted'>
+											Enter the rating
+										</Form.Text>
+										<br />
+										<Form.Control
+											as='textarea'
+											placeholder='Write a Review'
+											rows={3}
+											onChange={(e) => {
+												setComment(e.target.value);
+											}}
+										/>
+									</Form.Group>
+									<Button variant='primary' type='submit'>
+										Submit
+									</Button>
+								</Form>
+							) : (
+								<span className='font-weight-bold text-dark '>
+									Please login to To Write a review{' '}
+									<Link
+										to='/login'
+										className='font-weight-normal'
+									>
+										login
+									</Link>
+								</span>
+							)}
+							<br />
 						</Col>
 						<Col md={12}>
-						<Carousel
-							additionalTransfrom={0}
-							arrows
-							autoPlay
-							autoPlaySpeed={2000}
-							centerMode={false}
-							className=""
-							containerClass="container-with-dots"
-							dotListClass=""
-							draggable
-							focusOnSelect={false}
-							itemClass=""
-							keyBoardControl
-							minimumTouchDrag={80}
-							renderButtonGroupOutside={false}
-							renderDotsOutside={false}
-							responsive={responsive}
-							showDots={false}
-							sliderClass=""
-							slidesToSlide={2}
-							swipeable
-							infinite
+							<Carousel
+								additionalTransfrom={0}
+								arrows
+								autoPlay
+								autoPlaySpeed={2000}
+								centerMode={false}
+								className=''
+								containerClass='container-with-dots'
+								dotListClass=''
+								draggable
+								focusOnSelect={false}
+								itemClass=''
+								keyBoardControl
+								minimumTouchDrag={80}
+								renderButtonGroupOutside={false}
+								renderDotsOutside={false}
+								responsive={responsive}
+								showDots={false}
+								sliderClass=''
+								slidesToSlide={2}
+								swipeable
+								infinite
 							>
-						{
-						product.reviews.map((reviewItem) => (
-							<Card className="card-cart-coupon ">
-							<Card.Title>This is a dummy name</Card.Title>
-								<Card.Text key={reviewItem._id}>
-									<Ratings value={reviewItem.ratings} />
-									<span>{reviewItem.review}</span>
-								</Card.Text>
-							</Card>
-						))
-						}
-						</Carousel>
+								{product.reviews.map((reviewItem) => (
+									<Card
+										className='card-cart-coupon rounded-lg'
+										bg='light'
+										text='dark'
+										style={{ height: '5rem !important' }}
+									>
+										<Card.Header>
+											{reviewItem.userName}
+										</Card.Header>
+										<Card.Body>
+											<Card.Title key={reviewItem._id}>
+												<Ratings
+													value={reviewItem.ratings}
+												/>
+											</Card.Title>
+											<Card.Text>
+												<span>{reviewItem.review}</span>
+											</Card.Text>
+										</Card.Body>
+									</Card>
+								))}
+							</Carousel>
 						</Col>
 					</Row>
 				</>

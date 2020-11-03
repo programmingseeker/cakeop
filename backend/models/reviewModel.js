@@ -6,6 +6,9 @@ const reviewSchema = new mongoose.Schema(
 			type: mongoose.Types.ObjectId,
 			ref: 'User',
 		},
+		userName: {
+			type: String,
+		},
 		cake: {
 			type: mongoose.Types.ObjectId,
 			ref: 'Cake',
@@ -26,7 +29,7 @@ const reviewSchema = new mongoose.Schema(
 	},
 	{
 		toJSON: { virtuals: true },
-		toObject: { virtuals: true }
+		toObject: { virtuals: true },
 	}
 );
 
