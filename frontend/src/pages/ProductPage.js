@@ -33,6 +33,7 @@ const ProductPage = ({ history, match }) => {
 				ratings: ratings,
 			})
 		);
+		dispatch(listProductDetails(match.params.id));
 	};
 
 	const dispatch = useDispatch();
