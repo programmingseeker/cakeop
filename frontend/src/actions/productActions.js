@@ -65,9 +65,6 @@ export const createProductReview = (productId, review) => async (
 		dispatch({
 			type: PRODUCT_CREATE_REVIEW_REQUEST,
 		});
-		const {
-			auth: { user },
-		} = getState();
 
 		await axios.post(`/api/cake/${productId}/review`, review);
 

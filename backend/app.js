@@ -5,22 +5,26 @@ import cors from 'cors';
 import { config } from 'dotenv';
 import colors from 'colors';
 import morgan from 'morgan';
+import path from 'path';
 
 import cakeRouter from './routes/cakeRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import reviewRouter from './routes/reviewRoutes.js';
+import uploadRouter from './routes/uploadRoutes.js';
 import AppError from './utils/appError.js';
 import globalErrorController from './controllers/errorController.js';
 import passportConfig from './utils/passportConfig.js';
 import dbConfig from './utils/dbConfig.js';
 import { seralizeUser } from './controllers/authController.js';
 
+
 const app = express();
+const __dirname = path.resolve();
 
 config();
 dbConfig();
 app.use(cors());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(cookieParser());
 passportConfig(passport);
@@ -33,6 +37,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/user', userRouter);
 app.use('/api/cake', cakeRouter);
 app.use('/api/review', reviewRouter);
+app.use('/api/upload', uploadRouter);
 app.use('*', (req, res, next) => {
 	next(
 		new AppError(

@@ -48,8 +48,8 @@ function App() {
 				<Route exact path='/cakes' component={GetAllCakes} />
 				<Route exact path='/cakes/:id' component={ProductPage} />
 				<Route exact path='/cart/:id?' component={Cart} />
-				<Route path='/admindash' component={AdminDashboard}/>
-				<Route path='/addprodform' component={AddProdForm} />
+				<Route path='/admindash' component={AdminDashboard} />
+				<Route path='/addproduct' component={AddProdForm} />
 				<Route path='*' component={NotFound404} />
 			</Switch>
 			<Footer />

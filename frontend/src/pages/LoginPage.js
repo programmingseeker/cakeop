@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import FormContainer from './../components/FormContainer';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { login } from './../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Loader from './../components/Loader';
+import FormContainer from './../components/FormContainer';
 const LoginPage = ({ history, isPage = false }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -27,65 +28,71 @@ const LoginPage = ({ history, isPage = false }) => {
 					isPage ? 'mt-5 pt-3 w-30 ' : ''
 				}`}
 			>
-				<FormContainer className='col-sm-center w-75 '>
-					<h1 className='d-flex align-items-center justify-content-center text-color fac-title'>
-						Log In
-					</h1>
-					<span className='d-flex justify-content-center'>
-						<img
-							src='/img/login/googleoauth.svg'
-							alt='Google Login'
-						/>
-					</span>
-					<span className='d-flex align-items-center'>
-						<hr className='hr-bar w-25' />
-						<span
-							className='text-muted'
-							style={{ 'letter-spacing': '0.5px' }}
-						>
-							LOGIN WITH EMAIL
+				{loading ? (
+					<Loader />
+				) : (
+					<FormContainer className='col-sm-center w-75 '>
+						<h1 className='d-flex align-items-center justify-content-center text-color fac-title'>
+							Log In
+						</h1>
+						<span className='d-flex justify-content-center'>
+							<img
+								src='/img/login/googleoauth.svg'
+								alt='Google Login'
+							/>
 						</span>
-						<hr className='hr-bar w-25' />
-					</span>
-					{error && <Alert variant='danger'>{error}</Alert>}
-					<Form
-						onSubmit={onSubmitHandler}
-						className={`${isPage ? 'container px-5' : null}`}
-					>
-						<Form.Group>
-							<Form.Label className='form-label'>
-								Email
-							</Form.Label>
-							<Form.Control
-								type='email'
-								placeholder='user@example.com'
-								onChange={(e) => setEmail(e.target.value)}
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label className='form-label'>
-								Password
-							</Form.Label>
-							<Form.Control
-								type='password'
-								placeholder='Password'
-								onChange={(e) => setPassword(e.target.value)}
-							/>
-						</Form.Group>
-						<Button type='submit'>Submit</Button>
-						<Form.Group className='d-flex align-items-center justify-content-end'>
+						<span className='d-flex align-items-center'>
+							<hr className='hr-bar w-25' />
 							<span
-								style={a}
-								className='d-flex align-items-center'
+								className='text-muted'
+								style={{ 'letter-spacing': '0.5px' }}
 							>
-								Are you a new user
+								LOGIN WITH EMAIL
 							</span>
-							<a href='/signup' style={a}>
-								OR Sign Up
-							</a>
-						</Form.Group>
-					</Form>
-				</FormContainer>
+							<hr className='hr-bar w-25' />
+						</span>
+						{error && <Alert variant='danger'>{error}</Alert>}
+						<Form
+							onSubmit={onSubmitHandler}
+							className={`${isPage ? 'container px-5' : null}`}
+						>
+							<Form.Group>
+								<Form.Label className='form-label'>
+									Email
+								</Form.Label>
+								<Form.Control
+									type='email'
+									placeholder='user@example.com'
+									onChange={(e) => setEmail(e.target.value)}
+								/>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label className='form-label'>
+									Password
+								</Form.Label>
+								<Form.Control
+									type='password'
+									placeholder='Password'
+									onChange={(e) =>
+										setPassword(e.target.value)
+									}
+								/>
+							</Form.Group>
+							<Button type='submit'>Submit</Button>
+							<Form.Group className='d-flex align-items-center justify-content-end'>
+								<span
+									style={a}
+									className='d-flex align-items-center'
+								>
+									Are you a new user
+								</span>
+								<a href='/signup' style={a}>
+									OR Sign Up
+								</a>
+							</Form.Group>
+						</Form>
+					</FormContainer>
+				)}
 			</div>
 		</>
 	);

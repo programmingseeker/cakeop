@@ -15,7 +15,7 @@ function ProfilePage({ tab } = 'settings') {
 	const [screen, setscreen] = useState('settings');
 	useEffect(() => {
 		setscreen(tab);
-	}, [screen]);
+	}, [setscreen, tab]);
 
 	const handlescreen = (screen = 'settings') => {
 		switch (screen) {

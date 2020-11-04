@@ -9,6 +9,7 @@ import {
 	Button,
 	ListGroup,
 	Card,
+	Alert
 } from 'react-bootstrap';
 import Carousel from 'react-multi-carousel';
 import Ratings from './../components/Ratings';
@@ -18,9 +19,6 @@ import {
 	listProductDetails,
 	createProductReview,
 } from './../actions/productActions';
-
-import { PRODUCT_CREATE_REVIEW_RESET } from './../constants/productConstants';
-
 const ProductPage = ({ history, match }) => {
 	const [qty, setQty] = useState(1);
 	const [ratings, setRatings] = useState(0);
@@ -42,14 +40,9 @@ const ProductPage = ({ history, match }) => {
 	const auth = useSelector((state) => state.auth);
 	const { user } = auth;
 
-	const productCreateReview = useSelector(
-		(state) => state.productCreateReview
-	);
-	const {
-		success: successProductReview,
-		error: errorProductReview,
-	} = productDetails;
-
+	// const productCreateReview = useSelector(
+	// 	(state) => state.productCreateReview
+	// );
 	const responsive = {
 		desktop: {
 			breakpoint: {
@@ -89,6 +82,7 @@ const ProductPage = ({ history, match }) => {
 			<Link className='btn btn-light my-3 mb-3' to='/'>
 				<span>{'<'}</span> Go Back
 			</Link>
+			{error && <Alert variant='danger'>{error}</Alert>}
 			{loading ? (
 				<Loader />
 			) : (
@@ -145,7 +139,7 @@ const ProductPage = ({ history, match }) => {
 											<Image
 												fluid
 												src={`/img/${image}`}
-												className="center-screen"
+												className='center-screen'
 												style={{
 													width: '50%',
 													height: 'auto',
