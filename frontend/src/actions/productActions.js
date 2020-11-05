@@ -14,12 +14,14 @@ import {
 
 export const listProducts = (
 	price = { minimum: 0, maximum: 950 },
-	weight = 1000
+	weight = 1000,
+	page = 1,
+	limit = 0
 ) => async (dispatch) => {
 	try {
 		dispatch({ type: PRODUCT_LIST_REQUEST });
 		const { data } = await axios.get(
-			`/api/cake?price[gte]=${price.minimum}&price[lte]=${price.maximum}&weight[gte]=${weight}`
+			`/api/cake?price[gte]=${price.minimum}&price[lte]=${price.maximum}&weight[gte]=${weight}&page=${page}&limit=${limit}`
 		);
 
 		dispatch({

@@ -20,8 +20,8 @@ function GetAllCakes({ history }) {
 
 	const [price, setprice] = useState({ minimum: 0, maximum: 950 });
 	const filterPriceHandler = (e, minimum, maximum) => {
-		console.log(e);
 		e.preventDefault();
+		console.log(e);
 		const newvalue = { minimum, maximum };
 		setprice(newvalue);
 		if (newvalue.minimum || newvalue.maximum) {
@@ -40,7 +40,6 @@ function GetAllCakes({ history }) {
 	const filterReviewHandler = (reviewValue) => {
 		setrating(reviewValue);
 	};
-
 	const products = useSelector((state) => state.productList.products);
 	const dataprod = products.data || [];
 
@@ -79,9 +78,7 @@ function GetAllCakes({ history }) {
 	};
 	return (
 		<div className='mt-2'>
-			{loading ? (
-				<Loader />
-			) : (
+
 				<Container
 					id='wrapper'
 					className={`wrapper-cakes ${
@@ -264,12 +261,16 @@ function GetAllCakes({ history }) {
 						className='overflow-auto d-flex flex-column'
 						style={{ height: '100vh' }}
 					>
-						<Carousel
+				{loading ? (
+					<Loader />
+						) : (
+							<>
+							<Carousel
 							additionalTransfrom={0}
 							arrows
 							autoPlaySpeed={3000}
 							centerMode={false}
-							className=''
+							className='mb-5'
 							containerClass='container-with-dots'
 							dotListClass=''
 							draggable
@@ -296,15 +297,17 @@ function GetAllCakes({ history }) {
 								);
 							})}
 						</Carousel>
-						<h4 className='mt-4 text-color'>
+						<h4 className='mt-2 text-color'>
 							Available:{' '}
 							<span className='text-primary font-weight-bold'>
 								{dataprod.length}
 							</span>
 						</h4>
+						</>
+						)
+				}
 					</section>
 				</Container>
-			)}
 		</div>
 	);
 }
