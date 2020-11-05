@@ -32,10 +32,7 @@ const cakeSchema = new mongoose.Schema(
 			default: 0,
 		},
 		images: [String],
-		// reviews: [{
-		// 	type: mongoose.Schema.Types.ObjectId,
-		// 	ref: 'Review'
-		// }],
+		
 		createdAt: {
 			type: Date,
 			default: Date.now(),
