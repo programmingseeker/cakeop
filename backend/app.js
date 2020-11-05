@@ -17,7 +17,6 @@ import passportConfig from './utils/passportConfig.js';
 import dbConfig from './utils/dbConfig.js';
 import { seralizeUser } from './controllers/authController.js';
 
-
 const app = express();
 const __dirname = path.resolve();
 
@@ -26,6 +25,7 @@ dbConfig();
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 passportConfig(passport);
 app.use(passport.initialize());

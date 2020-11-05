@@ -9,7 +9,7 @@ import {
 	Button,
 	ListGroup,
 	Card,
-	Alert
+	Alert,
 } from 'react-bootstrap';
 import Carousel from 'react-multi-carousel';
 import Ratings from './../components/Ratings';
@@ -79,12 +79,14 @@ const ProductPage = ({ history, match }) => {
 
 	return (
 		<div className='mt-5 pt-5 mb-3 container'>
-			<Link className='btn btn-light my-3 mb-3' to='/'>
+			<Link className='btn btn-light my-3 mb-3' to='/cakes'>
 				<span>{'<'}</span> Go Back
 			</Link>
 			{error && <Alert variant='danger'>{error}</Alert>}
 			{loading ? (
-				<Loader />
+				<div className='mt-5 pt-5'>
+					<Loader className='mt-5 pt-5' />
+				</div>
 			) : (
 				<>
 					<Row className='mt-4'>
@@ -95,12 +97,17 @@ const ProductPage = ({ history, match }) => {
 								autoPlaySpeed={3000}
 								centerMode={false}
 								className=''
-								containerClass='container'
+								containerClass='image-container'
 								dotListClass=''
 								draggable
 								focusOnSelect={false}
 								infinite
 								itemClass=''
+								style={{
+									backgroundSize: 'cover',
+									backgroundRepeat: 'no-repeat',
+									backgroundPosition: 'center',
+								}}
 								keyBoardControl
 								minimumTouchDrag={80}
 								renderButtonGroupOutside={false}
@@ -139,14 +146,7 @@ const ProductPage = ({ history, match }) => {
 											<Image
 												fluid
 												src={`/img/${image}`}
-												className='center-screen'
-												style={{
-													width: '50%',
-													height: 'auto',
-													objectPosition: '50% 50%',
-													objectFit: 'contain',
-													margin: '0 auto',
-												}}
+												center
 											/>
 										);
 									})}

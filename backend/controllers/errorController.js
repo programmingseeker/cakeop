@@ -46,7 +46,7 @@ const sendErrorDev = (err, req, res) => {
 };
 
 export default (err, req, res, next) => {
-	err.status = err.status || 'fail';
+	err.status = err.status || 'fail';	
 	err.statusCode = err.statusCode || 500;
 	//sending the response
 	if (process.env.NODE_ENV === 'development') {

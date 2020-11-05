@@ -12,7 +12,7 @@ import ProductPage from './pages/ProductPage';
 import Cart from './pages/Cart';
 import NotFound404 from './pages/NotFound404';
 import AdminDashboard from './pages/AdminDashboard';
-import AddProdForm from './components/AddProdForm';
+import AddProdForm from './components/TestAddProdForm';
 function App() {
 	return (
 		<Router>
