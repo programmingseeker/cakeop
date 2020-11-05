@@ -4,7 +4,7 @@ import multer from 'multer';
 const router = express.Router();
 
 const __dirname = path.resolve();
-const publicImg = path.join(__dirname, 'public/img');
+const publicImg = path.join(__dirname, 'backend/public/img');
 const storage = multer.diskStorage({
 	destination(req, file, cb) {
 		cb(null, publicImg);

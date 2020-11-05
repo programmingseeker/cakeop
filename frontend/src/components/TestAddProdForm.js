@@ -20,22 +20,24 @@ function AddProdForm() {
 	// const [images, setImages] = useState([]);
 	const [files, setFiles] = useState([]);
 
+	// const onUpdatefilesHandler = (e) => setFiles(e.target.files);
+
 	const uploadImageHandler = async () => {
 		let imageFiles = new FormData();
-		imageFiles = imageFiles.append('image', files);
+		imageFiles.append('images', files);
 
 		try {
 			const config = {
 				headers: {
-					'content-type': 'multipart/form-data',
+					'Content-Type': 'multipart/form-data',
 				},
 			};
-			const responce = await axios.post(
+			const { data } = await axios.post(
 				'/api/upload',
 				imageFiles,
 				config
 			);
-			console.log(responce);
+			console.log(data);
 		} catch (error) {
 			console.log(error);
 		}
