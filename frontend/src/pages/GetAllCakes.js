@@ -46,9 +46,10 @@ function GetAllCakes({ history }) {
 	const productList = useSelector((state) => state.productList);
 	const { loading, error } = productList;
 
+	const [page, setpage]= useState(1);
 	useEffect(() => {
-		dispatch(listProducts(price, weight));
-	}, [dispatch, price, weight, rating]);
+		dispatch(listProducts(price, weight,page,3));
+	}, [dispatch, price, weight,page, rating]);
 
 	const responsive = {
 		desktop: {
@@ -77,13 +78,14 @@ function GetAllCakes({ history }) {
 		},
 	};
 	return (
-		<div className='mt-2'>
+		<div className='mt-2 '>
 
 				<Container
 					id='wrapper'
 					className={`wrapper-cakes ${
 						sideNav ? 'toggled-complete' : ''
 					}`}
+					style={{"margin-right": "20px", "margin-left": "55px" , "max-width": "1230px"}}
 				>
 					<aside id='sidebar-wrapper'>
 						<Nav
@@ -265,44 +267,49 @@ function GetAllCakes({ history }) {
 					<Loader />
 						) : (
 							<>
-							<Carousel
-							additionalTransfrom={0}
-							arrows
-							autoPlaySpeed={3000}
-							centerMode={false}
-							className='mb-5'
-							containerClass='container-with-dots'
-							dotListClass=''
-							draggable
-							focusOnSelect={false}
-							itemClass=''
-							keyBoardControl
-							minimumTouchDrag={80}
-							renderButtonGroupOutside={false}
-							renderDotsOutside={false}
-							responsive={responsive}
-							showDots={false}
-							slidesToSlide={1}
-							infinite
-							swipeable
-						>
+							<div className="d-flex flex-wrap">
 							{dataprod.map((product) => {
 								return (
 									<div
 										className='justify-content-center'
 										key={product.id}
+										style={{ padding:"0px -10px 0px -10px!important"}}
 									>
 										<ProductCardUI product={product} />
 									</div>
 								);
 							})}
-						</Carousel>
-						<h4 className='mt-2 text-color'>
-							Available:{' '}
-							<span className='text-primary font-weight-bold'>
-								{dataprod.length}
-							</span>
-						</h4>
+							</div>
+	{/* setpage */}         <nav aria-label="Page navigation example" className="center-screen">
+							<ul class="pagination">
+								<li class="page-item">
+									<a class="page-link" href="#" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+										<span class="sr-only">Previous</span>
+									</a>
+								</li>
+								{
+									dataprod.map((p,i)=>{
+										return(<li class="page-item"><a class="page-link" href="#">{`${i+1}`}</a></li>)
+									})
+								}
+								{/* <li class="page-item"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li> */}
+								<li class="page-item">
+								<a class="page-link" href="#" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+									<span class="sr-only">Next</span>
+								</a>
+								</li>
+							</ul>
+							</nav>
+							<h4 className='mt-2 text-color'>
+								Available:{' '}
+								<span className='text-primary font-weight-bold'>
+									{dataprod.length}
+								</span>
+							</h4>
 						</>
 						)
 				}
