@@ -1,17 +1,16 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Container, Row } from 'react-bootstrap';
 
 import FormContainer from './FormContainer';
 
-function AddProdForm(props) {
+function AddProdForm({ history }) {
 	const [productName, setProductName] = useState('');
 	const [weight, setWeight] = useState(500);
 	const [theme, setTheme] = useState('');
 	const [price, setPrice] = useState(0);
 	const [description, setDescription] = useState('');
 	const [pics, setPics] = useState();
-	const [images, setImages] = useState();
 	const [step, setStep] = useState(1);
 	
 	const isFilled = productName && weight >= 500 && theme && price > 0 && description ;
@@ -32,19 +31,37 @@ function AddProdForm(props) {
 		const { data } = await axios.post('/api/upload', formData, {
 			headers: { 'Content-Type': 'multipart/form-data' },
 		});
-		console.log(typeof data.images);
+		const imagedata = [...data.images];
+
+		const product = {
+			name: productName,
+			weight,
+			theme,
+			price,
+			description,
+			images: imagedata,
+		};
+
+		const { data: productData } = await axios.post(
+			`/api/products`,
+			product
+		);
+		if (productData) {
+			console.log(productData);
+			history.push('/admindash');
+		}
 	};
 
-	const onSubmitHandler = async (e) => {
+	const onSubmitHandler = (e) => {
 		e.preventDefault();
 		imageUploadHandler();
-		console.log(images);
 	};
 
 	switch (step) {
 		case 1:
 			return (
-				<Container className='mt-5 pt-5 center-screen left-fade-in  w-50 '>
+				<Container className='mt-5 mb-5 pt-5 center-screen left-fade-in  w-50 '>
+
 					<Row className='d-flex justify-content-center flex-column container'>
 						<FormContainer>
 							<Form>
