@@ -13,9 +13,15 @@ function AddProdForm(props) {
 	const [pics, setPics] = useState();
 	const [images, setImages] = useState();
 	const [step, setStep] = useState(1);
+	
+	const isFilled = productName && weight >= 500 && theme && price > 0 && description ;
 
 	const onChangeHandler = (e) => {
 		setPics(e.target.files);
+	};
+
+	const setWeightHandler = (weightValue) => {
+		setWeight(weightValue);
 	};
 
 	const imageUploadHandler = async () => {
@@ -38,7 +44,7 @@ function AddProdForm(props) {
 	switch (step) {
 		case 1:
 			return (
-				<Container className='mt-5 pt-5 center-screen left-fade-in'>
+				<Container className='mt-5 pt-5 center-screen left-fade-in  w-50 '>
 					<Row className='d-flex justify-content-center flex-column container'>
 						<FormContainer>
 							<Form>
@@ -56,20 +62,23 @@ function AddProdForm(props) {
 
 								<Form.Group controlId='exampleForm.ControlSelect1'>
 									<Form.Label>Weight</Form.Label>
+									{`${
+										weight >= 1000 ? weight / 1000 : weight
+									} ${weight >= 1000 ? 'kg' : 'g'}`}
 									<Form.Control as='select'>
-										<option onClick={() => setWeight(500)}>
-											500 g / 0.5kg
+										<option onClick={() => setWeightHandler(500)}>
+											500 g 
 										</option>
-										<option onClick={() => setWeight(1000)}>
+										<option onClick={() => setWeightHandler(1000)}>
 											1 kg
 										</option>
-										<option onClick={() => setWeight(1500)}>
+										<option onClick={() => setWeightHandler(1500)}>
 											1.5 kg
 										</option>
-										<option onClick={() => setWeight(2000)}>
+										<option onClick={() => setWeightHandler(2000)}>
 											2 kg
 										</option>
-										<option onClick={() => setWeight(2500)}>
+										<option onClick={() => setWeightHandler(2500)}>
 											2.5 kg
 										</option>
 									</Form.Control>
@@ -112,8 +121,8 @@ function AddProdForm(props) {
 						</FormContainer>
 					</Row>
 					<Row className='d-flex justify-content-center mt-3'>
-						<Button onClick={() => setStep(2)} variant='dark'>
-							Continue to upload images
+						<Button onClick={() =>{return(`${(isFilled)?setStep(2):setStep(1)}`)}} variant='dark' >
+							{`${(isFilled)? "Continue to upload images": "Please Fill the form"}`}
 						</Button>
 					</Row>
 				</Container>
@@ -121,8 +130,8 @@ function AddProdForm(props) {
 
 		case 2:
 			return (
-				<Container className='mt-5 pt-5 center-screen right-fade-in'>
-					<Form>
+				<Container className='mt-5 pt-5 center-screen right-fade-in  w-50 ' style={{ minHeight: '90vh' }}>
+					<Form >
 						<Form.Group>
 							<Form.Label>Select Images</Form.Label>
 							<Form.File
