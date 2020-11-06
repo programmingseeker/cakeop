@@ -263,3 +263,29 @@ th {
 .center-screen {
 	margin: 0 auto;
 }
+@keyframes fadeInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes fadeInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+.right-fade-in {
+	animation: fadeInRight 700ms both;
+}
+.left-fade-in {
+	animation: fadeInLeft 700ms both;
+}

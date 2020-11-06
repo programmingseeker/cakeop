@@ -1,181 +1,159 @@
 import axios from 'axios';
-import React, { useState,useEffect } from 'react';
-import { Form, Dropdown, Button ,Tabs,Tab} from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Form, Button, Container, Row } from 'react-bootstrap';
+
 import FormContainer from './FormContainer';
 
-import { FilePond, registerPlugin } from 'react-filepond';
-import 'filepond/dist/filepond.min.css';
-import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
-
-registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
-
-function AddProdForm() {
+function AddProdForm(props) {
 	const [productName, setProductName] = useState('');
-	const [weight, setweight] = useState(500);
+	const [weight, setWeight] = useState(500);
 	const [theme, setTheme] = useState('');
 	const [price, setPrice] = useState(0);
 	const [description, setDescription] = useState('');
-	// const [images, setImages] = useState([]);
-	const [files, setFiles] = useState([]);
+	const [pics, setPics] = useState();
+	const [images, setImages] = useState();
+	const [step, setStep] = useState(1);
 
-	// const onUpdatefilesHandler = (e) => setFiles(e.target.files);
-
-	const isFilled = productName && weight >= 500 && theme && price > 0 && description ;
-	// ?"t":"f";
-	const uploadImageHandler = async () => {
-		let imageFiles = new FormData();
-		imageFiles.append('images', files);
-
-		try {
-			const config = {
-				headers: {
-					'Content-Type': 'multipart/form-data',
-				},
-			};
-			const { data } = await axios.post(
-				'/api/upload',
-				imageFiles,
-				config
-			);
-			console.log(data);
-		} catch (error) {
-			console.log(error);
-		}
+	const onChangeHandler = (e) => {
+		setPics(e.target.files);
 	};
-	
-	const [key, setKey] = useState('addProductForm');
-	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [key])
+
+	const imageUploadHandler = async () => {
+		const formData = new FormData();
+		for (const key of Object.keys(pics)) {
+			formData.append('images', pics[key]);
+		}
+		const { data } = await axios.post('/api/upload', formData, {
+			headers: { 'Content-Type': 'multipart/form-data' },
+		});
+		console.log(typeof data.images);
+	};
 
 	const onSubmitHandler = async (e) => {
 		e.preventDefault();
-		uploadImageHandler();
-		// console.log({ productName, weight, theme, price, description, files });
+		imageUploadHandler();
+		console.log(images);
 	};
 
-	return (
-		<div className='d-flex justify-content-center flex-column mt-5 pt-5 w-50 center-screen'>
-		<Tabs
-			id="controlled-tab-example"
-			activeKey={key}
-			onSelect={(k) => setKey(k)}
-			variant='pills'
-			>
-			<Tab eventKey="addProductForm" title="Home">
-				<FormContainer>
-					<Form style={{ minHeight: '100vh' }}>
-						<Form.Group controlId='formBasicName'>
-							<Form.Label className='form-label-profile'>
-								Product Name
-							</Form.Label>
-							<Form.Control
-								type='name'
-								className='text-muted drop-shadow input'
-								placeholder='Product Name'
-								value={productName}
-								onChange={(e) => setProductName(e.target.value)}
-							/>
-						</Form.Group>
+	switch (step) {
+		case 1:
+			return (
+				<Container className='mt-5 pt-5 center-screen left-fade-in'>
+					<Row className='d-flex justify-content-center flex-column container'>
+						<FormContainer>
+							<Form>
+								<Form.Group>
+									<Form.Label>Name</Form.Label>
+									<Form.Control
+										type='text'
+										value={productName}
+										onChange={(e) =>
+											setProductName(e.target.value)
+										}
+										placeholder='Cake Name'
+									/>
+								</Form.Group>
 
-						<Form.Group className='d-flex'>
-							<Form.Label className='form-label-profile pr-3'>
-								Weight
-							</Form.Label>
-							<Dropdown>
-								<Dropdown.Toggle
-									className='button-sidenav bg-white text-dark'
-									id='dropdown-basic'
-									style={{ width: '10rem !important' }}
-								>
-									{`${weight >= 1000 ? weight / 1000 : weight} ${
-										weight >= 1000 ? 'kg' : 'g'
-									}`}
-								</Dropdown.Toggle>
-								<Dropdown.Menu>
-									<Dropdown.Item onClick={() => setweight(500)}>
-										500g
-									</Dropdown.Item>
-									<Dropdown.Item onClick={() => setweight(1000)}>
-										1kg
-									</Dropdown.Item>
-									<Dropdown.Item onClick={() => setweight(1500)}>
-										1.5kg
-									</Dropdown.Item>
-									<Dropdown.Item onClick={() => setweight(2000)}>
-										2kg
-									</Dropdown.Item>
-								</Dropdown.Menu>
-							</Dropdown>
-						</Form.Group>
+								<Form.Group controlId='exampleForm.ControlSelect1'>
+									<Form.Label>Weight</Form.Label>
+									<Form.Control as='select'>
+										<option onClick={() => setWeight(500)}>
+											500 g / 0.5kg
+										</option>
+										<option onClick={() => setWeight(1000)}>
+											1 kg
+										</option>
+										<option onClick={() => setWeight(1500)}>
+											1.5 kg
+										</option>
+										<option onClick={() => setWeight(2000)}>
+											2 kg
+										</option>
+										<option onClick={() => setWeight(2500)}>
+											2.5 kg
+										</option>
+									</Form.Control>
+								</Form.Group>
+
+								<Form.Group>
+									<Form.Label>Theme</Form.Label>
+									<Form.Control
+										type='text'
+										value={theme}
+										onChange={(e) =>
+											setTheme(e.target.value)
+										}
+										placeholder='Cake Theme'
+									/>
+								</Form.Group>
+								<Form.Group>
+									<Form.Label>Price</Form.Label>
+									<Form.Control
+										type='numeric'
+										value={price}
+										onChange={(e) =>
+											setPrice(e.target.value)
+										}
+										placeholder='Cake Price'
+									/>
+								</Form.Group>
+								<Form.Group controlId='exampleForm.ControlTextarea1'>
+									<Form.Label>Cake Description</Form.Label>
+									<Form.Control
+										as='textarea'
+										rows={3}
+										value={description}
+										onChange={(e) =>
+											setDescription(e.target.value)
+										}
+									/>
+								</Form.Group>
+							</Form>
+						</FormContainer>
+					</Row>
+					<Row className='d-flex justify-content-center mt-3'>
+						<Button onClick={() => setStep(2)} variant='dark'>
+							Continue to upload images
+						</Button>
+					</Row>
+				</Container>
+			);
+
+		case 2:
+			return (
+				<Container className='mt-5 pt-5 center-screen right-fade-in'>
+					<Form>
 						<Form.Group>
-							<Form.Label className='form-label-profile'>
-								Theme
-							</Form.Label>
-							<Form.Control
-								type='text'
-								className='text-muted drop-shadow input'
-								placeholder='Theme'
-								value={theme}
-								onChange={(e) => setTheme(e.target.value)}
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label className='form-label-profile'>
-								Price
-							</Form.Label>
-							<Form.Control
-								input='number'
-								className='text-muted drop-shadow input'
-								placeholder='Price'
-								value={price}
-								onChange={(e) => setPrice(e.target.value)}
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label className='form-label-profile'>
-								Description
-							</Form.Label>
-							<Form.Control
-								as='textarea'
-								className='text-muted input'
-								rows={3}
-								style={{
-									boxShadow:
-										' 4px 4px 10px 1px rgba(0, 0,0,0.25)',
-								}}
-								placeholder='Description'
-								value={description}
-								onChange={(e) => setDescription(e.target.value)}
-							/>
-						</Form.Group>
-						<Button onClick={() => {return(`${(isFilled)?setKey("addImage"):setKey("addProductForm")}`)}}>Next</Button>
-					</Form>
-				</FormContainer>
-			</Tab>
-			<Tab eventKey="addImage" disabled={!isFilled} title="Upload Image">
-				<FormContainer>
-					<Form style={{ minHeight: '100vh' }}>
-						<Form.Group>
-							<FilePond
-								files={files}
-								allowReorder={true}
-								allowMultiple={true}
-								onupdatefiles={setFiles}
-								labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
-							/>
-							<Button type='submit' onClick={onSubmitHandler}>
-								Submit
-							</Button>
+							<Form.Label>Select Images</Form.Label>
+							<Form.File
+								id='image-file'
+								label='Select Images'
+								multiple
+								custom
+								onChange={onChangeHandler}
+							></Form.File>
 						</Form.Group>
 					</Form>
-				</FormContainer>
-			</Tab>
-		</Tabs>
-		</div>
-	);
+					<div className='d-flex justify-content-center mt-3'>
+						<Button
+							className='mx-4'
+							onClick={() => setStep(1)}
+							variant='dark'
+						>
+							Go Back
+						</Button>
+						<Button
+							className='mx-4'
+							type='submit'
+							variant='dark'
+							onClick={onSubmitHandler}
+						>
+							Submit
+						</Button>
+					</div>
+				</Container>
+			);
+	}
 }
 
 export default AddProdForm;

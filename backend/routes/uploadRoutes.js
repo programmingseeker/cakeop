@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 import multer from 'multer';
+
 const router = express.Router();
 
 const __dirname = path.resolve();
@@ -39,7 +40,8 @@ const upload = multer({
 });
 
 router.post('/', upload.any('images', 5), (req, res) => {
-	res.send(`/${req.files}`);
+	const data = req.files.map((file) => file.filename);
+	res.json({ images: data });
 });
 
 export default router;

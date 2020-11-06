@@ -38,6 +38,10 @@ app.use('/api/user', userRouter);
 app.use('/api/cake', cakeRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/upload', uploadRouter);
+// app.post('/api/testing', (req, res) => {
+// 	console.log(req.headers);
+// 	res.send(req.files);
+// });
 app.use('*', (req, res, next) => {
 	next(
 		new AppError(
