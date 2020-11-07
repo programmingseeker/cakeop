@@ -4,8 +4,6 @@ import {
 	Nav,
 	Dropdown,
 	Alert,
-	Row,
-	Col,
 	Pagination,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';

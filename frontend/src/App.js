@@ -14,6 +14,8 @@ import NotFound404 from './pages/NotFound404';
 import AdminDashboard from './pages/AdminDashboard';
 import AddProdForm from './components/TestAddProdForm';
 import ProtectRoute from './components/ProtectRoute';
+import ShippingInfo from './pages/ShippingInfo'
+
 function App() {
 	return (
 		<Router>
@@ -29,6 +31,7 @@ function App() {
 				<Route exact path='/cakes' component={GetAllCakes} />
 				<Route exact path='/cakes/:id' component={ProductPage} />
 				<Route exact path='/cart/:id?' component={Cart} />
+				<Route exact path='/shipping' component={ShippingInfo} />
 
 				<ProtectRoute
 					exact
