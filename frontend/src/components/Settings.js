@@ -46,7 +46,7 @@ function Settings() {
 			<div className='profile d-flex align-items-center'>
 				<img
 					id='myImg'
-					src='/img/user-picture.jpg'
+					src='/img/nouser.svg'
 					alt='User Profile'
 					className='profile-photo'
 					onClick={showModalHandler}

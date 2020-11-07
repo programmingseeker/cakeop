@@ -8,6 +8,10 @@ const userSchema = new mongoose.Schema({
 	email: {
 		type: String,
 	},
+	profileImage: {
+		type: String,
+		default: '/img/nouser.svg',
+	},
 	password: {
 		type: String,
 		minlength: 6,

@@ -6,7 +6,9 @@ import {
 	getLogout,
 	isLoggedIn,
 } from './../controllers/authController.js';
+import { getMe } from './../controllers/UserController.js';
 
+router.get('/me', isLoggedIn, getMe);
 router.post('/login', postLogin);
 router.post('/signup', postSignUp);
 router.get('/logout', isLoggedIn, getLogout);
