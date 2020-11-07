@@ -23,15 +23,6 @@ const ProductPage = ({ history, match }) => {
 	const [qty, setQty] = useState(1);
 	const [ratings, setRatings] = useState(0);
 	const [comment, setComment] = useState('');
-	const reviewSubmitHandler = (e) => {
-		e.preventDefault();
-		dispatch(
-			createProductReview(match.params.id, {
-				review: comment,
-				ratings: ratings,
-			})
-		);
-	};
 
 	const dispatch = useDispatch();
 	const productDetails = useSelector((state) => state.productDetails);
@@ -39,10 +30,25 @@ const ProductPage = ({ history, match }) => {
 
 	const auth = useSelector((state) => state.auth);
 	const { user } = auth;
+	const reviewSubmitHandler = (e) => {
+		e.preventDefault();
+		dispatch(
+			createProductReview(match.params.id, {
+				review: comment,
+				ratings: ratings,
+			})
+		);	
+		setComment('');
+		setRatings();
+		dispatch(listProductDetails(match.params.id));
+	};
 
 	// const productCreateReview = useSelector(
-	// 	(state) => state.productCreateReview
-	// );
+		// 	(state) => state.productCreateReview
+		// );
+		useEffect(() => {
+			dispatch(listProductDetails(match.params.id));
+		}, [dispatch, match]);
 	const responsive = {
 		desktop: {
 			breakpoint: {
@@ -69,9 +75,6 @@ const ProductPage = ({ history, match }) => {
 			partialVisibilityGutter: 30,
 		},
 	};
-	useEffect(() => {
-		dispatch(listProductDetails(match.params.id));
-	}, [dispatch, match]);
 
 	const addToCartHandler = () => {
 		history.push(`/cart/${match.params.id}?qty=${qty}`);

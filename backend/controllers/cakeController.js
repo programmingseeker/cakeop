@@ -9,26 +9,31 @@ export const getAllCake = catchAsync(async (req, res, next) => {
 	const features = new APIFeatures(Cake.find(), req.query)
 		.filter()
 		.sort()
-		.paginate()
 		.limitFields();
-	const cake = await features.query;
+
+	let filteredCakes = await features.query;
+	const filteredLength = filteredCakes.length;
+	if (req.query.page && req.query.limit) {
+		filteredCakes = await features.paginate().query;
+	}
 	// Response
 	res.status(200).json({
-		length: cake.length,
-		data: cake,
+		totalLength: filteredLength,
+		length: filteredCakes.length,
+		data: filteredCakes,
 	});
 });
 
 export const getCake = catchAsync(async (req, res, next) => {
 	const cake = await Cake.findById(req.params.id);
-	const cakeReviews = await Review.find({cake: req.params.id});
+	const cakeReviews = await Review.find({ cake: req.params.id });
 	if (!cake) {
 		next(
 			new AppError(`There is no cake with this id ${req.params.id}`, 404)
 		);
 	} else {
 		cake.reviews = cakeReviews;
-		cake.ratingsQuantity=cakeReviews.length;
+		cake.ratingsQuantity = cakeReviews.length;
 		res.status(200).json({
 			status: 'success',
 			data: cake,

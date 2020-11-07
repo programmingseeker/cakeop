@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Nav, Row, Col, Media } from 'react-bootstrap';
+import { Container, Nav, Row, Col, Media, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,7 +26,7 @@ export default function AdminDashboard() {
 			<aside id='sidebar-wrapper'>
 				<Nav className='sidebar-nav' as='ul'>
 					<Nav.Item as='li'>
-						<LinkContainer to='/adminprod'>
+						<LinkContainer to='/admindash'>
 							<Nav.Link className='sidenav-icon active'>
 								<i className='fa fa-birthday-cake' />
 								Cakes
@@ -45,23 +45,31 @@ export default function AdminDashboard() {
 							<i className='fa fa-angle-double-right' />
 						</span>
 					</div>
+
 					<div>
-						<Link to='/addprodform'>
-							<button
-								type='button'
-								class='btn btn-primary '
-								style={{ fontWeight: 550 }}
-							>
-								Add <i class='fas fa-plus'></i>
-							</button>
+						<Link to='/addproduct'>
+							<Button type='button' style={{ fontWeight: 550 }}>
+								Add <i className='fas fa-plus'></i>
+							</Button>
 						</Link>
 					</div>
 				</Nav>
 			</div>
 			<section id='content-wrapper' className='overflow-auto'>
-				<div className='col-lg-12 d-flex flex-wrap'>
+				<Link to='/profile'>
+					<Button variant={'light'}>
+						<span className='sidenav-icon'>
+							<i className='fa fa-angle-left' />
+							{'  '}Go Back
+						</span>
+					</Button>
+				</Link>
+				<Col lg={12} className='d-flex flex-wrap'>
 					{dataprod.map((item) => (
-						<Row className='align-middle bg-light rounded-lg my-3 col-lg-6 col-md-12'>
+						<Row
+							className='align-middle bg-light rounded-lg my-3 col-lg-6 col-md-12'
+							key={item.id}
+						>
 							<Col
 								className='col-sm-9 col-xs-9 col-md-9'
 								style={{ transition: 'all 0.5s ease-in' }}
@@ -69,7 +77,7 @@ export default function AdminDashboard() {
 								<Media className='d-flex flex-wrap'>
 									<Link
 										className='float-left mr-2 img-anc'
-										href='/#'
+										to=''
 									>
 										<img
 											src={`/img/${item.images[0]}`}
@@ -83,7 +91,7 @@ export default function AdminDashboard() {
 										</h4>
 										<span
 											className='text-muted'
-											style={{ 'line-height': '1' }}
+											style={{ lineHeight: '1' }}
 										>
 											Theme: {item.theme}
 										</span>
@@ -95,7 +103,7 @@ export default function AdminDashboard() {
 							</Col>
 						</Row>
 					))}
-				</div>
+				</Col>
 			</section>
 		</Container>
 	);

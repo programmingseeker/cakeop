@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Nav, Tab } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Nav, Tab, Col } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import Settings from '../components/Settings';
 import Reviews from '../components/Reviews';
 import Bookings from '../components/Bookings';
 
-function ProfilePage({ tab } = 'settings') {
+function ProfilePage() {
 	const [sideNav, setsideNav] = useState(false);
+	const [tab, setTab] = useState('settings');
 	const sideNavtoggle = () => {
 		const a = sideNav ? false : true;
 		setsideNav(a);
 	};
 
-	const [screen, setscreen] = useState('settings');
-	useEffect(() => {
-		setscreen(tab);
-	}, [setscreen, tab]);
+	const { user } = useSelector((state) => state.auth);
 
-	const handlescreen = (screen = 'settings') => {
-		switch (screen) {
+	const handlescreen = () => {
+		switch (tab) {
 			case 'settings':
 				return <Settings />;
 			case 'reviews':
@@ -35,42 +34,55 @@ function ProfilePage({ tab } = 'settings') {
 				<aside id='sidebar-wrapper'>
 					<Nav className='sidebar-nav' as='ul'>
 						<Nav.Item as='li'>
-							<LinkContainer to='/settings'>
-								<Nav.Link
-									className={`sidenav-icon ${
-										tab === 'settings' ? 'active' : ''
-									}`}
-								>
-									<i className='fa fa-user-cog' />
-									Settings
-								</Nav.Link>
-							</LinkContainer>
+							<Nav.Link
+								onClick={() => setTab('settings')}
+								className={`sidenav-icon ${
+									tab === 'settings' ? 'active' : ''
+								}`}
+							>
+								<i className='fa fa-user-cog' />
+								Settings
+							</Nav.Link>
 						</Nav.Item>
 
 						<Nav.Item as='li'>
-							<LinkContainer to='/reviews'>
-								<Nav.Link
-									className={`sidenav-icon ${
-										tab === 'reviews' ? 'active' : ''
-									}`}
-								>
-									<i className='fa fa-star' />
-									Reviews
-								</Nav.Link>
-							</LinkContainer>
+							<Nav.Link
+								onClick={() => setTab('reviews')}
+								className={`sidenav-icon ${
+									tab === 'reviews' ? 'active' : ''
+								}`}
+							>
+								<i className='fa fa-star' />
+								Reviews
+							</Nav.Link>
 						</Nav.Item>
 
 						<Nav.Item as='li'>
-							<LinkContainer to='/bookings'>
-								<Nav.Link
-									className={`sidenav-icon ${
-										tab === 'bookings' ? 'active' : ''
-									}`}
-								>
-									<i class='fa fa-shopping-bag'></i>Bookings
-								</Nav.Link>
-							</LinkContainer>
+							<Nav.Link
+								onClick={() => setTab('bookings')}
+								className={`sidenav-icon ${
+									tab === 'bookings' ? 'active' : ''
+								}`}
+							>
+								<i className='fa fa-shopping-bag'></i>Bookings
+							</Nav.Link>
 						</Nav.Item>
+
+						{user.userType === 'admin' ? (
+							<Nav.Item as='li'>
+								<LinkContainer to='/admindash'>
+									<Nav.Link
+										onClick={() => setTab('admindash')}
+										className={`sidenav-icon ${
+											tab === 'admindash' ? 'active' : ''
+										}`}
+									>
+										<i className='fa fa-tachometer-alt'></i>
+										Admin Dashboard
+									</Nav.Link>
+								</LinkContainer>
+							</Nav.Item>
+						) : null}
 					</Nav>
 				</aside>
 				<div id='navbar-wrapper'>
@@ -86,9 +98,9 @@ function ProfilePage({ tab } = 'settings') {
 					</Nav>
 				</div>
 				<section id='content-wrapper' className='overflow-auto'>
-					<div className='col-lg-12'>
-						<Tab.Content>{handlescreen(screen)}</Tab.Content>
-					</div>
+					<Col lg={12}>
+						<Tab.Content>{handlescreen()}</Tab.Content>
+					</Col>
 				</section>
 			</Container>
 		</Tab.Container>

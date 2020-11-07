@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from './../components/Loader';
 import FormContainer from './../components/FormContainer';
-const LoginPage = ({ history, isPage = false }) => {
+const LoginPage = ({ history, isPage = false, location }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const dispatch = useDispatch();
@@ -13,7 +13,8 @@ const LoginPage = ({ history, isPage = false }) => {
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
 		dispatch(login(email, password));
-		history.push('/');
+		console.log(location);
+		history.push(location.pathname);
 	};
 
 	const a = {

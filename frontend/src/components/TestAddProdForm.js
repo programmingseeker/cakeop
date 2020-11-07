@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import FormContainer from './FormContainer';
 
@@ -12,8 +13,9 @@ function AddProdForm({ history }) {
 	const [description, setDescription] = useState('');
 	const [pics, setPics] = useState();
 	const [step, setStep] = useState(1);
-	
-	const isFilled = productName && weight >= 500 && theme && price > 0 && description ;
+
+	const isFilled =
+		productName && weight >= 500 && theme && price > 0 && description;
 
 	const onChangeHandler = (e) => {
 		setPics(e.target.files);
@@ -42,12 +44,8 @@ function AddProdForm({ history }) {
 			images: imagedata,
 		};
 
-		const { data: productData } = await axios.post(
-			`/api/products`,
-			product
-		);
-		if (productData) {
-			console.log(productData);
+		const { data: productData } = await axios.post(`/api/cake`, product);
+		if (productData.status === 'success') {
 			history.push('/admindash');
 		}
 	};
@@ -61,7 +59,14 @@ function AddProdForm({ history }) {
 		case 1:
 			return (
 				<Container className='mt-5 mb-5 pt-5 center-screen left-fade-in  w-50 '>
-
+					<Link to='/admindash'>
+						<Button variant='light' className='mb-3'>
+							<span className='sidenav-icon'>
+								<i className='fa fa-angle-left' />
+								{'  '}Go Back
+							</span>
+						</Button>
+					</Link>
 					<Row className='d-flex justify-content-center flex-column container'>
 						<FormContainer>
 							<Form>
@@ -83,19 +88,39 @@ function AddProdForm({ history }) {
 										weight >= 1000 ? weight / 1000 : weight
 									} ${weight >= 1000 ? 'kg' : 'g'}`}
 									<Form.Control as='select'>
-										<option onClick={() => setWeightHandler(500)}>
-											500 g 
+										<option
+											onClick={() =>
+												setWeightHandler(500)
+											}
+										>
+											500 g
 										</option>
-										<option onClick={() => setWeightHandler(1000)}>
+										<option
+											onClick={() =>
+												setWeightHandler(1000)
+											}
+										>
 											1 kg
 										</option>
-										<option onClick={() => setWeightHandler(1500)}>
+										<option
+											onClick={() =>
+												setWeightHandler(1500)
+											}
+										>
 											1.5 kg
 										</option>
-										<option onClick={() => setWeightHandler(2000)}>
+										<option
+											onClick={() =>
+												setWeightHandler(2000)
+											}
+										>
 											2 kg
 										</option>
-										<option onClick={() => setWeightHandler(2500)}>
+										<option
+											onClick={() =>
+												setWeightHandler(2500)
+											}
+										>
 											2.5 kg
 										</option>
 									</Form.Control>
@@ -138,8 +163,17 @@ function AddProdForm({ history }) {
 						</FormContainer>
 					</Row>
 					<Row className='d-flex justify-content-center mt-3'>
-						<Button onClick={() =>{return(`${(isFilled)?setStep(2):setStep(1)}`)}} variant='dark' >
-							{`${(isFilled)? "Continue to upload images": "Please Fill the form"}`}
+						<Button
+							onClick={() => {
+								return `${isFilled ? setStep(2) : setStep(1)}`;
+							}}
+							variant='dark'
+						>
+							{`${
+								isFilled
+									? 'Continue to upload images'
+									: 'Please Fill the form'
+							}`}
 						</Button>
 					</Row>
 				</Container>
@@ -147,8 +181,11 @@ function AddProdForm({ history }) {
 
 		case 2:
 			return (
-				<Container className='mt-5 pt-5 center-screen right-fade-in  w-50 ' style={{ minHeight: '90vh' }}>
-					<Form >
+				<Container
+					className='mt-5 pt-5 center-screen right-fade-in  w-50 '
+					style={{ minHeight: '90vh' }}
+				>
+					<Form>
 						<Form.Group>
 							<Form.Label>Select Images</Form.Label>
 							<Form.File
@@ -179,6 +216,8 @@ function AddProdForm({ history }) {
 					</div>
 				</Container>
 			);
+		default:
+			return <></>;
 	}
 }
 

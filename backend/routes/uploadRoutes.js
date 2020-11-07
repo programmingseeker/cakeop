@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 import multer from 'multer';
+import { restrictTo } from './../controllers/authController.js';
 
 const router = express.Router();
 
@@ -39,7 +40,7 @@ const upload = multer({
 	},
 });
 
-router.post('/', upload.any('images', 5), (req, res) => {
+router.post('/', restrictTo('admin'), upload.any('images', 5), (req, res) => {
 	const data = [];
 	req.files.map((file) => data.push(file.filename.toString()));
 	console.log(data);

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { logout } from './../actions/userActions';
 import FormContent from './FormContent';
+
 const Header = () => {
 	const [user, setUser] = useState({});
 	const dispatch = useDispatch();
@@ -70,17 +71,14 @@ const Header = () => {
 								id='username'
 								onClick={hideModalHandler}
 							>
-								<NavDropdown.Item>
-									<Link
-										to='/profile'
-										className='text-decoration-none text-dark'
-									>
-										Profile
-									</Link>
-								</NavDropdown.Item>
+								<LinkContainer to='/profile'>
+									<NavDropdown.Item>Profile</NavDropdown.Item>
+								</LinkContainer>
+
 								<NavDropdown.Item
+									as='button'
+									className='text-decoration-none text-dark'
 									onClick={onClickLogoutHandler}
-									href='/'
 								>
 									Log Out
 								</NavDropdown.Item>
@@ -93,11 +91,12 @@ const Header = () => {
 								</Nav.Link>
 								{showModal ? (
 									<Route
-										render={({ history }) => (
+										render={({ history, location }) => (
 											<FormContent
 												show={showModal}
 												handleClose={hideModalHandler}
 												history={history}
+												location={location}
 											></FormContent>
 										)}
 									/>

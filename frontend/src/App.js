@@ -13,6 +13,7 @@ import Cart from './pages/Cart';
 import NotFound404 from './pages/NotFound404';
 import AdminDashboard from './pages/AdminDashboard';
 import AddProdForm from './components/TestAddProdForm';
+import ProtectRoute from './components/ProtectRoute';
 function App() {
 	return (
 		<Router>
@@ -25,31 +26,29 @@ function App() {
 					render={() => <LoginPage isPage={true} />}
 				/>
 				<Route exact path='/signup' component={SignupPage} />
-				<Route
-					exact
-					path='/profile'
-					render={() => <ProfilePage tab={'settings'} />}
-				/>
-				<Route
-					exact
-					path='/settings'
-					render={() => <ProfilePage tab={'settings'} />}
-				/>
-				<Route
-					exact
-					path='/reviews'
-					render={() => <ProfilePage tab={'reviews'} />}
-				/>
-				<Route
-					exact
-					path='/bookings'
-					render={() => <ProfilePage tab={'bookings'} />}
-				/>
 				<Route exact path='/cakes' component={GetAllCakes} />
 				<Route exact path='/cakes/:id' component={ProductPage} />
 				<Route exact path='/cart/:id?' component={Cart} />
-				<Route path='/admindash' component={AdminDashboard} />
-				<Route path='/addproduct' component={AddProdForm} />
+
+				<ProtectRoute
+					exact
+					path='/profile'
+					restrictTo={['admin', 'user']}
+					component={ProfilePage}
+				/>
+				<ProtectRoute
+					exact
+					path='/admindash'
+					component={AdminDashboard}
+					restrictTo={['admin']}
+				/>
+				<ProtectRoute
+					exact
+					path='/addproduct'
+					component={AddProdForm}
+					restrictTo={['admin']}
+				/>
+
 				<Route path='*' component={NotFound404} />
 			</Switch>
 			<Footer />
