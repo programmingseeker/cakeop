@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Nav, Tab, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -8,27 +8,37 @@ import Bookings from '../components/Bookings';
 
 function ProfilePage() {
 	const [sideNav, setsideNav] = useState(false);
-	const [tab, setTab] = useState('settings');
+	const [currentTab, setCurrentTab] = useState('settings');
+	const [currentUser, setCurrentUser] = useState({});
+
+	const userInfo = useSelector((state) => state.userInfo);
+	const { user } = userInfo;
 	const sideNavtoggle = () => {
 		const a = sideNav ? false : true;
 		setsideNav(a);
 	};
 
-	const { user } = useSelector((state) => state.auth);
-	const { user: userInfo } = useSelector((state) => state.userInfo);
+	const curentTabHandler = (tab) => {
+		setCurrentTab(tab);
+	};
 
-	const handlescreen = () => {
+	const handlescreen = (tab) => {
 		switch (tab) {
 			case 'settings':
-				return <Settings userInfo={userInfo} />;
+				return <Settings />;
 			case 'reviews':
 				return <Reviews />;
 			case 'bookings':
-				return <Bookings cakesBrought={userInfo.cakesBrought} />;
+				return <Bookings />;
 			default:
 				return <div> this is a wrong page</div>;
 		}
 	};
+
+	useEffect(() => {
+		setCurrentUser(user);
+	}, [user, setCurrentUser]);
+
 	return (
 		<Tab.Container defaultActiveKey='settings'>
 			<Container id='wrapper' className={`${sideNav ? 'toggled' : ''}`}>
@@ -36,11 +46,12 @@ function ProfilePage() {
 					<Nav className='sidebar-nav' as='ul'>
 						<Nav.Item as='li'>
 							<Nav.Link
-								as='text'
-								onClick={() => setTab('settings')}
-								className={`sidenav-icon cursor-pointer ${
-									tab === 'settings' ? 'active' : ''
-								}`}
+								as='div'
+								className='sidenav-icon cursor-pointer '
+								active={
+									currentTab === 'settings' ? true : false
+								}
+								onClick={() => curentTabHandler('settings')}
 							>
 								<i className='fa fa-user-cog' />
 								Settings
@@ -50,10 +61,9 @@ function ProfilePage() {
 						<Nav.Item as='li'>
 							<Nav.Link
 								as='text'
-								onClick={() => setTab('reviews')}
-								className={`sidenav-icon cursor-pointer ${
-									tab === 'reviews' ? 'active' : ''
-								}`}
+								onClick={() => curentTabHandler('reviews')}
+								className='sidenav-icon cursor-pointer'
+								active={currentTab === 'reviews' ? true : false}
 							>
 								<i className='fa fa-star' />
 								Reviews
@@ -63,23 +73,28 @@ function ProfilePage() {
 						<Nav.Item as='li'>
 							<Nav.Link
 								as='text'
-								onClick={() => setTab('bookings')}
-								className={`sidenav-icon cursor-pointer ${
-									tab === 'bookings' ? 'active' : ''
-								}`}
+								onClick={() => curentTabHandler('bookings')}
+								active={
+									currentTab === 'bookings' ? true : false
+								}
+								className='sidenav-icon cursor-pointer'
 							>
 								<i className='fa fa-shopping-bag'></i>Bookings
 							</Nav.Link>
 						</Nav.Item>
 
-						{user.userType === 'admin' ? (
+						{currentUser.userType === 'admin' ? (
 							<Nav.Item as='li'>
 								<LinkContainer to='/admindash'>
 									<Nav.Link
 										as='text'
-										onClick={() => setTab('admindash')}
+										onClick={() =>
+											curentTabHandler('admindash')
+										}
 										className={`sidenav-icon cursor-pointer ${
-											tab === 'admindash' ? 'active' : ''
+											currentTab === 'admindash'
+												? 'active'
+												: ''
 										}`}
 									>
 										<i className='fa fa-tachometer-alt'></i>
@@ -104,7 +119,7 @@ function ProfilePage() {
 				</div>
 				<section id='content-wrapper' className='overflow-auto'>
 					<Col lg={12}>
-						<Tab.Content>{handlescreen()}</Tab.Content>
+						<Tab.Content>{handlescreen(currentTab)}</Tab.Content>
 					</Col>
 				</section>
 			</Container>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Image } from 'react-bootstrap';
 import { login } from './../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -36,9 +36,9 @@ const LoginPage = ({ history, isPage = false, location }) => {
 						<h1 className='d-flex align-items-center justify-content-center text-color fac-title'>
 							Log In
 						</h1>
-						<span className='d-flex justify-content-center'>
-							<img
-								src='/img/login/googleoauth.svg'
+						<span className='d-flex justify-content-center cursor-pointer'>
+							<Image
+								src='/img/icons/googleoauth.svg'
 								alt='Google Login'
 							/>
 						</span>

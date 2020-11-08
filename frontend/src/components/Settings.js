@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
 	Container,
 	Form,
@@ -14,15 +14,20 @@ import {
 } from 'react-bootstrap';
 import { getUserInfo } from './../actions/userActions';
 
-function Settings({ userInfo }) {
+function Settings() {
 	const dispatch = useDispatch();
 	const [showModal, setShowModal] = useState(false);
+	const [currentUser, setCurrentUser] = useState({});
 	const [uploading, setUploading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
+	const [successMessage, setSuccessMessage] = useState('');
+
 	const [currentPassword, setCurrentPassword] = useState('');
 	const [newPassword, setNewPassword] = useState('');
 	const [newConfirmPassword, setConfirmNewPassword] = useState('');
-	const [successMessage, setSuccessMessage] = useState('');
+
+	const userInfo = useSelector((state) => state.userInfo);
+	const { user } = userInfo;
 
 	const uploadProfileImageHandler = async (e) => {
 		const file = e.target.files[0];
@@ -58,20 +63,22 @@ function Settings({ userInfo }) {
 		if (errorMessage.length > 0) {
 			setTimeout(() => {
 				setErrorMessage('');
-			}, 2);
+			}, 3000);
 		}
 		if (successMessage.length > 0) {
 			setTimeout(() => {
 				setSuccessMessage('');
-			}, 2);
+			}, 3000);
 		}
-	}, [errorMessage, successMessage]);
+
+		setCurrentUser(user);
+	}, [errorMessage, successMessage, user]);
 
 	return (
-		<Container className='px-5 '>
+		<Container>
 			<h1 className='page-content-main-text'>Account Settings</h1>
 			<br />
-			<Form>
+			<Form className='mb-5'>
 				<Form.Group controlId='formBasicName'>
 					<Form.Label className='form-label-profile'>Name</Form.Label>
 					<Form.Control
@@ -79,7 +86,7 @@ function Settings({ userInfo }) {
 						readOnly
 						plaintext
 						className='text-muted drop-shadow input'
-						defaultValue={userInfo.username}
+						defaultValue={currentUser.username}
 					/>
 				</Form.Group>
 
@@ -92,16 +99,14 @@ function Settings({ userInfo }) {
 						readOnly
 						plaintext
 						className='text-muted drop-shadow input'
-						defaultValue={userInfo.email}
+						defaultValue={currentUser.email}
 					/>
 				</Form.Group>
 			</Form>
-			<br />
-			<br />
-			<div className='profile d-flex align-items-center'>
+			<div className='profile d-flex align-items-center mb-5 mt-5'>
 				<Image
 					id='myImg'
-					src={userInfo.profileImage}
+					src={`/img/user/${currentUser.profileImage}`}
 					alt='User Profile'
 					className='profile-photo'
 					onClick={() => setShowModal(true)}
@@ -155,9 +160,7 @@ function Settings({ userInfo }) {
 					)}
 				</Row>
 			</div>
-			<br />
-			<br />
-			<Form onSubmit={onSubmitPasswordChangeHandler}>
+			<Form onSubmit={onSubmitPasswordChangeHandler} className='mt-5'>
 				{errorMessage && <Alert variant='danger'>{errorMessage}</Alert>}
 				{successMessage && (
 					<Alert variant='success'>{successMessage}</Alert>
@@ -170,6 +173,7 @@ function Settings({ userInfo }) {
 						className='text-muted drop-shadow input'
 						type='password'
 						placeholder='Password'
+						value={currentPassword}
 						onChange={(e) => setCurrentPassword(e.target.value)}
 					/>
 				</Form.Group>
@@ -182,6 +186,7 @@ function Settings({ userInfo }) {
 						type='password'
 						placeholder='Password'
 						id='inputPassword5'
+						value={newPassword}
 						onChange={(e) => setNewPassword(e.target.value)}
 						aria-describedby='passwordHelpBlock'
 					/>
@@ -202,6 +207,7 @@ function Settings({ userInfo }) {
 						className='text-muted drop-shadow input'
 						type='password'
 						placeholder='Password'
+						value={newConfirmPassword}
 						onChange={(e) => setConfirmNewPassword(e.target.value)}
 					/>
 				</Form.Group>

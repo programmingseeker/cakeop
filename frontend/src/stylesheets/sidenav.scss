@@ -47,7 +47,7 @@
 }
 .sidebar-nav > li > .sidenav-icon:hover,
 .sidebar-nav > li > .sidenav-icon:focus,
-.sidebar-nav > li > a.active{
+.sidebar-nav > li > .active{
   border-width:0px!important;
   text-decoration: none;
   color: var(--primary);
@@ -57,9 +57,6 @@
   font-size: 28px;
   width: 60px;
 }
-
-
-
 
 #navbar-wrapper {
     width: 100%;

@@ -9,7 +9,7 @@ import FormContent from './FormContent';
 const Header = () => {
 	const [user, setUser] = useState({});
 	const dispatch = useDispatch();
-	const userdata = useSelector((state) => state.auth.user);
+	const { user: userdata } = useSelector((state) => state.userInfo);
 	const [showModal, setshowModal] = useState(false);
 	useEffect(() => {
 		setUser(userdata);
@@ -44,21 +44,21 @@ const Header = () => {
 				<Navbar.Toggle aria-controls='#navbarSupportedContent' />
 				<Navbar.Collapse id='navbarSupportedContent'>
 					<Nav className='ml-auto text-center'>
-						<LinkContainer to='/#About'>
+						<LinkContainer to='/#About' className='px-3'>
 							<Nav.Link>
 								<i className='fas fa-users fa-lg px-2'></i>
 								About Us
 							</Nav.Link>
 						</LinkContainer>
 
-						<LinkContainer to='/#contact'>
+						<LinkContainer to='/#contact' className='px-3'>
 							<Nav.Link>
 								<i className='fas fa-phone-alt px-2'></i>
 								Contact Us
 							</Nav.Link>
 						</LinkContainer>
 
-						<LinkContainer to='/cart'>
+						<LinkContainer to='/cart' className='px-3'>
 							<Nav.Link>
 								<i className='fas fa-shopping-cart px-2'></i>
 								Cart
@@ -89,7 +89,7 @@ const Header = () => {
 									<i className='fas fa-user pr-2'></i>
 									Log In / Sign Up
 								</Nav.Link>
-								{showModal ? (
+								{showModal && (
 									<Route
 										render={({ history, location }) => (
 											<FormContent
@@ -100,7 +100,7 @@ const Header = () => {
 											></FormContent>
 										)}
 									/>
-								) : null}
+								)}
 							</>
 						)}
 					</Nav>

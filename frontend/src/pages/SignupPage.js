@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FormContainer from './../components/FormContainer';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button, Alert } from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap'
 import { signup } from './../actions/userActions';
 import Loader from './../components/Loader';
 
@@ -45,7 +46,7 @@ const SignupPage = ({ history, location }) => {
 							<span className='d-flex justify-content-center'>
 								<img
 									className='image-cursor'
-									src='/img/login/googleoauth.svg'
+									src='/img/icons/googleoauth.svg'
 									alt='Google Login'
 								/>
 							</span>

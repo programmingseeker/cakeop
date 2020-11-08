@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
 	},
 	profileImage: {
 		type: String,
-		default: '/img/nouser.svg',
+		default: 'nouser.svg',
 	},
 	password: {
 		type: String,

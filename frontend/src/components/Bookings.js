@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Container, ListGroup } from 'react-bootstrap';
 
-function Bookings({ cakesBrought }) {
+function Bookings() {
+	const [bookings, setBookings] = useState([]);
+	const userInfo = useSelector((state) => state.userInfo);
+	const { cakesBrought } = userInfo.user;
+
+	useEffect(() => {
+		setBookings(cakesBrought);
+	}, [cakesBrought]);
+
 	const renderBookings = () => {
-		if (cakesBrought.length > 0) {
+		if (bookings.length > 0) {
 			return (
 				<ListGroup>
-					{cakesBrought.map((cake) => {
+					{bookings.map((cake) => {
 						return (
 							<ListGroup.Item key={cake}>{cake}</ListGroup.Item>
 						);

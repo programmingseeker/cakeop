@@ -8,10 +8,6 @@ import colors from 'colors';
 import morgan from 'morgan';
 import path from 'path';
 import helmet from 'helmet';
-<<<<<<< HEAD
-import compression from 'compression';
-=======
->>>>>>> 1a2d9659adde898b67f38eefe634268165db59cb
 
 import cakeRouter from './routes/cakeRoutes.js';
 import userRouter from './routes/userRoutes.js';
@@ -29,16 +25,9 @@ const __dirname = path.resolve();
 config();
 dbConfig();
 app.use(cors());
-<<<<<<< HEAD
 app.use(helmet());
 app.use(compression());
 app.use(express.static(path.resolve(__dirname, 'backend', 'public')));
-=======
-app.disable('x-powered-by');
-app.use(helmet());
-app.use(compression());
-app.use(express.static(path.join(__dirname, 'backend/public')));
->>>>>>> 1a2d9659adde898b67f38eefe634268165db59cb
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -53,32 +42,22 @@ app.use('/api/user', userRouter);
 app.use('/api/cake', cakeRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/upload', uploadRouter);
+// app.use('*', (req, res, next) => {
+// 	next(
+// 		new AppError(
+// 			`This url ${req.originalUrl} on this server is not present`,
+// 			404
+// 		)
+// 	);
+// });
 if (process.env.NODE_ENV === 'production') {
-<<<<<<< HEAD
 	app.use(express.static(path.resolve(__dirname, 'frontend', 'build')));
-	app.get('/', (req, res) => {
+	app.get('*', (req, res) => {
 		res.sendFile(
 			path.resolve(__dirname, 'frontend', 'build', 'index.html')
 		);
 	});
 }
-=======
-	app.get('/', (req, res) => {
-		res.sendFile(
-			path.resolve(__dirname, 'backend', 'public', 'index.html')
-		);
-	});
-}
-
->>>>>>> 1a2d9659adde898b67f38eefe634268165db59cb
-app.use('*', (req, res, next) => {
-	next(
-		new AppError(
-			`This url ${req.originalUrl} on this server is not present`,
-			this.statusCode
-		)
-	);
-});
 app.use(globalErrorController);
 
 const port = process.env.PORT || 5000;
