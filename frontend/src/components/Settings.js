@@ -18,7 +18,7 @@ function Settings({ userInfo }) {
 	const dispatch = useDispatch();
 	const [showModal, setShowModal] = useState(false);
 	const [uploading, setUploading] = useState(false);
-	const [error, setError] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
 	const [currentPassword, setCurrentPassword] = useState('');
 	const [newPassword, setNewPassword] = useState('');
 	const [newConfirmPassword, setConfirmNewPassword] = useState('');
@@ -38,7 +38,7 @@ function Settings({ userInfo }) {
 
 	const onSubmitPasswordChangeHandler = async (e) => {
 		e.preventDefault();
-		if (newPassword === newConfirmPassword) {
+		if (currentPassword && newPassword === newConfirmPassword) {
 			const passwordData = {
 				password: currentPassword,
 				newPassword,
@@ -50,14 +50,14 @@ function Settings({ userInfo }) {
 			setNewPassword('');
 			setConfirmNewPassword('');
 		} else {
-			setError('new password and confirm password does not match');
+			setErrorMessage('new password and confirm password does not match');
 		}
 	};
 
 	useEffect(() => {
-		if (error.length > 0) {
+		if (errorMessage.length > 0) {
 			setTimeout(() => {
-				setError('');
+				setErrorMessage('');
 			}, 2);
 		}
 		if (successMessage.length > 0) {
@@ -65,7 +65,7 @@ function Settings({ userInfo }) {
 				setSuccessMessage('');
 			}, 2);
 		}
-	});
+	}, [errorMessage, successMessage]);
 
 	return (
 		<Container className='px-5 '>
@@ -158,7 +158,7 @@ function Settings({ userInfo }) {
 			<br />
 			<br />
 			<Form onSubmit={onSubmitPasswordChangeHandler}>
-				{error && <Alert variant='danger'>{error}</Alert>}
+				{errorMessage && <Alert variant='danger'>{errorMessage}</Alert>}
 				{successMessage && (
 					<Alert variant='success'>{successMessage}</Alert>
 				)}
