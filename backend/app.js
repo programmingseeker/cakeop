@@ -43,10 +43,14 @@ app.use('/api/user', userRouter);
 app.use('/api/cake', cakeRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/upload', uploadRouter);
-// app.post('/api/testing', (req, res) => {
-// 	console.log(req.headers);
-// 	res.send(req.files);
-// });
+if (process.env.NODE_ENV === 'production') {
+	app.get('/', (req, res) => {
+		res.sendFile(
+			path.resolve(__dirname, 'backend', 'public', 'index.html')
+		);
+	});
+}
+
 app.use('*', (req, res, next) => {
 	next(
 		new AppError(
