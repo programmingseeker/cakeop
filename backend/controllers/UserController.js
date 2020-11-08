@@ -6,3 +6,8 @@ export const getMe = catchAsync(async (req, res, next) => {
 	const userMe = await User.findById(req.user.id).select('-password -__v');
 	res.send(userMe);
 });
+
+export const updateMe = catchAsync(async (req, res, next) => {
+	const userMe = await User.findById(req.user.id);
+	res.send(userMe);
+});

@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // IMPORT REDUCERS
 
-import { authReducer } from './reducers/userReducer';
+import { authReducer, userInfoReducer } from './reducers/userReducer';
 import {
 	productListReducer,
 	productDetailsReducer,
@@ -14,11 +14,16 @@ import { cartReducer } from './reducers/cartReducers';
 
 const reducers = combineReducers({
 	auth: authReducer,
+	userInfo: userInfoReducer,
 	productList: productListReducer,
 	productDetails: productDetailsReducer,
 	productCreateReview: productCreateReviewReducer,
 	cart: cartReducer,
 });
+
+const userInfoFromStorage = localStorage.getItem('userInfo')
+	? JSON.parse(localStorage.getItem('userInfo'))
+	: undefined;
 
 const userFromStorage = localStorage.getItem('user')
 	? JSON.parse(localStorage.getItem('user'))
@@ -34,6 +39,9 @@ const initialState = {
 	},
 	cart: {
 		cartItems: cartItemsFromStorage,
+	},
+	userInfo: {
+		user: userInfoFromStorage,
 	},
 };
 

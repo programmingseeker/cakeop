@@ -1,15 +1,15 @@
-import React,{useState} from 'react'
-import { Container, Form, Button, Modal } from 'react-bootstrap'
-function Settings() {
-  const [showModal,setshowModal ]=useState(false);
-  
-  const showModalHandler = ()=>{
-    setshowModal(true);
-  };
-  const hideModalHandler = ()=>{
-    setshowModal(false);
-  };
-  return (
+import React, { useState } from 'react';
+import { Container, Form, Button, Modal, Image } from 'react-bootstrap';
+function Settings({ userInfo }) {
+	const [showModal, setshowModal] = useState(false);
+
+	const showModalHandler = () => {
+		setshowModal(true);
+	};
+	const hideModalHandler = () => {
+		setshowModal(false);
+	};
+	return (
 		<Container className='px-5 '>
 			<h1 className='page-content-main-text'>Account Settings</h1>
 			<br />
@@ -18,8 +18,10 @@ function Settings() {
 					<Form.Label className='form-label-profile'>Name</Form.Label>
 					<Form.Control
 						type='name'
+						readOnly
+						plaintext
 						className='text-muted drop-shadow input'
-						placeholder='User name'
+						defaultValue={userInfo.username}
 					/>
 				</Form.Group>
 
@@ -29,24 +31,19 @@ function Settings() {
 					</Form.Label>
 					<Form.Control
 						type='email'
+						readOnly
+						plaintext
 						className='text-muted drop-shadow input'
-						placeholder='Enter email'
+						defaultValue={userInfo.email}
 					/>
 				</Form.Group>
-				<Button
-					variant='primary'
-					type='submit'
-					className='float-right mt-2'
-				>
-					Submit
-				</Button>
 			</Form>
 			<br />
 			<br />
 			<div className='profile d-flex align-items-center'>
-				<img
+				<Image
 					id='myImg'
-					src='/img/nouser.svg'
+					src={userInfo.profileImage}
 					alt='User Profile'
 					className='profile-photo'
 					onClick={showModalHandler}
@@ -58,24 +55,24 @@ function Settings() {
 					centered
 				>
 					<Modal.Body>
-						<button className='close' onClick={hideModalHandler}>
+						<Button className='close' onClick={hideModalHandler}>
 							×
-						</button>
-						<img
+						</Button>
+						<Image
 							id='myImg'
-							src='/img/user-picture.jpg'
+							src={userInfo.profileImage}
 							alt='User Profile'
 							className='profile-photo'
 							style={{ width: '25rem' }}
 						/>
 					</Modal.Body>
 				</Modal>
-				<a
-					href='#new-profile-picture'
+				<span
 					className='form-label-profile pl-3'
+					style={{ cursor: 'pointer' }}
 				>
 					Choose New photo
-				</a>
+				</span>
 			</div>
 			<br />
 			<br />
@@ -129,7 +126,7 @@ function Settings() {
 				</Button>
 			</Form>
 		</Container>
-  );
+	);
 }
 
-export default Settings
+export default Settings;

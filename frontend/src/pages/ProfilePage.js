@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Nav, Tab, Col } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import Settings from '../components/Settings';
 import Reviews from '../components/Reviews';
@@ -13,17 +13,22 @@ function ProfilePage() {
 		const a = sideNav ? false : true;
 		setsideNav(a);
 	};
+	
+	useEffect(() => {
+		
+	})
 
 	const { user } = useSelector((state) => state.auth);
+	const { user: userInfo } = useSelector((state) => state.userInfo);
 
 	const handlescreen = () => {
 		switch (tab) {
 			case 'settings':
-				return <Settings />;
+				return <Settings userInfo={userInfo} />;
 			case 'reviews':
 				return <Reviews />;
 			case 'bookings':
-				return <Bookings />;
+				return <Bookings cakesBrought={userInfo.cakesBrought} />;
 			default:
 				return <div> this is a wrong page</div>;
 		}
@@ -35,8 +40,9 @@ function ProfilePage() {
 					<Nav className='sidebar-nav' as='ul'>
 						<Nav.Item as='li'>
 							<Nav.Link
+								as='text'
 								onClick={() => setTab('settings')}
-								className={`sidenav-icon ${
+								className={`sidenav-icon cursor-pointer ${
 									tab === 'settings' ? 'active' : ''
 								}`}
 							>
@@ -47,8 +53,9 @@ function ProfilePage() {
 
 						<Nav.Item as='li'>
 							<Nav.Link
+								as='text'
 								onClick={() => setTab('reviews')}
-								className={`sidenav-icon ${
+								className={`sidenav-icon cursor-pointer ${
 									tab === 'reviews' ? 'active' : ''
 								}`}
 							>
@@ -59,8 +66,9 @@ function ProfilePage() {
 
 						<Nav.Item as='li'>
 							<Nav.Link
+								as='text'
 								onClick={() => setTab('bookings')}
-								className={`sidenav-icon ${
+								className={`sidenav-icon cursor-pointer ${
 									tab === 'bookings' ? 'active' : ''
 								}`}
 							>
@@ -72,8 +80,9 @@ function ProfilePage() {
 							<Nav.Item as='li'>
 								<LinkContainer to='/admindash'>
 									<Nav.Link
+										as='text'
 										onClick={() => setTab('admindash')}
-										className={`sidenav-icon ${
+										className={`sidenav-icon cursor-pointer ${
 											tab === 'admindash' ? 'active' : ''
 										}`}
 									>

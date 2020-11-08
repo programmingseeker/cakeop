@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	Container,
@@ -14,6 +14,8 @@ import NumericInput from 'react-numeric-input';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 
 function Cart({ match, location, history }) {
+	const [subTotalPrice, setSubTotalPrice] = useState(0);
+	const [totalPrice, setTotalPrice] = useState(0);
 	const productId = match.params.id;
 	const qty = location.search ? Number(location.search.split('=')[1]) : 1;
 	const dispatch = useDispatch();
@@ -24,10 +26,30 @@ function Cart({ match, location, history }) {
 	const { user } = useSelector((state) => state.auth);
 
 	useEffect(() => {
+		let subtotalprice;
 		if (productId) {
 			dispatch(addToCart(productId, qty));
 		}
-	}, [dispatch, productId, qty]);
+		subtotalprice = cartItems
+			.reduce((acc, item) => acc + item.quantity * item.price, 0)
+			.toFixed(2);
+		setSubTotalPrice(subtotalprice);
+
+		const totalprice = (
+			Number(subTotalPrice) +
+			(18 / 100) * subTotalPrice
+		).toFixed(2);
+
+		setTotalPrice(totalprice);
+	}, [
+		dispatch,
+		productId,
+		qty,
+		cartItems,
+		setSubTotalPrice,
+		setTotalPrice,
+		subTotalPrice,
+	]);
 
 	const removeCartItemHandler = (product) => {
 		dispatch(removeFromCart(product));
@@ -154,19 +176,21 @@ function Cart({ match, location, history }) {
 										className='d-flex justify-content-between text-color my-2'
 									>
 										{' '}
-										Total price:{' '}
-										<span>
-											₹
-											{cartItems
-												.reduce(
-													(acc, item) =>
-														acc +
-														item.quantity *
-															item.price,
-													0
-												)
-												.toFixed(2)}
-										</span>
+										Sub Total price:{' '}
+										<span>₹{subTotalPrice}</span>
+									</li>
+									<li
+										style={{ fontWeight: 550 }}
+										className='d-flex justify-content-between text-color my-2'
+									>
+										GST: <span>18%</span>
+									</li>
+									<li
+										style={{ fontWeight: 550 }}
+										className='d-flex justify-content-between text-color my-2'
+									>
+										{' '}
+										Total price: <span>₹{totalPrice}</span>
 									</li>
 								</Card.Text>
 								<div className='d-flex justify-content-around'>
