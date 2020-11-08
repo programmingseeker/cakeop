@@ -37,18 +37,18 @@ const ProductPage = ({ history, match }) => {
 				review: comment,
 				ratings: ratings,
 			})
-		);	
+		);
 		setComment('');
 		setRatings();
 		dispatch(listProductDetails(match.params.id));
 	};
 
 	// const productCreateReview = useSelector(
-		// 	(state) => state.productCreateReview
-		// );
-		useEffect(() => {
-			dispatch(listProductDetails(match.params.id));
-		}, [dispatch, match]);
+	// 	(state) => state.productCreateReview
+	// );
+	useEffect(() => {
+		dispatch(listProductDetails(match.params.id));
+	}, [dispatch, match]);
 	const responsive = {
 		desktop: {
 			breakpoint: {
@@ -148,7 +148,7 @@ const ProductPage = ({ history, match }) => {
 										return (
 											<Image
 												fluid
-												src={`/img/${image}`}
+												src={`/img/cakes/${image}`}
 												center
 											/>
 										);

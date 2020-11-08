@@ -53,6 +53,7 @@ export const signup = (username, email, password, confirmPassword) => async (
 		});
 		dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
 		localStorage.setItem('user', JSON.stringify(data.user));
+		dispatch(getUserInfo());
 	} catch (err) {
 		dispatch({
 			type: USER_REGISTER_FAIL,

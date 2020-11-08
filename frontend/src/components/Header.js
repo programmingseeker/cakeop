@@ -3,7 +3,7 @@ import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
-import { logout, getUserInfo } from './../actions/userActions';
+import { logout } from './../actions/userActions';
 import FormContent from './FormContent';
 
 const Header = () => {

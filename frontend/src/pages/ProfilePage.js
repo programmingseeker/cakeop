@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Nav, Tab, Col } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import Settings from '../components/Settings';
 import Reviews from '../components/Reviews';
@@ -13,10 +13,6 @@ function ProfilePage() {
 		const a = sideNav ? false : true;
 		setsideNav(a);
 	};
-	
-	useEffect(() => {
-		
-	})
 
 	const { user } = useSelector((state) => state.auth);
 	const { user: userInfo } = useSelector((state) => state.userInfo);

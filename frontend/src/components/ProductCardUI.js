@@ -8,7 +8,7 @@ function ProductCards({ history, product }) {
 	const returnArrayOfImg = (image) => {
 		const original = [...image];
 		const newarray = original.map((img) => {
-			return `/img/${img}`;
+			return `/img/cakes/${img}`;
 		});
 		return newarray;
 	};

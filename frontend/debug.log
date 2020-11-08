@@ -1,6 +1,0 @@
-[1105/092540.925:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
-[1105/171615.117:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
-[1106/203845.374:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
-[1107/141343.737:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
-[1107/161351.803:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\shetk\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\cabd040f-6888-436e-9de6-a6502de8e25f: The system cannot find the path specified. (0x3)
-[1108/083938.200:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

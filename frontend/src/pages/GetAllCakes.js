@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-	Container,
-	Nav,
-	Dropdown,
-	Alert,
-	Pagination,
-} from 'react-bootstrap';
+import { Container, Nav, Dropdown, Alert, Pagination } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductCardUI from './../components/ProductCardUI';
 import 'react-multi-carousel/lib/styles.css';
@@ -47,33 +41,6 @@ function GetAllCakes({ history }) {
 	useEffect(() => {
 		dispatch(listProducts(price, weight, currentPage, limit));
 	}, [dispatch, price, weight, currentPage, rating]);
-
-	const responsive = {
-		desktop: {
-			breakpoint: {
-				max: 3000,
-				min: 1024,
-			},
-			items: 3,
-			partialVisibilityGutter: 40,
-		},
-		mobile: {
-			breakpoint: {
-				max: 464,
-				min: 0,
-			},
-			items: 1,
-			partialVisibilityGutter: 30,
-		},
-		tablet: {
-			breakpoint: {
-				max: 1024,
-				min: 464,
-			},
-			items: 2,
-			partialVisibilityGutter: 30,
-		},
-	};
 
 	const renderPaginate = () => {
 		const array = [];
