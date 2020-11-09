@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import passport from 'passport';
 import createJWT from './../utils/createJwt.js';
 import User from './../models/userModel.js';
 import catchAsync from './../utils/catchAsync.js';
@@ -116,26 +115,26 @@ export const restrictTo = (...user) => {
 };
 
 //this  method shd be accessed
-export const googlePassportAuthenticate = passport.authenticate('google', {
-	scope: ['profile', 'email'],
-});
+// export const googlePassportAuthenticate = passport.authenticate('google', {
+// 	scope: ['profile', 'email'],
+// });
 
-//oath utility functions
-export const googlemiddlewareauth = passport.authenticate('google', {
-	failureRedirect: '/login',
-	session: false,
-});
+// //oath utility functions
+// export const googlemiddlewareauth = passport.authenticate('google', {
+// 	failureRedirect: '/login',
+// 	session: false,
+// });
 
-export const googlePassportAuthRedirect = async (req, res) => {
-	const { _id, userType } = req.user;
-	const token = createJWT(jwt, _id, userType);
-	res.cookie('jwt', token, {
-		httpOnly: true,
-		expires: new Date(Date.now() + 24 * 3600 * 1000),
-	});
-	res.locals.user = req.user;
-	res.redirect('/dashboard');
-};
+// export const googlePassportAuthRedirect = async (req, res) => {
+// 	const { _id, userType } = req.user;
+// 	const token = createJWT(jwt, _id, userType);
+// 	res.cookie('jwt', token, {
+// 		httpOnly: true,
+// 		expires: new Date(Date.now() + 24 * 3600 * 1000),
+// 	});
+// 	res.locals.user = req.user;
+// 	res.redirect('/dashboard');
+// };
 
 export const isLoggedIn = (req, res, next) => {
 	if (req.user) {

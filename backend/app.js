@@ -1,6 +1,5 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
-// import passport from 'passport';
 import cors from 'cors';
 import compression from 'compression';
 import dotenv from 'dotenv';
@@ -15,7 +14,6 @@ import reviewRouter from './routes/reviewRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
 import AppError from './utils/appError.js';
 import globalErrorController from './controllers/errorController.js';
-// import passportConfig from './utils/passportConfig.js';
 import dbConfig from './utils/dbConfig.js';
 import { seralizeUser } from './controllers/authController.js';
 
@@ -31,8 +29,6 @@ app.use(express.static(path.resolve(__dirname, 'backend', 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-// passportConfig(passport);
-// app.use(passport.initialize());
 app.use(seralizeUser);
 if (process.env.NODE_ENV === 'development') {
 	app.use(morgan('dev'));
