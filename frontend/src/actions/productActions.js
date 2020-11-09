@@ -10,11 +10,14 @@ import {
 	PRODUCT_CREATE_REVIEW_FAIL,
 	PRODUCT_CREATE_REVIEW_REQUEST,
 	PRODUCT_CREATE_REVIEW_SUCCESS,
+	PRODUCT_UPDATE_REQUEST,
+	PRODUCT_UPDATE_SUCCESS,
+	PRODUCT_UPDATE_FAIL,
 } from './../constants/productConstants';
 
 export const listProducts = (
 	price = { minimum: 0, maximum: 950 },
-	weight = 1000,
+	weight = 500,
 	page = 1,
 	limit = 0
 ) => async (dispatch) => {
@@ -85,14 +88,25 @@ export const createProductReview = (productId, review) => async (
 	}
 };
 
-export const createProduct = async (productInfo) => {
-	await axios.post(`/api/products`, productInfo);
-};
+export const updateProduct = (product) => async (dispatch) => {
+	try {
+		dispatch({
+			type: PRODUCT_UPDATE_REQUEST,
+		});
+		const { data } = await axios.patch(`/api/cake/${product._id}`, product);
 
-export const updateProduct = async (productInfo) => {
-	await axios.patch(`/api/products/${productInfo._id}`, productInfo);
-};
-
-export const deleteProduct = async (id) => {
-	await axios.delete(`/api/products/${id}`);
+		dispatch({
+			type: PRODUCT_UPDATE_SUCCESS,
+			payload: data,
+		});
+	} catch (error) {
+		const message =
+			error.response && error.response.data.message
+				? error.response.data.message
+				: error.message;
+		dispatch({
+			type: PRODUCT_UPDATE_FAIL,
+			payload: message,
+		});
+	}
 };

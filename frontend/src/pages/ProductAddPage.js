@@ -2,8 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Form, Button, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
-import FormContainer from './FormContainer';
+import FormContainer from '../components/FormContainer';
 
 function AddProdForm({ history }) {
 	const [productName, setProductName] = useState('');

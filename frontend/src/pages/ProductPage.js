@@ -43,12 +43,10 @@ const ProductPage = ({ history, match }) => {
 		dispatch(listProductDetails(match.params.id));
 	};
 
-	// const productCreateReview = useSelector(
-	// 	(state) => state.productCreateReview
-	// );
 	useEffect(() => {
 		dispatch(listProductDetails(match.params.id));
 	}, [dispatch, match]);
+
 	const responsive = {
 		desktop: {
 			breakpoint: {
@@ -83,7 +81,7 @@ const ProductPage = ({ history, match }) => {
 	return (
 		<div className='mt-5 pt-5 mb-3 container'>
 			<Link className='btn btn-light my-3 mb-3' to='/cakes'>
-				<span>{'<'}</span> Go Back
+				<i className='fa fa-angle-left' /> Go Back
 			</Link>
 			{error && <Alert variant='danger'>{error}</Alert>}
 			{loading ? (
@@ -144,12 +142,13 @@ const ProductPage = ({ history, match }) => {
 								swipeable
 							>
 								{product.images &&
-									product.images.map((image) => {
+									product.images.map((image, index) => {
 										return (
 											<Image
+												key={index}
 												fluid
 												src={`/img/cakes/${image}`}
-												center
+												center='true'
 											/>
 										);
 									})}
@@ -189,7 +188,7 @@ const ProductPage = ({ history, match }) => {
 									<Row>
 										<Col>Status:</Col>
 										<Col>
-											{product.inStock === 'true'
+											{product.inStock === true
 												? 'In Stock'
 												: 'Out Of Stock'}
 										</Col>
@@ -238,7 +237,7 @@ const ProductPage = ({ history, match }) => {
 									<Button
 										className='btn-block'
 										type='button'
-										disabled={product.inStock === 'false'}
+										disabled={product.inStock === false}
 										onClick={addToCartHandler}
 									>
 										Add To Cart
@@ -257,7 +256,9 @@ const ProductPage = ({ history, match }) => {
 											Write a Review
 										</Form.Label>
 										<div>
-											<Image src={user.image}></Image>
+											<Image
+												src={`/img/user/${user.image}`}
+											></Image>
 										</div>
 										<Form.Control
 											as='select'

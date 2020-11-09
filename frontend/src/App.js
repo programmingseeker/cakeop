@@ -12,9 +12,10 @@ import ProductPage from './pages/ProductPage';
 import Cart from './pages/Cart';
 import NotFound404 from './pages/NotFound404';
 import AdminDashboard from './pages/AdminDashboard';
-import AddProdForm from './components/TestAddProdForm';
 import ProtectRoute from './components/ProtectRoute';
-import ShippingInfo from './pages/ShippingInfo'
+import ShippingInfo from './pages/ShippingInfo';
+import ProductEditPage from './pages/ProductEditPage';
+import ProductAddPage from './pages/ProductAddPage';
 
 function App() {
 	return (
@@ -47,8 +48,14 @@ function App() {
 				/>
 				<ProtectRoute
 					exact
-					path='/addproduct'
-					component={AddProdForm}
+					path='/cake/add'
+					component={ProductAddPage}
+					restrictTo={['admin']}
+				/>
+				<ProtectRoute
+					exact
+					path='/cake/edit/:id'
+					component={ProductEditPage}
 					restrictTo={['admin']}
 				/>
 

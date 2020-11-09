@@ -32,7 +32,11 @@ const cakeSchema = new mongoose.Schema(
 			default: 0,
 		},
 		images: [String],
-		
+		inStock: {
+			type: Boolean,
+			default: true,
+		},
+
 		createdAt: {
 			type: Date,
 			default: Date.now(),
@@ -40,7 +44,7 @@ const cakeSchema = new mongoose.Schema(
 	},
 	{
 		toJSON: { virtuals: true },
-		toObject: { virtuals: true }
+		toObject: { virtuals: true },
 	}
 );
 
@@ -48,14 +52,14 @@ const cakeSchema = new mongoose.Schema(
 cakeSchema.virtual('reviews', {
 	ref: 'Review',
 	foreignField: 'cake',
-	localField: '_id'
+	localField: '_id',
 });
 
 //Populating the reviews
 cakeSchema.pre(/^find/, function (next) {
 	this.populate({
 		path: 'reviews',
-		select: '-__v'
+		select: '-__v',
 	});
 	next();
 });

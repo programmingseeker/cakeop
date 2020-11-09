@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Nav, Row, Col, Media, Button } from 'react-bootstrap';
+import axios from 'axios';
+import {
+	Container,
+	Nav,
+	Row,
+	Col,
+	Media,
+	Button,
+	Image,
+	ListGroup,
+} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,18 +17,24 @@ import { listProducts } from './../actions/productActions';
 
 export default function AdminDashboard() {
 	const dispatch = useDispatch();
-
 	const [sideNav, setsideNav] = useState(false);
+	const weight = 500;
+
+	const products = useSelector((state) => state.productList.products);
+	const dataprod = products.data || [];
+
 	const sideNavtoggle = () => {
 		const a = sideNav ? false : true;
 		setsideNav(a);
 	};
-	const weight = 500;
-	const products = useSelector((state) => state.productList.products);
-	const dataprod = products.data || [];
+
+	const deleteProductHandler = async (id) => {
+		await axios.delete(`/api/cake/${id}`);
+		dispatch(listProducts({ minimum: 0, maximum: 950 }, weight));
+	};
 
 	useEffect(() => {
-		dispatch(listProducts({ minimum: 0, maximum: 950 }, weight));
+		dispatch(listProducts());
 	}, [dispatch]);
 
 	return (
@@ -47,7 +63,7 @@ export default function AdminDashboard() {
 					</div>
 
 					<div>
-						<Link to='/addproduct'>
+						<Link to='/cake/add'>
 							<Button type='button' style={{ fontWeight: 550 }}>
 								Add <i className='fas fa-plus'></i>
 							</Button>
@@ -55,7 +71,7 @@ export default function AdminDashboard() {
 					</div>
 				</Nav>
 			</div>
-			<section id='content-wrapper' className='overflow-auto'>
+			<Container id='content-wrapper' className=' h-auto'>
 				<Link to='/profile'>
 					<Button variant={'light'}>
 						<span className='sidenav-icon'>
@@ -64,28 +80,31 @@ export default function AdminDashboard() {
 						</span>
 					</Button>
 				</Link>
-				<Col lg={12} className='d-flex flex-wrap'>
+				<h2 className='h2 mt-2'>Total Products: {dataprod.length}</h2>
+				<ListGroup className='mt-3'>
 					{dataprod.map((item) => (
-						<Row
-							className='align-middle bg-light rounded-lg my-3 col-lg-6 col-md-12'
+						<ListGroup.Item
+							className='d-flex flex-wrap align-middle rounded-lg w-50'
 							key={item.id}
 						>
 							<Col
-								className='col-sm-9 col-xs-9 col-md-9'
+								sm={9}
+								xs={9}
+								md={9}
 								style={{ transition: 'all 0.5s ease-in' }}
 							>
 								<Media className='d-flex flex-wrap'>
 									<Link
 										className='float-left mr-2 img-anc'
-										to=''
+										to={`/cakes/${item.id}`}
 									>
-										<img
-											src={`/img/${item.images[0]}`}
+										<Image
+											src={`/img/cakes/${item.images[0]}`}
 											alt='Cake-img'
 											className='img-responsive'
-										></img>
+										/>
 									</Link>
-									<Media.Body className='d-flex flex-column ml-2'>
+									<Media.Body className='d-flex flex-column ml-1'>
 										<h4 className='cart-item-head'>
 											{item.name}
 										</h4>
@@ -101,10 +120,37 @@ export default function AdminDashboard() {
 									</Media.Body>
 								</Media>
 							</Col>
-						</Row>
+							<Col>
+								<Row className='my-1'>
+									<LinkContainer to={`/cake/edit/${item.id}`}>
+										<Button
+											variant='warning'
+											size='sm'
+											block
+										>
+											<i className='fa fa-edit pr-2'></i>
+											Edit
+										</Button>
+									</LinkContainer>
+								</Row>
+								<Row className='my-1'>
+									<Button
+										variant='danger'
+										size='sm'
+										block
+										onClick={() => {
+											deleteProductHandler(item.id);
+										}}
+									>
+										<i className='fa fa-trash pr-2'></i>
+										Delete
+									</Button>
+								</Row>
+							</Col>
+						</ListGroup.Item>
 					))}
-				</Col>
-			</section>
+				</ListGroup>
+			</Container>
 		</Container>
 	);
 }
