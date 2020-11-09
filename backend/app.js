@@ -32,7 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // passportConfig(passport);
-app.use(passport.initialize());
+// app.use(passport.initialize());
 app.use(seralizeUser);
 if (process.env.NODE_ENV === 'development') {
 	app.use(morgan('dev'));
