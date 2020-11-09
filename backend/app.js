@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import cors from 'cors';
 import compression from 'compression';
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
 import colors from 'colors';
 import morgan from 'morgan';
 import path from 'path';
@@ -22,7 +22,7 @@ import { seralizeUser } from './controllers/authController.js';
 const app = express();
 const __dirname = path.resolve();
 
-config();
+dotenv.config();
 dbConfig();
 app.use(cors());
 app.use(helmet());
