@@ -10,8 +10,7 @@
 		"client": "npm start --prefix frontend",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"data:import": "node data/seeder.js --import",
-		"data:delete": "node data/seeder.js --delete",
-		"heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+		"data:delete": "node data/seeder.js --delete"
 	},
 	"author": "pro developers",
 	"dependencies": {
