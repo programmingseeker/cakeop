@@ -4,8 +4,8 @@ import createJWT from './../utils/createJwt.js';
 import User from './../models/userModel.js';
 import catchAsync from './../utils/catchAsync.js';
 import AppError from './../utils/appError.js';
-import { config } from 'dotenv';
-config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const seralizeUser = catchAsync(async (req, res, next) => {
 	const token = req.cookies['jwt'];
@@ -43,8 +43,8 @@ export const postLogin = catchAsync(async (req, res, next) => {
 		user: {
 			createdAt: user.createdAt,
 			userType: user.userType,
-			username: user.username
-		}
+			username: user.username,
+		},
 	});
 });
 
@@ -86,8 +86,8 @@ export const postSignUp = catchAsync(async (req, res, next) => {
 		user: {
 			createdAt: newUser.createdAt,
 			userType: newUser.userType,
-			username: newUser.username
-		}
+			username: newUser.username,
+		},
 	});
 });
 
