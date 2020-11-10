@@ -3,14 +3,18 @@ import React, { useState } from 'react';
 import { Form, Button, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import FormContainer from '../components/FormContainer';
+import { useDispatch, useSelector } from 'react-redux';
 
+import {creatProduct} from '../actions/productActions'
 function AddProdForm({ history }) {
+	const dispatch = useDispatch();
+	
 	const [productName, setProductName] = useState('');
 	const [weight, setWeight] = useState(500);
 	const [theme, setTheme] = useState('');
 	const [price, setPrice] = useState(0);
 	const [description, setDescription] = useState('');
-	const [pics, setPics] = useState();
+	const [pics, setPics] = useState([]);
 	const [step, setStep] = useState(1);
 
 	const isFilled =
@@ -18,6 +22,7 @@ function AddProdForm({ history }) {
 
 	const onChangeHandler = (e) => {
 		setPics(e.target.files);
+		console.log(e.target.files);
 	};
 
 	const setWeightHandler = (weightValue) => {
@@ -43,10 +48,8 @@ function AddProdForm({ history }) {
 			images: imagedata,
 		};
 
-		const { data: productData } = await axios.post(`/api/cake`, product);
-		if (productData.status === 'success') {
-			history.push('/admindash');
-		}
+		dispatch(creatProduct(product));
+		history.push('/admindash');
 	};
 
 	const onSubmitHandler = (e) => {
@@ -85,7 +88,7 @@ function AddProdForm({ history }) {
 									<Form.Label>Weight</Form.Label>
 									{`${
 										weight >= 1000 ? weight / 1000 : weight
-									} ${weight >= 1000 ? 'kg' : 'g'}`}
+									} ${weight >= 1000 ? 'kg' : 'gm'}`}
 									<Form.Control as='select'>
 										<option
 											onClick={() =>

@@ -170,7 +170,10 @@ const ProductPage = ({ history, match }) => {
 							</div>
 							<div className='my-1'>
 								Weight:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<strong>{product.weight} gm</strong>
+								<strong>{`${
+								product.weight >= 1000 ? product.weight / 1000 : product.weight
+								} ${product.weight >= 1000 ? 'kg' : 'gm'}`
+							}</strong>
 							</div>
 						</Col>
 						<Col>

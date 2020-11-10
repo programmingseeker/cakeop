@@ -13,6 +13,9 @@ import {
 	PRODUCT_UPDATE_REQUEST,
 	PRODUCT_UPDATE_SUCCESS,
 	PRODUCT_UPDATE_FAIL,
+	PRODUCT_CREATE_REQUEST,
+	PRODUCT_CREATE_SUCCESS,
+	PRODUCT_CREATE_FAIL,
 } from './../constants/productConstants';
 
 export const listProducts = (
@@ -87,6 +90,27 @@ export const createProductReview = (productId, review) => async (
 		});
 	}
 };
+
+export const creatProduct= (product)=> async (dispatch) => {
+	try {
+		dispatch({ type:PRODUCT_CREATE_REQUEST});
+		
+		const { data } = await axios.post(`/api/cake`, product);
+		dispatch({
+			type: PRODUCT_CREATE_SUCCESS,
+			payload: data,
+		});		
+	} catch (error) {
+		const message =
+			error.response && error.response.data.message
+				? error.response.data.message
+				: error.message;
+		dispatch({
+			type: PRODUCT_CREATE_FAIL,
+			payload: message,
+		});
+	}
+}
 
 export const updateProduct = (product) => async (dispatch) => {
 	try {
