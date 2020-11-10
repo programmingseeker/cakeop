@@ -85,7 +85,7 @@ function Cart({ match, location, history }) {
 							>
 								<Media className='d-flex flex-wrap'>
 									<Image
-										src={`/img/${item.image}`}
+										src={`/img/cakes/${item.image}`}
 										alt='Cake-img'
 										className='img-responsive float-left mr-2 img-anc'
 									/>
