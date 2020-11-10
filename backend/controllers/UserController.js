@@ -30,7 +30,7 @@ export const updateMe = catchAsync(async (req, res, next) => {
 			return next(new AppError('password is not correct', 400));
 		}
 	} else if (req.file) {
-		userMe.profileImage = `/img/user/${req.file.filename}`;
+		userMe.profileImage = req.file.filename;
 	} else {
 		return next(new AppError('invalid information', 400));
 	}

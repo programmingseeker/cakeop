@@ -111,6 +111,8 @@ function Settings() {
 					className='profile-photo'
 					onClick={() => setShowModal(true)}
 				/>
+				{
+				showModal?
 				<Modal
 					show={showModal}
 					onHide={() => setShowModal(false)}
@@ -126,13 +128,15 @@ function Settings() {
 						</Button>
 						<Image
 							id='myImg'
-							src={userInfo.profileImage}
+							src={`/img/user/${currentUser.profileImage}`}
 							alt='User Profile'
 							className='profile-photo'
 							style={{ width: '25rem' }}
 						/>
 					</Modal.Body>
 				</Modal>
+				:null	
+				}
 				<Row className=' w-100'>
 					<Col>
 						<Form.Label
