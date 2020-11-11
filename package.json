@@ -1,0 +1,17 @@
+{
+  "name": "cakeop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server:prod": "cd backend && npm run server:prod",
+    "server": "cd backend && npm run server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "prod": "NODE_ENV=production concurrently \"npm run server:prod\" \"npm run client\"",
+    "preinstall": "npm install -g nodemon concurrently",
+    "install": "cd frontend && npm install",
+    "postinstall": "cd backend && npm install"
+  },
+  "author": "prodevelopers"
+}

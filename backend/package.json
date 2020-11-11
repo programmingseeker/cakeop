@@ -1,0 +1,34 @@
+{
+  "name": "cakeop",
+  "version": "2.0.1",
+  "type": "module",
+  "description": "complete backend api for an ecommerce application which sells cakes",
+  "main": "app.js",
+  "scripts": {
+    "start": "node backend/app",
+    "start:prod": "NODE_ENV=production node app.js",
+    "server": "nodemon app",
+    "data:import": "node data/seeder.js --import",
+    "data:delete": "node data/seeder.js --delete"
+  },
+  "author": "pro developers",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.13",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "validator": "^13.1.17"
+  },
+  "devDependencies": {
+    "ndb": "^1.1.5",
+    "nodemon": "^2.0.6"
+  }
+}
