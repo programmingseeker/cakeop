@@ -106,6 +106,7 @@ export const seralizeUser = catchAsync(async (req, res, next) => {
 			const decoded = await jwt.verify(token, process.env.JWTSECRET);
 			const user = await User.findById(decoded.uid);
 			req.user = user;
+			next();
 		} catch (err) {
 			req.user = null;
 			return next();

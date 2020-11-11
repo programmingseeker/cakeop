@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Nav, Dropdown, Alert, Pagination } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import ProductCardUI from './../components/ProductCardUI';
+import ProductCardUI from '../components/ProductCardUI';
 import 'react-multi-carousel/lib/styles.css';
-import RangeSlider from './../components/RangeSlider';
-import { listProducts } from './../actions/productActions';
-import Loader from './../components/Loader';
+import RangeSlider from '../components/RangeSlider';
+import { listProducts } from '../actions/productActions';
+import Loader from '../components/Loader';
 
 function GetAllCakes({ history }) {
 	const dispatch = useDispatch();

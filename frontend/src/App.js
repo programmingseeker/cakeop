@@ -7,9 +7,9 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import ProfilePage from './pages/ProfilePage';
-import GetAllCakes from './pages/GetAllCakes';
+import ProductsPage from './pages/ProductsPage';
 import ProductPage from './pages/ProductPage';
-import Cart from './pages/Cart';
+import CartPage from './pages/CartPage';
 import NotFound404 from './pages/NotFound404';
 import AdminDashboard from './pages/AdminDashboard';
 import ProtectRoute from './components/ProtectRoute';
@@ -29,10 +29,21 @@ function App() {
 					render={() => <LoginPage isPage={true} />}
 				/>
 				<Route exact path='/signup' component={SignupPage} />
-				<Route exact path='/cakes' component={GetAllCakes} />
+				<Route exact path='/cakes' component={ProductsPage} />
 				<Route exact path='/cakes/:id' component={ProductPage} />
-				<Route exact path='/cart/:id?' component={Cart} />
-				<Route exact path='/shipping' component={ShippingInfo} />
+				<Route exact path='/cart/:id?' component={CartPage} />
+				<ProtectRoute
+					exact
+					path='/shipping'
+					restrictTo={['admin', 'user']}
+					component={ShippingInfo}
+				/>
+				<ProtectRoute
+					exact
+					path='/payment'
+					restrictTo={['admin', 'user']}
+					component={ShippingInfo}
+				/>
 
 				<ProtectRoute
 					exact

@@ -15,6 +15,7 @@ import uploadRouter from './routes/uploadRoutes.js';
 import AppError from './utils/appError.js';
 import dbConfig from './utils/dbConfig.js';
 import errorHandler from './controllers/errorController.js';
+import { seralizeUser } from './controllers/authController.js';
 
 const app = express();
 const __dirname = path.resolve();
@@ -29,21 +30,22 @@ app.use(express.static(path.resolve(__dirname, 'backend', 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(seralizeUser);
 
 if (process.env.NODE_ENV === 'development') {
 	app.use(morgan('dev'));
 }
-console.log(__dirname )
+console.log(__dirname);
 app.use('/api/user', userRouter);
 app.use('/api/cake', cakeRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/upload', uploadRouter);
 app.all('*', (req, res, next) => {
 	if (req.method === 'GET') {
-		res.sendFile(path.join(__dirname,'public', 'index.html') )
+		res.sendFile(path.join(__dirname, 'public', 'index.html'));
 	}
 	next(new AppError(`URL: "${req.originalUrl}" cannot be found`, 404));
-})
+});
 
 app.use(errorHandler);
 
