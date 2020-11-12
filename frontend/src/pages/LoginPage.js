@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from './../components/Loader';
 import FormContainer from './../components/FormContainer';
-const LoginPage = ({ history, isPage = false, location }) => {
+const LoginPage = ({ history, isPage = true, location }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const dispatch = useDispatch();

@@ -27,7 +27,7 @@ function App() {
 				<Route
 					exact
 					path='/login'
-					render={() => <LoginPage isPage={true} />}
+					component={LoginPage}
 				/>
 				<Route exact path='/signup' component={SignupPage} />
 				<Route exact path='/cakes' component={ProductsPage} />

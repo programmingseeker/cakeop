@@ -9,7 +9,7 @@ function FormContent({ show, handleClose, history, location }) {
 				<Button className='close' onClick={handleClose}>
 					×
 				</Button>
-				<LoginPage history={history} location={location} />
+				<LoginPage history={history} location={location} isPage={false} />
 			</Modal.Body>
 		</Modal>
 	);
