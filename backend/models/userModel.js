@@ -43,6 +43,26 @@ const userSchema = new mongoose.Schema({
 			},
 		},
 	],
+},
+{
+	toJSON: { virtuals: true },
+	toObject: { virtuals: true },
+}
+);
+
+userSchema.virtual('reviews', {
+	ref: 'Review',
+	foreignField: 'user',
+	localField: '_id',
+});
+
+//Populating the reviews
+userSchema.pre(/^find/, function (next) {
+	this.populate({
+		path: 'reviews',
+		select: '-__v -user ',
+	});
+	next();
 });
 
 userSchema.pre('save', async function (next) {
@@ -56,6 +76,8 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.checkPassword = function (password) {
 	return bcrypt.compare(password, this.password);
 };
+
+//virtually connecting the user id
 
 const User = mongoose.model('User', userSchema);
 export default User;
