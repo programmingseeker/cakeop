@@ -49,6 +49,12 @@
 	opacity: 1;
 }
 
+@media  (max-width: 950px){
+	.gallery-toggle {
+		opacity: 1!important;
+	}	
+}
+
 .price-tag {
 	position: absolute;
 	background-color: rgba(44, 62, 80, 0.95);

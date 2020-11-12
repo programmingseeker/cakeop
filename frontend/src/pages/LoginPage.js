@@ -13,7 +13,8 @@ const LoginPage = ({ history, isPage = true, location }) => {
 	const { user } = useSelector((state) => state.userInfo);
 	const redirect = location.search
 		? location.search.split('=')[1]
-		: location.pathname;
+		: '/';
+	console.log(redirect);
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
 		dispatch(login(email, password));
