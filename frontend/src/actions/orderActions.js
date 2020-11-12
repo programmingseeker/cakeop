@@ -51,13 +51,10 @@ export const getOrderDetails = (id) => async (dispatch) => {
 	}
 };
 
-export const payOrder = (orderId, paymentResult) => async (dispatch) => {
+export const payOrder = (orderId) => async (dispatch) => {
 	try {
 		dispatch({ type: ORDER_PAY_REQUEST });
-		const { data } = await axios.put(
-			`/api/order/${orderId}/pay`,
-			paymentResult
-		);
+		const { data } = await axios.put(`/api/order/${orderId}/pay`);
 		dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
 	} catch (error) {
 		const message =
@@ -68,11 +65,10 @@ export const payOrder = (orderId, paymentResult) => async (dispatch) => {
 	}
 };
 
-export const deliverOrder = (order) => async (dispatch, getState) => {
+export const deliverOrder = (order) => async (dispatch) => {
 	try {
 		dispatch({ type: ORDER_DELIVER_REQUEST });
-		const { data } = await axios.put(`/api/order/${order._id}/deliver`, {});
-
+		const { data } = await axios.put(`/api/order/${order._id}/deliver`);
 		dispatch({ type: ORDER_DELIVER_SUCCESS, payload: data });
 	} catch (error) {
 		const message =
@@ -83,7 +79,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
 	}
 };
 
-export const listMyOrders = () => async (dispatch, getState) => {
+export const listMyOrders = () => async (dispatch) => {
 	try {
 		dispatch({ type: ORDER_LIST_MY_REQUEST });
 		const { data } = await axios.get(`/api/order/myorders`);
@@ -97,7 +93,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
 	}
 };
 
-export const listOrders = () => async (dispatch, getState) => {
+export const listOrders = () => async (dispatch) => {
 	try {
 		dispatch({ type: ORDER_LIST_REQUEST });
 		const { data } = await axios.get(`/api/order`);
