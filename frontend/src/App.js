@@ -15,8 +15,10 @@ import AdminDashboard from './pages/AdminDashboard';
 import ProtectRoute from './components/ProtectRoute';
 import ShippingPage from './pages/ShippingPage';
 import PaymentPage from './pages/PaymentPage';
+import PlaceOrderPage from './pages/PlaceOrderPage';
 import ProductEditPage from './pages/ProductEditPage';
 import ProductAddPage from './pages/ProductAddPage';
+import OrderPage from './pages/OrderPage';
 
 function App() {
 	return (
@@ -24,15 +26,23 @@ function App() {
 			<Header />
 			<Switch>
 				<Route exact path='/' component={HomePage} />
-				<Route
-					exact
-					path='/login'
-					component={LoginPage}
-				/>
+				<Route exact path='/login' component={LoginPage} />
 				<Route exact path='/signup' component={SignupPage} />
 				<Route exact path='/cakes' component={ProductsPage} />
 				<Route exact path='/cakes/:id' component={ProductPage} />
 				<Route exact path='/cart/:id?' component={CartPage} />
+				<ProtectRoute
+					exact
+					path='/order/:id'
+					restrictTo={['admin', 'user']}
+					component={OrderPage}
+				/>
+				<ProtectRoute
+					exact
+					path='/placeorder'
+					restrictTo={['admin', 'user']}
+					component={PlaceOrderPage}
+				/>
 				<ProtectRoute
 					exact
 					path='/shipping'

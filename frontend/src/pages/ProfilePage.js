@@ -79,7 +79,7 @@ function ProfilePage() {
 								}
 								className='sidenav-icon cursor-pointer'
 							>
-								<i className='fa fa-shopping-bag'></i>Bookings
+								<i className='fa fa-shopping-bag'></i>Orders
 							</Nav.Link>
 						</Nav.Item>
 

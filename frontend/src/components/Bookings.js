@@ -29,7 +29,7 @@ function Bookings() {
 
 	return (
 		<Container>
-			<h3> Bookings</h3>
+			<h3> Orders</h3>
 			{renderBookings()}
 		</Container>
 	);

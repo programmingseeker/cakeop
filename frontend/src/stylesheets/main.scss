@@ -32,13 +32,13 @@ li {
 }
 
 .w-30 {
-	width: 35% !important;
+	width: 35%;
 }
 .mt-6 {
-	margin-top: 7rem;
+	margin-top: 6rem !important;
 }
 .mt-10 {
-	margin-top: 10rem;
+	margin-top: 10rem !important;
 }
 .banner {
 	background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
@@ -294,4 +294,15 @@ th {
 }
 .left-fade-in {
 	animation: fadeInLeft 700ms both;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.w-30 {
+		width: 60% !important;
+	}
+}
+@media (max-width: 767px) {
+	.w-30 {
+		width: 100% !important;
+	}
 }

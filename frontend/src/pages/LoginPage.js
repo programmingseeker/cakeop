@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert, Image } from 'react-bootstrap';
 import { login } from './../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,14 +10,22 @@ const LoginPage = ({ history, isPage = true, location }) => {
 	const [password, setPassword] = useState('');
 	const dispatch = useDispatch();
 	const { loading, error } = useSelector((state) => state.auth);
+	const { user } = useSelector((state) => state.userInfo);
+	const redirect = location.search
+		? location.search.split('=')[1]
+		: location.pathname;
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
 		dispatch(login(email, password));
-		history.push(location.pathname);
 	};
 
+	useEffect(() => {
+		if (user) {
+			history.push(redirect);
+		}
+	}, [history, user, redirect]);
 	const a = {
-		'font-size': '1rem',
+		fontSize: '1rem',
 		padding: '0px 2px',
 	};
 
@@ -45,7 +53,7 @@ const LoginPage = ({ history, isPage = true, location }) => {
 							<hr className='hr-bar w-25' />
 							<span
 								className='text-muted'
-								style={{ 'letter-spacing': '0.5px' }}
+								style={{ letterSpacing: '0.5px' }}
 							>
 								LOGIN WITH EMAIL
 							</span>

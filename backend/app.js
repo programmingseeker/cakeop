@@ -12,6 +12,7 @@ import cakeRouter from './routes/cakeRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import reviewRouter from './routes/reviewRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
+import orderRouter from './routes/orderRoutes.js';
 import AppError from './utils/appError.js';
 import dbConfig from './utils/dbConfig.js';
 import errorHandler from './controllers/errorController.js';
@@ -39,7 +40,9 @@ console.log(__dirname);
 app.use('/api/user', userRouter);
 app.use('/api/cake', cakeRouter);
 app.use('/api/review', reviewRouter);
+app.use('/api/order', orderRouter);
 app.use('/api/upload', uploadRouter);
+
 app.all('*', (req, res, next) => {
 	if (req.method === 'GET') {
 		res.sendFile(path.join(__dirname, 'public', 'index.html'));
