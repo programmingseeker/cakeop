@@ -13,7 +13,6 @@ const LoginPage = ({ history, isPage = false, location }) => {
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
 		dispatch(login(email, password));
-		console.log(location);
 		history.push(location.pathname);
 	};
 

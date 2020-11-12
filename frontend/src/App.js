@@ -13,7 +13,8 @@ import CartPage from './pages/CartPage';
 import NotFound404 from './pages/NotFound404';
 import AdminDashboard from './pages/AdminDashboard';
 import ProtectRoute from './components/ProtectRoute';
-import ShippingInfo from './pages/ShippingInfo';
+import ShippingPage from './pages/ShippingPage';
+import PaymentPage from './pages/PaymentPage';
 import ProductEditPage from './pages/ProductEditPage';
 import ProductAddPage from './pages/ProductAddPage';
 
@@ -36,13 +37,13 @@ function App() {
 					exact
 					path='/shipping'
 					restrictTo={['admin', 'user']}
-					component={ShippingInfo}
+					component={ShippingPage}
 				/>
 				<ProtectRoute
 					exact
 					path='/payment'
 					restrictTo={['admin', 'user']}
-					component={ShippingInfo}
+					component={PaymentPage}
 				/>
 
 				<ProtectRoute
