@@ -84,9 +84,9 @@ function GetAllCakes({ history }) {
 				id='wrapper'
 				className={`wrapper-cakes ${sideNav ? 'toggled-complete' : ''}`}
 				style={{
-					'margin-right': '20px',
-					'margin-left': '55px',
-					'max-width': '1230px',
+					'marginRight': '20px',
+					'marginLeft': '55px',
+					'maxWidth': '1230px',
 				}}
 			>
 				<aside id='sidebar-wrapper'>
