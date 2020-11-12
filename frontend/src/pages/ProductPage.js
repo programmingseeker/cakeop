@@ -28,8 +28,7 @@ const ProductPage = ({ history, match }) => {
 	const productDetails = useSelector((state) => state.productDetails);
 	const { loading, error, product } = productDetails;
 
-	const auth = useSelector((state) => state.auth);
-	const { user } = auth;
+	const { user } = useSelector((state) => state.userInfo);
 	const reviewSubmitHandler = (e) => {
 		e.preventDefault();
 		dispatch(
@@ -260,7 +259,8 @@ const ProductPage = ({ history, match }) => {
 										</Form.Label>
 										<div>
 											<Image
-												src={`/img/user/${user.image}`}
+												src={`/img/user/${user.profileImage}`}
+												className='img-responsive float-left mb-2 img-anc'
 											></Image>
 										</div>
 										<Form.Control

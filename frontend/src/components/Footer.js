@@ -1,9 +1,12 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
+import {useLocation} from 'react-router'
 
-const Footer = () => {
+const Footer = ({location}) => {
+	location = useLocation();
+    const validate = location.pathname === '/cakes' || location.pathname ==='/profile'? 'footer-modify' : '';
 	return (
-		<footer className='footer container-fluid mt-10'>
+		<footer className='footer container-fluid mt-10' >
 			<Row className='d-flex footer-primary-bg p-5  mt-4'>
 				<Col sm={4}>
 					<div className='d-flex mb-3'>
