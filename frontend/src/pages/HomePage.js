@@ -81,7 +81,7 @@ function HomePage() {
 									{' '}
 									Custom cakes{' '}
 								</span>
-								made just for you with
+								made just for you
 								<br />
 								Make your celebration special with cake
 							</p>

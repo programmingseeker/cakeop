@@ -1,7 +1,7 @@
 {
   "name": "cakeop",
-  "version": "2.0.1",
   "type": "module",
+  "version": "2.0.1",
   "description": "complete backend api for an ecommerce application which sells cakes",
   "main": "app.js",
   "scripts": {
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "ndb": "^1.1.5",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "parcel": "^2.0.0-beta.1"
   }
 }

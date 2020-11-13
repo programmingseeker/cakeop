@@ -6,8 +6,8 @@ import { updateMe } from './../controllers/UserController.js';
 
 const router = express.Router();
 const __dirname = path.resolve();
-const publicCakeImg = path.join(__dirname, 'backend/public/img/cake');
-const publicUserImg = path.join(__dirname, 'backend/public/img/user');
+const publicCakeImg = path.join(__dirname, 'public/img/cake');
+const publicUserImg = path.join(__dirname, 'public/img/user');
 
 const cakeImageUpload = uploadImage(publicCakeImg);
 const userImageUpload = uploadImage(publicUserImg);
