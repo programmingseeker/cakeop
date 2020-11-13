@@ -28,15 +28,16 @@ export const updateMe = catchAsync(async (req, res, next) => {
 					Date.now() + process.env.JWTCOOKIEEXPIRES * 24 * 3600 * 1000
 				),
 			});
+			await userMe.save();
 		} else {
 			return next(new AppError('password is not correct', 400));
 		}
 	} else if (req.file) {
-		userMe.profileImage = `/img/user/${req.file.filename}`;
+		userMe.profileImage = req.file.filename;
+		await userMe.save();
 	} else {
 		return next(new AppError('invalid information', 400));
 	}
-	userMe.save();
 	return res.status(200).json({
 		message: 'User Updated',
 	});

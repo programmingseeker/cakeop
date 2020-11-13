@@ -27,16 +27,19 @@ app.use(cors());
 app.options('*', cors());
 app.use(helmet());
 app.use(compression());
-app.use(express.static(path.resolve(__dirname, 'backend', 'public')));
+app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(seralizeUser);
+app.use((req, res, next) => {
+	console.log(req.originalUrl);
+	next();
+});
 
 if (process.env.NODE_ENV === 'development') {
 	app.use(morgan('dev'));
 }
-console.log(__dirname);
 app.use('/api/user', userRouter);
 app.use('/api/cake', cakeRouter);
 app.use('/api/review', reviewRouter);
@@ -44,7 +47,7 @@ app.use('/api/order', orderRouter);
 app.use('/api/upload', uploadRouter);
 
 app.all('*', (req, res, next) => {
-	if (req.method === 'GET') {
+	if (req.method === 'GET' && process.env.NODE_ENV === 'production') {
 		res.sendFile(path.join(__dirname, 'public', 'index.html'));
 	}
 	next(new AppError(`URL: "${req.originalUrl}" cannot be found`, 404));
