@@ -56,6 +56,10 @@ function HomePage() {
 		},
 	};
 
+	const onSubmitHandler = (e) => {
+		e.preventDefault();
+	};
+
 	return (
 		<>
 			{loading ? (
@@ -213,11 +217,8 @@ function HomePage() {
 						</Container>
 					</div>
 
-					<div className='bg-light'>
-						<h2
-							className=' h1 mx-auto pt-4 text-center text-color font-weight-bolder'
-							id='About'
-						>
+					<div className='bg-light' id='about'>
+						<h2 className=' h1 mx-auto pt-4 text-center text-color font-weight-bolder'>
 							About <span className='text-primary'>Us</span>
 						</h2>
 						<h2 className='about-header text-center'>
@@ -265,7 +266,7 @@ function HomePage() {
 						</h2>
 						<Row className='mt-4 mb-4 pb-5'>
 							<Col sm={5}>
-								<Form>
+								<Form onSubmit={onSubmitHandler}>
 									<Form.Group>
 										<Form.Label>Name</Form.Label>
 										<Form.Control

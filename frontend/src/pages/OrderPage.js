@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
 	Row,
@@ -52,7 +52,7 @@ const OrderScreen = ({ match, history }) => {
 			dispatch({ type: ORDER_PAY_RESET });
 			dispatch({ type: ORDER_DELIVER_RESET });
 		}
-	}, [dispatch, orderId, order, success]);
+	}, [dispatch, orderId, order, success, history, user]);
 
 	const successPaymentHandler = (e) => {
 		dispatch(payOrder(orderId));

@@ -103,13 +103,7 @@ class RangeSlider extends React.Component {
 	};
 
 	setMax = (e) => {
-		const {
-			min,
-			max,
-			currentMin,
-			currentMax,
-			minValueBetween,
-		} = this.state;
+		const { max, currentMin, minValueBetween } = this.state;
 
 		const inputMax = e.target.value;
 
@@ -181,12 +175,11 @@ class RangeSlider extends React.Component {
 	render() {
 		const {
 			min,
-			max,
+			max,	
 			currentMin,
 			inputMin,
 			currentMax,
 			inputMax,
-			minValueBetween,
 		} = this.state;
 
 		return (

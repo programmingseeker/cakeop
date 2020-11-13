@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Form, Button, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import FormContainer from '../components/FormContainer';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import {creatProduct} from '../actions/productActions'
 function AddProdForm({ history }) {

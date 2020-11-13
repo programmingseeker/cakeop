@@ -1,11 +1,15 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/userModel.js';
+import Review from '../models/reviewModel.js';
 import catchAsync from '../utils/catchAsync.js';
 import AppError from '../utils/appError.js';
 import createJWT from '../utils/createJwt.js';
 
 export const getMe = catchAsync(async (req, res) => {
-	const userMe = await User.findById(req.user.id).select('-password -__v');
+	let userMe = await User.findById(req.user.id).select('-password -__v');
+	const reviews = await Review.find({ user: req.user._id });
+	userMe.reviews = reviews;
+	// userMe.reviews = reviews;
 	res.send(userMe);
 });
 

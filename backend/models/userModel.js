@@ -1,69 +1,44 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-import validator from 'validator'
+import validator from 'validator';
 
-const userSchema = new mongoose.Schema({
-	username: {
-		type: String,
-	},
-	email: {
-		type: String,
-
-		required: [true, 'Please enter an email'],
-		unique: true,
-		lowercase: true,
-		validate: [validator.isEmail, 'Please enter a valid email'],
-	},
-	profileImage: {
-		type: String,
-		default: 'nouser.svg',
-	},
-  password: {
-    type: String,
-    minlength: [6, 'Minimum password length is 6 characters'],
-  },
-	createdAt: {
-		type: Date,
-		default: Date.now(),
-	},
-	userType: {
-		type: String,
-		enum: ['user', 'admin'],
-		default: 'user',
-	},
-	cakesBrought: [
-		{
-			cake: {
-				type: mongoose.Schema.Types.ObjectId,
-				ref: 'Cake',
-			},
-			isReviewed: {
-				type: Boolean,
-				default: false,
-			},
+const userSchema = new mongoose.Schema(
+	{
+		username: {
+			type: String,
 		},
-	],
-},
-{
-	toJSON: { virtuals: true },
-	toObject: { virtuals: true },
-}
+		email: {
+			type: String,
+
+			required: [true, 'Please enter an email'],
+			unique: true,
+			lowercase: true,
+			validate: [validator.isEmail, 'Please enter a valid email'],
+		},
+		profileImage: {
+			type: String,
+			default: 'nouser.svg',
+		},
+		password: {
+			type: String,
+			minlength: [6, 'Minimum password length is 6 characters'],
+		},
+		createdAt: {
+			type: Date,
+			default: Date.now(),
+		},
+		userType: {
+			type: String,
+			enum: ['user', 'admin'],
+			default: 'user',
+		},
+		reviews: [],
+	},
+	{
+		toJSON: { virtuals: true },
+		toObject: { virtuals: true },
+	}
 );
-
-userSchema.virtual('reviews', {
-	ref: 'Review',
-	foreignField: 'user',
-	localField: '_id',
-});
-
-//Populating the reviews
-userSchema.pre(/^find/, function (next) {
-	this.populate({
-		path: 'reviews',
-		select: '-__v -user',
-	});
-	next();
-});
 
 userSchema.pre('save', async function (next) {
 	if (this.password) {
