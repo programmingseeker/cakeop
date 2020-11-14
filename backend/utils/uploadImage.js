@@ -1,6 +1,6 @@
-import multer from 'multer';
-import path from 'path';
-export default (filepath) => {
+const multer = require('multer');
+const path = require('path');
+module.exports = (filepath) => {
 	const storage = multer.diskStorage({
 		destination(req, file, cb) {
 			cb(null, filepath);

@@ -1,13 +1,13 @@
-import express from 'express';
+const express = require('express');
 const router = express.Router();
-import {
+const {
 	getAllOrders,
 	getOrder,
 	createOrder,
 	updateOrderToPaid,
 	getMyOrders,
-} from '../controllers/orderController.js';
-import { isLoggedIn, restrictTo } from '../controllers/authController.js';
+} = require('../controllers/orderController.js');
+const { isLoggedIn, restrictTo } = require('../controllers/authController.js');
 router
 	.route('/')
 	.get(restrictTo('admin'), getAllOrders)
@@ -17,4 +17,4 @@ router.route('/myorders').get(isLoggedIn, getMyOrders);
 router.route('/:id').get(isLoggedIn, getOrder);
 router.route('/:id/pay').put(isLoggedIn, updateOrderToPaid);
 
-export default router;
+module.exports = router;

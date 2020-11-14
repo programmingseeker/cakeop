@@ -1,24 +1,24 @@
-import express from 'express';
+const express = require('express');
 const router = express.Router();
-import { restrictTo } from '../controllers/authController.js';
-import {
+const { restrictTo } = require('../controllers/authController');
+const {
 	getAllCake,
 	getCake,
 	createCake,
 	updateCake,
 	deleteCake,
-} from './../controllers/cakeController.js';
-import {
+} = require('./../controllers/cakeController.js');
+const {
 	createReview,
 	getCakeReviews,
-} from './../controllers/reviewController.js';
+} = require('./../controllers/reviewController.js');
 
 router.route('/').get(getAllCake).post(restrictTo('admin'), createCake);
 router
 	.route('/:id')
 	.get(getCake)
 	.patch(restrictTo('admin'), updateCake)
-	.delete(restrictTo('admin'), deleteCake); 
+	.delete(restrictTo('admin'), deleteCake);
 router.route('/:id/review').post(createReview).get(getCakeReviews);
 
-export default router;
+module.exports = router;

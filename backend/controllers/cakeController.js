@@ -1,11 +1,11 @@
-import Cake from '../models/cakeModel.js';
-import Review from '../models/reviewModel.js';
+const Cake = require('../models/cakeModel.js');
+const Review = require('../models/reviewModel.js');
 
-import APIFeatures from '../utils/apiFeatures.js';
-import catchAsync from '../utils/catchAsync.js';
-import AppError from '../utils/appError.js';
+const APIFeatures = require('../utils/apiFeatures.js');
+const catchAsync = require('../utils/catchAsync.js');
+const AppError = require('../utils/appError.js');
 
-export const getAllCake = catchAsync(async (req, res) => {
+exports.getAllCake = catchAsync(async (req, res) => {
 	const features = new APIFeatures(Cake.find(), req.query)
 		.filter()
 		.sort()
@@ -24,7 +24,7 @@ export const getAllCake = catchAsync(async (req, res) => {
 	});
 });
 
-export const getCake = catchAsync(async (req, res, next) => {
+exports.getCake = catchAsync(async (req, res, next) => {
 	const cake = await Cake.findById(req.params.id);
 	const cakeReviews = await Review.find({ cake: req.params.id });
 	if (!cake) {
@@ -41,7 +41,7 @@ export const getCake = catchAsync(async (req, res, next) => {
 	}
 });
 
-export const createCake = catchAsync(async (req, res) => {
+exports.createCake = catchAsync(async (req, res) => {
 	const cake = await Cake.create(req.body);
 	res.status(201).json({
 		status: 'success',
@@ -49,7 +49,7 @@ export const createCake = catchAsync(async (req, res) => {
 	});
 });
 
-export const updateCake = catchAsync(async (req, res, next) => {
+exports.updateCake = catchAsync(async (req, res, next) => {
 	const updatecake = await Cake.findByIdAndUpdate(req.params.id, req.body, {
 		new: true,
 	});
@@ -64,7 +64,7 @@ export const updateCake = catchAsync(async (req, res, next) => {
 	});
 });
 
-export const deleteCake = catchAsync(async (req, res, next) => {
+exports.deleteCake = catchAsync(async (req, res, next) => {
 	const cake = await Cake.findByIdAndDelete(req.params.id);
 	if (!cake) {
 		return next(

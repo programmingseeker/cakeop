@@ -1,11 +1,11 @@
-import jwt from 'jsonwebtoken';
-import User from '../models/userModel.js';
-import Review from '../models/reviewModel.js';
-import catchAsync from '../utils/catchAsync.js';
-import AppError from '../utils/appError.js';
-import createJWT from '../utils/createJwt.js';
+const jwt = require('jsonwebtoken');
+const User = require('../models/userModel.js');
+const Review = require('../models/reviewModel.js');
+const catchAsync = require('../utils/catchAsync.js');
+const AppError = require('../utils/appError.js');
+const createJWT = require('../utils/createJwt.js');
 
-export const getMe = catchAsync(async (req, res) => {
+exports.getMe = catchAsync(async (req, res) => {
 	let userMe = await User.findById(req.user.id).select('-password -__v');
 	const reviews = await Review.find({ user: req.user._id });
 	userMe.reviews = reviews;
@@ -13,7 +13,7 @@ export const getMe = catchAsync(async (req, res) => {
 	res.send(userMe);
 });
 
-export const updateMe = catchAsync(async (req, res, next) => {
+exports.updateMe = catchAsync(async (req, res, next) => {
 	const userMe = await User.findById(req.user.id);
 	if (
 		req.body.password &&

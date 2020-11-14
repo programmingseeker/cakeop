@@ -1,8 +1,8 @@
-import AppError from '../utils/appError.js';
-import catchAsync from '../utils/catchAsync.js';
-import Order from '../models/orderModel.js';
+const AppError = require('../utils/appError.js');
+const catchAsync = require('../utils/catchAsync.js');
+const Order = require('../models/orderModel.js');
 
-export const getAllOrders = catchAsync(async (req, res, next) => {
+exports.getAllOrders = catchAsync(async (req, res, next) => {
 	const orders = await Order.find();
 	res.status(200).json({
 		status: 'success',
@@ -11,7 +11,7 @@ export const getAllOrders = catchAsync(async (req, res, next) => {
 	});
 });
 
-export const getOrder = catchAsync(async (req, res, next) => {
+exports.getOrder = catchAsync(async (req, res, next) => {
 	const order = await Order.findById(req.params.id).populate(
 		'user',
 		'username email'
@@ -28,7 +28,7 @@ export const getOrder = catchAsync(async (req, res, next) => {
 	}
 });
 
-export const createOrder = catchAsync(async (req, res, next) => {
+exports.createOrder = catchAsync(async (req, res, next) => {
 	const {
 		orderItems,
 		shippingAddress,
@@ -56,7 +56,7 @@ export const createOrder = catchAsync(async (req, res, next) => {
 	}
 });
 
-export const updateOrderToPaid = catchAsync(async (req, res, next) => {
+exports.updateOrderToPaid = catchAsync(async (req, res, next) => {
 	const order = await Order.findById(req.params.id);
 	if (order) {
 		order.isPaid = true;
@@ -74,12 +74,12 @@ export const updateOrderToPaid = catchAsync(async (req, res, next) => {
 	}
 });
 
-export const getMyOrders = catchAsync(async (req, res) => {
+exports.getMyOrders = catchAsync(async (req, res) => {
 	const orders = await Order.find({ user: req.user._id });
 	res.json(orders);
 });
 
-export const updateOrderToDelivered = catchAsync(async (req, res, next) => {
+exports.updateOrderToDelivered = catchAsync(async (req, res, next) => {
 	const order = await Order.findById(req.params.id);
 
 	if (order) {

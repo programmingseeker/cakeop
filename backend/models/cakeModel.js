@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const cakeSchema = new mongoose.Schema(
 	{
@@ -65,4 +65,4 @@ cakeSchema.pre(/^find/, function (next) {
 });
 
 const Cake = mongoose.model('Cake', cakeSchema);
-export default Cake;
+module.exports = Cake;
