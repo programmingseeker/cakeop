@@ -6,10 +6,10 @@ import json
 CURRENT_DIR = os.getcwd()
 FRONTEND_DIR = os.path.join(CURRENT_DIR, "frontend")
 BACKEND_DIR = os.path.join(CURRENT_DIR, "backend")
+PROD_BUILD_DIR = os.path.join(CURRENT_DIR, "build")
 FRONTEND_BUILD_DIR = os.path.join(FRONTEND_DIR, "build")
 BACKEND_PUBLIC_DIR = os.path.join(BACKEND_DIR, "public")
 BACKEND_DIST_DIR = os.path.join(BACKEND_DIR, "dist")
-PROD_BUILD_DIR = os.path.join(CURRENT_DIR, "build")
 PROD_BUILD_PUBLIC_DIR = os.path.join(PROD_BUILD_DIR, "public")
 PROD_HTML_FILE = os.path.join(PROD_BUILD_PUBLIC_DIR, "index.html")
 PROD_START_JS_FILE = os.path.join(
@@ -56,7 +56,10 @@ if os.path.isdir(BACKEND_DIST_DIR) and os.path.isdir(PROD_BUILD_DIR):
 if os.path.isdir(FRONTEND_BUILD_DIR) and os.path.isdir(PROD_BUILD_PUBLIC_DIR):
     for files in os.listdir(FRONTEND_BUILD_DIR):
         print(f"{GREEN}moving {YELLOW}{files} {CLEAR}")
-        shutil.move(os.path.join(FRONTEND_BUILD_DIR, files), PROD_BUILD_PUBLIC_DIR)
+        try:
+            shutil.move(os.path.join(FRONTEND_BUILD_DIR, files), PROD_BUILD_PUBLIC_DIR)
+        except shutil.Error:
+            print("file already exist")
 
     print(f"{GREEN}completed moving frontend {YELLOW}build{CLEAR} files{CLEAR}")
 
@@ -96,8 +99,10 @@ print(f"{RED}Removed {YELLOW}{BACKEND_DIST_DIR}{CLEAR}")
 os.rmdir(FRONTEND_BUILD_DIR)
 print(f"{RED}Removed {YELLOW}{FRONTEND_BUILD_DIR}{CLEAR}")
 
-# print(f"{GREEN}Changing directory to{YELLOW}{FRONTEND_BUILD_DIR}{CLEAR}")
-# os.chdir(PROD_BUILD_DIR)
-# print(f"{GREEN}Deploying to heroku...{CLEAR}")
-# os.system('git add .')
-# os.system('git commit -m "production build v{}"')
+print(f"{GREEN}Changing directory to{YELLOW}{PROD_BUILD_DIR}{CLEAR}")
+os.chdir(PROD_BUILD_DIR)
+print(f"{GREEN}Deploying to heroku...{CLEAR}")
+os.system("git add .")
+os.system('git commit -m "production build"')
+os.system("git push heroku master")
+print(f"{GREEN}Project deployed to heroku...{CLEAR}")
