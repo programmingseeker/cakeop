@@ -24,7 +24,7 @@ dotenv.config();
 dbConfig();
 app.use(cors());
 app.options('*', cors());
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(compression());
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(express.json());
