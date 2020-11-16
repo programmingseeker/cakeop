@@ -17,6 +17,12 @@ function ContactForm() {
     setFocus(true);
     await axios.post("/api/upload/contactus", mailInput);
     setFocus(false);
+
+    setFocus("");
+    setusername("");
+    setemail("");
+    setphone("");
+    setmessage("");
   };
   return (
     <div className="container-contact">
