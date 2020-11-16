@@ -72,6 +72,7 @@ $transition: .3s all ease;
     margin-top:20px;
     .current-value{
       width: 100%;
+      margin-top:1.5rem;
       
       .button-sidenav{
           margin: 3px!important;
@@ -107,8 +108,21 @@ $transition: .3s all ease;
       @include dragIndicator("#max", rgba(0, 0, 0, 0.5) , 1);
     }
   }
+  .price-filter-sub{
+    opacity: 0!important;
+  }
 
-
+@media (max-width: 991px){
+  #slider{
+    display: none!important;
+  }
+  .current-value{
+    margin-top:0px!important;
+  }
+  .price-filter-sub{
+    opacity: 1!important;
+  }
+}
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;

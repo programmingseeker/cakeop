@@ -185,8 +185,8 @@ class RangeSlider extends React.Component {
 		return (
 			<div className='card-slider'>
 				<div className='values'>
-					<div>{min}</div>
-					<div>{max}</div>
+					<div>min: {min}</div>
+					<div>max: {max}</div>
 				</div>
 
 				<div ref={(ref) => (this.slider = ref)} id='slider'>
@@ -231,7 +231,7 @@ class RangeSlider extends React.Component {
 					</div>
 				</div>
 
-				<div className='current-value d-flex justify-content-between mt-4'>
+				<div className='current-value d-flex justify-content-between'>
 					<input
 						className='text-center button-sidenav'
 						id='min-input'
@@ -252,6 +252,7 @@ class RangeSlider extends React.Component {
 						max={max}
 					/>
 				</div>
+					<button onClick={this.priceFilterHandler} type="button" class="float-right btn btn-primary price-filter-sub">Submit</button>
 			</div>
 		);
 	}
