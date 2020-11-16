@@ -7,6 +7,9 @@ import {
 	USER_LOGIN_FAIL,
 	USER_LOGIN_REQUEST,
 	USER_LOGIN_SUCCESS,
+	USER_GOOGLE_LOGIN_FAIL,
+	USER_GOOGLE_LOGIN_SUCCESS,
+	USER_GOOGLE_LOGIN_REQUEST,
 	USER_LOGOUT,
 	USER_REGISTER_FAIL,
 	USER_REGISTER_REQUEST,
@@ -34,12 +37,6 @@ export const login = (email, password) => async (dispatch) => {
 	}
 };
 
-export const logout = () => async (dispatch) => {
-	localStorage.removeItem('user');
-	dispatch({ type: USER_LOGOUT });
-	dispatch(clearUserInfo());
-};
-
 export const signup = (username, email, password, confirmPassword) => async (
 	dispatch
 ) => {
@@ -63,6 +60,32 @@ export const signup = (username, email, password, confirmPassword) => async (
 					: err.message,
 		});
 	}
+};
+
+export const googleAuth = (tokenId) => async (dispatch) => {
+	try {
+		dispatch({ type: USER_GOOGLE_LOGIN_REQUEST });
+		const { data } = await axios.post('/api/user/login/google', {
+			tokenId,
+		});
+		dispatch({ type: USER_GOOGLE_LOGIN_SUCCESS, payload: data });
+		localStorage.setItem('user', JSON.stringify(data.user));
+		dispatch(getUserInfo());
+	} catch (err) {
+		dispatch({
+			type: USER_GOOGLE_LOGIN_FAIL,
+			payload:
+				err.response && err.response.data.message
+					? err.response.data.message
+					: err.message,
+		});
+	}
+};
+
+export const logout = () => async (dispatch) => {
+	localStorage.removeItem('user');
+	dispatch({ type: USER_LOGOUT });
+	dispatch(clearUserInfo());
 };
 
 export const getUserInfo = () => async (dispatch) => {

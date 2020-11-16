@@ -7,9 +7,11 @@ const userSchema = new mongoose.Schema(
 		username: {
 			type: String,
 		},
+		googleId: {
+			type: String,
+		},
 		email: {
 			type: String,
-
 			required: [true, 'Please enter an email'],
 			unique: true,
 			lowercase: true,
