@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import FormContainer from './../components/FormContainer';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button, Alert } from 'react-bootstrap';
-import { signup } from './../actions/userActions';
+import { GoogleLogin } from 'react-google-login';
+
+import FormContainer from './../components/FormContainer';
+import { signup, googleAuth } from './../actions/userActions';
 import Loader from './../components/Loader';
 
 const SignupPage = ({ history, location }) => {
@@ -30,7 +32,10 @@ const SignupPage = ({ history, location }) => {
 			dispatch(signup(username, email, password, confirmPassword));
 		}
 	};
-	// d-flex justify-content-start
+	const responseGoogleHandler = ({ tokenId }) => {
+		dispatch(googleAuth(tokenId));
+	};
+
 	return (
 		<>
 			<div className='d-flex justify-content-center flex-column mt-5 pt-3'>
@@ -43,10 +48,13 @@ const SignupPage = ({ history, location }) => {
 								Sign Up
 							</h1>
 							<span className='d-flex justify-content-center'>
-								<img
-									className='image-cursor'
-									src='/img/icons/googleoauth.svg'
-									alt='Google Login'
+								<GoogleLogin
+									clientId='49017489345-nu8iljtrgl7milau4g6dtb02ch5m8tq3.apps.googleusercontent.com'
+									buttonText='Login with Google'
+									onSuccess={responseGoogleHandler}
+									onFailure={responseGoogleHandler}
+									theme='dark'
+									className='mb-3 screen-center'
 								/>
 							</span>
 							<span className='d-flex align-items-center'>

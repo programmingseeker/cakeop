@@ -1,10 +1,31 @@
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+const axios = require('axios');
+
 const createJWT = require('./../utils/createJwt.js');
 const User = require('./../models/userModel.js');
 const catchAsync = require('./../utils/catchAsync.js');
 const AppError = require('./../utils/appError.js');
-const dotenv = require('dotenv');
 dotenv.config();
+
+const sendJWTResponse = (userInfo, message, statusCode, res) => {
+	const token = createJWT(jwt, userInfo.id, userInfo.userType);
+	res.cookie('jwt', token, {
+		httpOnly: true,
+		expires: new Date(
+			Date.now() + process.env.JWTCOOKIEEXPIRES * 24 * 3600 * 1000
+		),
+	});
+	res.status(statusCode).json({
+		status: 'success',
+		message,
+		user: {
+			createdAt: userInfo.createdAt,
+			userType: userInfo.userType,
+			username: userInfo.username,
+		},
+	});
+};
 
 exports.postLogin = catchAsync(async (req, res, next) => {
 	const { email, password } = req.body;
@@ -14,22 +35,7 @@ exports.postLogin = catchAsync(async (req, res, next) => {
 	if (!user || !(await user.checkPassword(password))) {
 		return next(new AppError('Incorrect email or password', 401));
 	}
-	const token = createJWT(jwt, user.id, user.userType);
-	res.cookie('jwt', token, {
-		httpOnly: true,
-		expires: new Date(
-			Date.now() + process.env.JWTCOOKIEEXPIRES * 24 * 3600 * 1000
-		),
-	});
-	res.status(200).json({
-		status: 'success',
-		message: 'you are now logged in',
-		user: {
-			createdAt: user.createdAt,
-			userType: user.userType,
-			username: user.username,
-		},
-	});
+	sendJWTResponse(user, 'you are now logged in', 200, res);
 });
 
 exports.postSignUp = catchAsync(async (req, res, next) => {
@@ -45,34 +51,40 @@ exports.postSignUp = catchAsync(async (req, res, next) => {
 			)
 		);
 	}
-
-	// check for password validation
 	if (!confirmPassword || password !== confirmPassword) {
 		return next(new AppError('Password confirmation does not match', 409));
 	}
-	// Create a new user
 	const newUser = await User.create({
 		username,
 		email,
 		password,
 	});
-	//sign a jwt token
-	const token = createJWT(jwt, newUser.id, newUser.userType);
-	res.cookie('jwt', token, {
-		httpOnly: true,
-		expires: new Date(
-			Date.now() + process.env.JWTCOOKIEEXPIRES * 24 * 3600 * 1000
-		),
-	});
-	res.status(201).json({
-		status: 'success',
-		message: 'You are now signed Up',
-		user: {
-			createdAt: newUser.createdAt,
-			userType: newUser.userType,
-			username: newUser.username,
-		},
-	});
+	sendJWTResponse(newUser, 'You are now signed Up', 201, res);
+});
+
+exports.googleLogin = catchAsync(async (req, res, next) => {
+	const { tokenId } = req.body;
+	const { data } = await axios.get(
+		`https://oauth2.googleapis.com/tokeninfo?id_token=${tokenId}`
+	);
+	const { azp, aud, sub, email, picture, name } = data;
+	if (azp === aud && aud === process.env.GOOGLE_CLIENT_ID) {
+		const user = await User.findOne({ googleId: sub });
+		if (user) {
+			sendJWTResponse(user, 'you are now logged in', 200, res);
+		} else {
+			const newUser = await User.create({
+				username: name,
+				email,
+				profileImage: picture,
+			});
+			sendJWTResponse(newUser, 'You are now signed Up', 201, res);
+		}
+	} else {
+		return next(
+			new AppError('client not authorized! refresh and try again!')
+		);
+	}
 });
 
 exports.getLogout = (req, res, next) => {

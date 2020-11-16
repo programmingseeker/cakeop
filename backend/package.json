@@ -12,6 +12,7 @@
 	},
 	"author": "pro developers",
 	"dependencies": {
+		"axios": "^0.21.0",
 		"bcryptjs": "^2.4.3",
 		"colors": "^1.4.0",
 		"compression": "^1.7.4",
@@ -29,6 +30,6 @@
 	"devDependencies": {
 		"ndb": "^1.1.5",
 		"nodemon": "^2.0.6",
-		"parcel": "^2.0.0-beta.1"
+		"parcel": "^2.0.0-nightly.447"
 	}
 }

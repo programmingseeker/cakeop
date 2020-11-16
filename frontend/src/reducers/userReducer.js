@@ -10,6 +10,9 @@ import {
 	USER_REGISTER_FAIL,
 	USER_REGISTER_REQUEST,
 	USER_REGISTER_SUCCESS,
+	USER_GOOGLE_LOGIN_FAIL,
+	USER_GOOGLE_LOGIN_REQUEST,
+	USER_GOOGLE_LOGIN_SUCCESS,
 } from './../constants/userConstants';
 
 export const authReducer = (state = {}, action) => {
@@ -38,6 +41,19 @@ export const authReducer = (state = {}, action) => {
 			};
 		case USER_REGISTER_FAIL:
 			return { ...state, loading: false, error: action.payload };
+		case USER_GOOGLE_LOGIN_REQUEST:
+			return { ...state, loading: true };
+		case USER_GOOGLE_LOGIN_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				status: action.payload.status,
+				message: action.payload.message,
+				user: action.payload.user,
+			};
+		case USER_GOOGLE_LOGIN_FAIL:
+			return { ...state, loading: false, error: action.payload };
+
 		case USER_LOGOUT:
 			return {};
 		default:

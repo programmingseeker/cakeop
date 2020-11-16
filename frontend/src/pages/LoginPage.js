@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Alert, Image } from 'react-bootstrap';
-import { login } from './../actions/userActions';
+import { Form, Button, Alert } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { GoogleLogin } from 'react-google-login';
 
+import { login, googleAuth } from './../actions/userActions';
 import Loader from './../components/Loader';
 import FormContainer from './../components/FormContainer';
 const LoginPage = ({ history, isPage = true, location }) => {
@@ -11,10 +12,7 @@ const LoginPage = ({ history, isPage = true, location }) => {
 	const dispatch = useDispatch();
 	const { loading, error } = useSelector((state) => state.auth);
 	const { user } = useSelector((state) => state.userInfo);
-	const redirect = location.search
-		? location.search.split('=')[1]
-		: '/';
-	console.log(redirect);
+	const redirect = location.search ? location.search.split('=')[1] : '/';
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
 		dispatch(login(email, password));
@@ -28,6 +26,10 @@ const LoginPage = ({ history, isPage = true, location }) => {
 	const a = {
 		fontSize: '1rem',
 		padding: '0px 2px',
+	};
+
+	const responseGoogleHandler = ({ tokenId }) => {
+		dispatch(googleAuth(tokenId));
 	};
 
 	return (
@@ -45,9 +47,13 @@ const LoginPage = ({ history, isPage = true, location }) => {
 							Log In
 						</h1>
 						<span className='d-flex justify-content-center cursor-pointer'>
-							<Image
-								src='/img/icons/googleoauth.svg'
-								alt='Google Login'
+							<GoogleLogin
+								clientId='49017489345-nu8iljtrgl7milau4g6dtb02ch5m8tq3.apps.googleusercontent.com'
+								buttonText='Login with Google'
+								onSuccess={responseGoogleHandler}
+								onFailure={responseGoogleHandler}
+								theme='dark'
+								className='mb-3 screen-center'
 							/>
 						</span>
 						<span className='d-flex align-items-center'>
