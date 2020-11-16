@@ -171,7 +171,15 @@ class RangeSlider extends React.Component {
 		const { currentMin, minValueBetween } = this.state;
 		return currentMin + minValueBetween;
 	};
-
+	priceFilterHandler = (e)=>{
+		const { currentMin, currentMax } = this.state;
+		this.props.filterPriceHandler(
+			e,
+			currentMin,
+			currentMax
+		);
+	}
+	
 	render() {
 		const {
 			min,
