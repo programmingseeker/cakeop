@@ -1,12 +1,12 @@
-import jwt from 'jsonwebtoken';
-import createJWT from './../utils/createJwt.js';
-import User from './../models/userModel.js';
-import catchAsync from './../utils/catchAsync.js';
-import AppError from './../utils/appError.js';
-import dotenv from 'dotenv';
+const jwt = require('jsonwebtoken');
+const createJWT = require('./../utils/createJwt.js');
+const User = require('./../models/userModel.js');
+const catchAsync = require('./../utils/catchAsync.js');
+const AppError = require('./../utils/appError.js');
+const dotenv = require('dotenv');
 dotenv.config();
 
-export const postLogin = catchAsync(async (req, res, next) => {
+exports.postLogin = catchAsync(async (req, res, next) => {
 	const { email, password } = req.body;
 	const user = await User.findOne({
 		email,
@@ -32,7 +32,7 @@ export const postLogin = catchAsync(async (req, res, next) => {
 	});
 });
 
-export const postSignUp = catchAsync(async (req, res, next) => {
+exports.postSignUp = catchAsync(async (req, res, next) => {
 	const { email, username, password, confirmPassword } = req.body;
 	const user = await User.findOne({
 		email,
@@ -75,7 +75,7 @@ export const postSignUp = catchAsync(async (req, res, next) => {
 	});
 });
 
-export const getLogout = (req, res, next) => {
+exports.getLogout = (req, res, next) => {
 	res.cookie('jwt', '', {
 		expires: new Date(Date.now() * 0),
 		httpOnly: true,
@@ -86,7 +86,7 @@ export const getLogout = (req, res, next) => {
 	});
 };
 
-export const restrictTo = (...user) => {
+exports.restrictTo = (...user) => {
 	return (req, res, next) => {
 		if (typeof req.user === 'undefined') {
 			return next(new AppError('you are not logged in', 400));
@@ -99,7 +99,7 @@ export const restrictTo = (...user) => {
 	};
 };
 
-export const seralizeUser = catchAsync(async (req, res, next) => {
+exports.seralizeUser = catchAsync(async (req, res, next) => {
 	const token = req.cookies.jwt;
 	if (token) {
 		try {
@@ -117,7 +117,7 @@ export const seralizeUser = catchAsync(async (req, res, next) => {
 	}
 });
 
-export const isLoggedIn = (req, res, next) => {
+exports.isLoggedIn = (req, res, next) => {
 	if (req.user) {
 		next();
 	} else {

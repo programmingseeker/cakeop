@@ -1,25 +1,24 @@
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
-import compression from 'compression';
-import dotenv from 'dotenv';
-import colors from 'colors';
-import morgan from 'morgan';
-import path from 'path';
-import helmet from 'helmet';
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const compression = require('compression');
+const dotenv = require('dotenv');
+const colors = require('colors');
+const morgan = require('morgan');
+const path = require('path');
+const helmet = require('helmet');
 
-import cakeRouter from './routes/cakeRoutes.js';
-import userRouter from './routes/userRoutes.js';
-import reviewRouter from './routes/reviewRoutes.js';
-import uploadRouter from './routes/uploadRoutes.js';
-import orderRouter from './routes/orderRoutes.js';
-import AppError from './utils/appError.js';
-import dbConfig from './utils/dbConfig.js';
-import errorHandler from './controllers/errorController.js';
-import { seralizeUser } from './controllers/authController.js';
+const cakeRouter = require('./routes/cakeRoutes.js');
+const userRouter = require('./routes/userRoutes.js');
+const reviewRouter = require('./routes/reviewRoutes.js');
+const uploadRouter = require('./routes/uploadRoutes.js');
+const orderRouter = require('./routes/orderRoutes.js');
+const AppError = require('./utils/appError.js');
+const dbConfig = require('./utils/dbConfig.js');
+const errorHandler = require('./controllers/errorController.js');
+const { seralizeUser } = require('./controllers/authController.js');
 
 const app = express();
-const __dirname = path.resolve();
 
 dotenv.config();
 dbConfig();
@@ -32,10 +31,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(seralizeUser);
-app.use((req, res, next) => {
-	console.log(req.originalUrl);
-	next();
-});
+// app.use((req, res, next) => {
+// 	console.log(req.originalUrl);
+// 	next();
+// });
 
 if (process.env.NODE_ENV === 'development') {
 	app.use(morgan('dev'));

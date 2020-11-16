@@ -1,11 +1,10 @@
-import path from 'path';
-import express from 'express';
-import uploadImage from './../utils/uploadImage.js';
-import { restrictTo } from './../controllers/authController.js';
-import { updateMe } from './../controllers/UserController.js';
+const path = require('path');
+const express = require('express');
+const uploadImage = require('./../utils/uploadImage.js');
+const { restrictTo } = require('./../controllers/authController.js');
+const { updateMe } = require('./../controllers/UserController.js');
 
 const router = express.Router();
-const __dirname = path.resolve();
 const publicCakeImg = path.join(__dirname, 'public/img/cake');
 const publicUserImg = path.join(__dirname, 'public/img/user');
 
@@ -30,4 +29,4 @@ router.post(
 	updateMe
 );
 
-export default router;
+module.exports = router;

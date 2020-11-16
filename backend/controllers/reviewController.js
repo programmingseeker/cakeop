@@ -1,10 +1,10 @@
-import Review from '../models/reviewModel.js';
-import catchAsync from '../utils/catchAsync.js';
-import APIFeatures from '../utils/apiFeatures.js';
-import Cake from '../models/cakeModel.js';
-import AppError from '../utils/appError.js';
+const Review = require('../models/reviewModel.js');
+const catchAsync = require('../utils/catchAsync.js');
+const APIFeatures = require('../utils/apiFeatures.js');
+const Cake = require('../models/cakeModel.js');
+const AppError = require('../utils/appError.js');
 
-export const createReview = catchAsync(async (req, res, next) => {
+exports.createReview = catchAsync(async (req, res, next) => {
 	const cake = await Cake.findById(req.params.id);
 	if (cake) {
 		const isReviewed = cake.reviews.find(
@@ -37,7 +37,7 @@ export const createReview = catchAsync(async (req, res, next) => {
 	}
 });
 
-export const getAllReviews = catchAsync(async (req, res) => {
+exports.getAllReviews = catchAsync(async (req, res) => {
 	const features = new APIFeatures(Review.find(), req.query)
 		.filter()
 		.sort()
@@ -50,7 +50,7 @@ export const getAllReviews = catchAsync(async (req, res) => {
 	});
 });
 
-export const getCakeReviews = catchAsync(async (req, res) => {
+exports.getCakeReviews = catchAsync(async (req, res) => {
 	const review = await Review.find({ cake: req.params.id });
 	res.status(200).json({
 		status: 'success',
@@ -58,7 +58,7 @@ export const getCakeReviews = catchAsync(async (req, res) => {
 	});
 });
 
-export const getReview = catchAsync(async (req, res, next) => {
+exports.getReview = catchAsync(async (req, res, next) => {
 	let query = Model.findById(req.params.id);
 	if (!query) {
 		return next(new AppError('No document found with that ID', 404));
@@ -71,7 +71,7 @@ export const getReview = catchAsync(async (req, res, next) => {
 	});
 });
 
-export const updateReview = catchAsync(async (req, res, next) => {
+exports.updateReview = catchAsync(async (req, res, next) => {
 	const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
 		new: true,
 	});
@@ -88,7 +88,7 @@ export const updateReview = catchAsync(async (req, res, next) => {
 	});
 });
 
-export const deleteReview = catchAsync(async (req, res, next) => {
+exports.deleteReview = catchAsync(async (req, res, next) => {
 	const doc = await Model.findByIdAndDelete(req.params.id);
 	if (!doc) {
 		return next(new AppError('No document found with that ID', 404));
