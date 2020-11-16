@@ -19,6 +19,7 @@ import PlaceOrderPage from './pages/PlaceOrderPage';
 import ProductEditPage from './pages/ProductEditPage';
 import ProductAddPage from './pages/ProductAddPage';
 import OrderPage from './pages/OrderPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
 	return (
@@ -31,6 +32,7 @@ function App() {
 				<Route exact path='/cakes' component={ProductsPage} />
 				<Route exact path='/cakes/:id' component={ProductPage} />
 				<Route exact path='/cart/:id?' component={CartPage} />
+				<Route exact path='/contactus' component={ContactPage} />
 				<ProtectRoute
 					exact
 					path='/order/:id'

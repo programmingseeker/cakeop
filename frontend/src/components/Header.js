@@ -51,7 +51,7 @@ const Header = () => {
 							</Nav.Link>
 						</LinkContainer>
 
-						<LinkContainer to='#contact' className='px-3'>
+						<LinkContainer to='/contactus' className='px-3'>
 							<Nav.Link>
 								<i className='fas fa-phone-alt px-2'></i>
 								Contact Us
