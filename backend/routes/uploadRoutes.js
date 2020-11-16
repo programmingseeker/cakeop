@@ -3,6 +3,8 @@ const express = require("express");
 const uploadImage = require("./../utils/uploadImage.js");
 const { restrictTo } = require("./../controllers/authController.js");
 const { updateMe } = require("./../controllers/UserController.js");
+const { sendmail } = require("./../utils/mail.js");
+
 const router = express.Router();
 const publicCakeImg = path.join(__dirname, "public/img/cake");
 const publicUserImg = path.join(__dirname, "public/img/user");
@@ -27,5 +29,7 @@ router.post(
   userImageUpload.single("profileImage", 1),
   updateMe
 );
+
+router.post("/contactus", sendmail);
 
 module.exports = router;

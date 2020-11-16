@@ -1,8 +1,23 @@
 import React, { useState } from "react";
+import axios from "axios";
 function ContactForm() {
   const [focus, setFocus] = useState(null);
-  const [loading, setloading] = useState(false);
-
+  const [username, setusername] = useState("");
+  const [email, setemail] = useState("");
+  const [phone, setphone] = useState(null);
+  const [message, setmessage] = useState("");
+  const sendMailHandler = async (e) => {
+    e.preventDefault();
+    const mailInput = {
+      username,
+      email,
+      phone,
+      message,
+    };
+    setFocus(true);
+    await axios.post("/api/upload/contactus", mailInput);
+    setFocus(false);
+  };
   return (
     <div className="container-contact">
       <span className="bg-circle"></span>
@@ -17,21 +32,21 @@ function ContactForm() {
             <div className="information">
               <i
                 className="fas fa-map-marked-alt mr-2"
-                style={{ "font-size": "28px", color: "#00bcd4" }}
+                style={{ fontSize: "28px", color: "#00bcd4" }}
               ></i>
               <p> Bangalore India 560079</p>
             </div>
             <div className="information">
               <i
                 className="fas fa-envelope mr-2"
-                style={{ "font-size": "28px", color: "#00bcd4" }}
+                style={{ fontSize: "28px", color: "#00bcd4" }}
               ></i>
               <p>programmingseeker@gmail.com</p>
             </div>
             <div className="information">
               <i
                 className="fas fa-phone-alt mr-2"
-                style={{ "font-size": "28px", color: "#00bcd4" }}
+                style={{ fontSize: "28px", color: "#00bcd4" }}
               ></i>
               <p>+91 123-456-7890</p>
             </div>
@@ -73,8 +88,12 @@ function ContactForm() {
                 type="text-contact"
                 name="name"
                 className="input"
+                value={username}
+                onChange={(e) => {
+                  setusername(e.target.value);
+                }}
               />
-              <label for="">Username</label>
+              <label>Username</label>
               <span>Username</span>
             </div>
             <div className={`input-container ${focus ? "focus" : null}`}>
@@ -88,8 +107,12 @@ function ContactForm() {
                 type="email"
                 name="email"
                 className="input"
+                value={email}
+                onChange={(e) => {
+                  setemail(e.target.value);
+                }}
               />
-              <label for="">Email</label>
+              <label>Email</label>
               <span>Email</span>
             </div>
             <div className={`input-container ${focus ? "focus" : null}`}>
@@ -103,8 +126,12 @@ function ContactForm() {
                 type="numeric"
                 name="phone"
                 className="input"
+                value={phone}
+                onChange={(e) => {
+                  setphone(e.target.value);
+                }}
               />
-              <label for="">Phone</label>
+              <label>Phone</label>
               <span>Phone</span>
             </div>
             <div
@@ -115,17 +142,27 @@ function ContactForm() {
               <textarea
                 name="message"
                 className="input textarea"
+                value={message}
                 onFocus={() => {
                   setFocus("focus");
                 }}
                 onBlur={() => {
                   setFocus(null);
                 }}
+                onChange={(e) => {
+                  setmessage(e.target.value);
+                }}
               ></textarea>
-              <label for="">Message</label>
+              <label>Message</label>
               <span>Message</span>
             </div>
-            <input type="submit" value="Send" className="sumbit-contact-btn" />
+            <button
+              type="submit"
+              className="sumbit-contact-btn"
+              onClick={sendMailHandler}
+            >
+              Send
+            </button>
           </form>
         </div>
       </div>
