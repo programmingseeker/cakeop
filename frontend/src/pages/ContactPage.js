@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Alert } from "react-bootstrap";
 function ContactForm() {
   const [focus, setFocus] = useState(null);
   const [username, setusername] = useState("");
   const [email, setemail] = useState("");
   const [phone, setphone] = useState(null);
   const [message, setmessage] = useState("");
+  const [alert, setalert] = useState(false);
   const sendMailHandler = async (e) => {
     e.preventDefault();
     const mailInput = {
@@ -18,11 +20,14 @@ function ContactForm() {
     await axios.post("/api/upload/contactus", mailInput);
     setFocus(false);
 
-    setFocus("");
+    setalert(true);
     setusername("");
     setemail("");
     setphone("");
     setmessage("");
+    setTimeout(() => {
+      setalert(false);
+    }, 4000);
   };
   return (
     <div className="container-contact">
@@ -83,6 +88,7 @@ function ContactForm() {
 
           <form className="form-contact-text" autocomplete="off">
             <h3 className="title-contact">Contact Developers</h3>
+            {alert ? <Alert variant="success">Sent successfully</Alert> : ""}
             <div className={`input-container ${focus ? "focus" : null}`}>
               <input
                 onFocus={() => {
