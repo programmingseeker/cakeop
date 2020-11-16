@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 
 class RangeSlider extends React.Component {
 	state = {
@@ -18,7 +18,7 @@ class RangeSlider extends React.Component {
 		currentMax: 950,
 		// eslint-disable-next-line
 		inputMax: 950,
-	};
+	};	
 	componentDidMount() {
 		const { currentMin, currentMax, max } = this.state;
 
@@ -30,7 +30,6 @@ class RangeSlider extends React.Component {
 			offsetSliderWidht: this.slider.offsetLeft,
 		});
 	}
-
 	setMin = (e) => {
 		const { min, max, currentMax, minValueBetween } = this.state;
 		const inputMin = e.target.value;
@@ -172,14 +171,13 @@ class RangeSlider extends React.Component {
 		return currentMin + minValueBetween;
 	};
 	priceFilterHandler = (e)=>{
-		const { currentMin, currentMax } = this.state;
+	const { currentMin, currentMax } = this.state;
 		this.props.filterPriceHandler(
 			e,
 			currentMin,
 			currentMax
 		);
 	}
-	
 	render() {
 		const {
 			min,
@@ -244,7 +242,9 @@ class RangeSlider extends React.Component {
 						className='text-center button-sidenav'
 						id='min-input'
 						type='number'
+						step='5'
 						onChange={this.setMin}
+						onBlur={this.priceFilterHandler}
 						value={inputMin}
 						min={min}
 						max={this.maxForMin}
@@ -254,8 +254,10 @@ class RangeSlider extends React.Component {
 						className='text-center button-sidenav'
 						id='max-input'
 						type='number'
+						step='5'
 						onChange={this.setMax}
 						value={inputMax}
+						onBlur={this.priceFilterHandler}
 						min={this.minForMax}
 						max={max}
 					/>

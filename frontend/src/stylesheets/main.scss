@@ -41,9 +41,10 @@ li {
 	margin-top: 10rem !important;
 }
 .banner {
-	background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+	background: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)),
 		url('/img/cover.jpg');
 	background-size: cover;
+	background-position: top center;
 	height: 100vh;
 	color: white !important;
 	width: 100%;
