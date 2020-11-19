@@ -80,9 +80,8 @@ li {
 }
 
 .bannner-text {
-  font-weight: 600 !important;
-  font-size: 90px;
-  line-height: 100px;
+  font-weight: 500 !important;
+  font-size: 50px !important;
 }
 .fac-con {
   display: flex;
@@ -304,11 +303,19 @@ th {
 
 @media (min-width: 768px) and (max-width: 991px) {
   .w-30 {
-    width: 60% !important;
+    width: 70% !important;
+  }
+  .bannner-text {
+    font-weight: 530 !important;
+    font-size: 40px !important;
   }
 }
 @media (max-width: 767px) {
   .w-30 {
     width: 100% !important;
+  }
+  .bannner-text {
+    font-weight: 510 !important;
+    font-size: 40px !important;
   }
 }

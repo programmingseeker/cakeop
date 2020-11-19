@@ -23,7 +23,7 @@ function Shipping({ history }) {
 	const isFilled = address && city && postalCode && area;
 
 	return (
-		<Container className='mt-5 mb-5 pt-5 center-screen left-fade-in  w-50 '>
+		<Container className='mt-5 mb-5 pt-5 center-screen left-fade-in  w-30 '>
 			<FormContainer>
 				<CheckoutSteps step1 step2 />
 				<h1>Shipping</h1>

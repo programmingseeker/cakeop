@@ -74,7 +74,7 @@ const ProductEditPage = ({ match, history }) => {
 					<Loader className='mt-5 pt-5' />
 				</div>
 			) : (
-				<div className='center-screen left-fade-in  w-50'>
+				<div className='center-screen left-fade-in  w-30'>
 					<Row className='d-flex justify-content-center flex-column container'>
 						<FormContainer>
 							<Form>

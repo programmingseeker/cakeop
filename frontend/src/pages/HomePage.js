@@ -1,13 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Image,
-  Form,
-  Button,
-  Alert,
-} from "react-bootstrap";
+import { Container, Row, Col, Image, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -56,10 +48,6 @@ function HomePage() {
     },
   };
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <>
       {loading ? (
@@ -70,8 +58,8 @@ function HomePage() {
         <>
           {error && <Alert variant="danger">{error}</Alert>}
           <div className="banner">
-            <Container className="text-white">
-              <h1 className="h1 text-white bannner-text" >
+            <Container className="col-lg-9">
+              <h1 className="h1 text-white bannner-text ">
                 Best Customized cakes in
                 <span className="text-primary"> Bangalore</span>
               </h1>

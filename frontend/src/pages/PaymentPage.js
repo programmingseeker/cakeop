@@ -23,7 +23,7 @@ const PaymentScreen = ({ history }) => {
 	};
 
 	return (
-		<Container className='mt-5 mb-5 pt-5 center-screen left-fade-in  w-50 '>
+		<Container className='mt-5 mb-5 pt-5 center-screen left-fade-in  w-30 '>
 			<FormContainer>
 				<CheckoutSteps step1 step2 step3 />
 				<h2 className='h1'>Payment Method</h2>

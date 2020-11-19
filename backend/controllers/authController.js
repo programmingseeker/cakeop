@@ -75,6 +75,7 @@ exports.googleLogin = catchAsync(async (req, res, next) => {
 		} else {
 			const newUser = await User.create({
 				username: name,
+				googleId: sub,
 				email,
 				profileImage: picture,
 			});

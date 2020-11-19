@@ -26,7 +26,13 @@ const Header = () => {
 	};
 
 	return (
-		<Navbar expand='lg' bg='white' fixed='top' className='shadow'>
+		<Navbar
+			collapseOnSelect
+			expand='lg'
+			bg='white'
+			fixed='top'
+			className='shadow'
+		>
 			<Container className='text-center'>
 				<LinkContainer to='/'>
 					<Navbar.Brand>
