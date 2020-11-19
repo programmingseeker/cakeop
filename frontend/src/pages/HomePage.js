@@ -71,7 +71,7 @@ function HomePage() {
           {error && <Alert variant="danger">{error}</Alert>}
           <div className="banner">
             <Container className="text-white">
-              <h1 className="h1 text-white ">
+              <h1 className="h1 text-white bannner-text" >
                 Best Customized cakes in
                 <span className="text-primary"> Bangalore</span>
               </h1>
