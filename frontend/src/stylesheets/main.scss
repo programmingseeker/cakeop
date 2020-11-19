@@ -41,7 +41,7 @@ li {
 	margin-top: 10rem !important;
 }
 .banner {
-	background: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)),
+	background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
 		url('/img/cover.jpg');
 	background-size: cover;
 	background-position: top center;
@@ -299,7 +299,7 @@ th {
 
 @media (min-width: 768px) and (max-width: 991px) {
 	.w-30 {
-		width: 60% !important;
+		width: 70% !important;
 	}
 }
 @media (max-width: 767px) {

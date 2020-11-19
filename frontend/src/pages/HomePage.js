@@ -4,8 +4,6 @@ import {
   Row,
   Col,
   Image,
-  Form,
-  Button,
   Alert,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -54,10 +52,6 @@ function HomePage() {
       items: 2,
       partialVisibilityGutter: 30,
     },
-  };
-
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
   };
 
   return (

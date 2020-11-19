@@ -106,37 +106,39 @@ function Settings() {
 			<div className='profile d-flex align-items-center mb-5 mt-5'>
 				<Image
 					id='myImg'
-					src={`/img/user/${currentUser.profileImage}`}
+					src={
+						currentUser.googleId
+							? currentUser.profileImage
+							: `/img/user/${currentUser.profileImage}`
+					}
 					alt='User Profile'
 					className='profile-photo'
 					onClick={() => setShowModal(true)}
 				/>
-				{
-				showModal?
-				<Modal
-					show={showModal}
-					onHide={() => setShowModal(false)}
-					dialogClassName='modal-90w'
-					centered
-				>
-					<Modal.Body>
-						<Button
-							className='close'
-							onClick={() => setShowModal(false)}
-						>
-							×
-						</Button>
-						<Image
-							id='myImg'
-							src={`/img/user/${currentUser.profileImage}`}
-							alt='User Profile'
-							className='profile-photo'
-							style={{ width: '25rem' }}
-						/>
-					</Modal.Body>
-				</Modal>
-				:null	
-				}
+				{showModal ? (
+					<Modal
+						show={showModal}
+						onHide={() => setShowModal(false)}
+						dialogClassName='modal-90w'
+						centered
+					>
+						<Modal.Body>
+							<Button
+								className='close'
+								onClick={() => setShowModal(false)}
+							>
+								×
+							</Button>
+							<Image
+								id='myImg'
+								src={`/img/user/${currentUser.profileImage}`}
+								alt='User Profile'
+								className='profile-photo'
+								style={{ width: '25rem' }}
+							/>
+						</Modal.Body>
+					</Modal>
+				) : null}
 				<Row className=' w-100'>
 					<Col>
 						<Form.Label
