@@ -63,7 +63,7 @@ function HomePage() {
                 Best Customized cakes <br className="br-toggle"/>in
                 <span className="text-white"> Bangalore</span>
               </h1>
-              <p className="h5 my-3 mb-2 text-white">
+              <p className="h5 my-3 mb-2 text-white" style={{"text-shadow": "2px 3px 2px rgba(0,0,0,0.2)"}}>
                 Have your dream
                 <span className="text-white"> Custom cakes </span>
                 made just for you
