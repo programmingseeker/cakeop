@@ -58,14 +58,14 @@ function HomePage() {
         <>
           {error && <Alert variant="danger">{error}</Alert>}
           <div className="banner">
-            <Container className="col-lg-9">
+            <Container className="col-lg-10">
               <h1 className="h1 text-white bannner-text ">
-                Best Customized cakes in
-                <span className="text-primary"> Bangalore</span>
+                Best Customized cakes <br className="br-toggle"/>in
+                <span className="text-white"> Bangalore</span>
               </h1>
               <p className="h5 my-3 mb-2 text-white">
                 Have your dream
-                <span className="text-primary"> Custom cakes </span>
+                <span className="text-white"> Custom cakes </span>
                 made just for you
                 <br />
                 Make your celebration special with cake

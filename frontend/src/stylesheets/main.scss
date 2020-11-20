@@ -41,11 +41,11 @@ li {
   margin-top: 10rem !important;
 }
 .banner {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("/img/cover.jpg");
+  background: linear-gradient(90deg , rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)70%),
+    url("/img/cover.png");
   background-size: cover;
-  background-position: top center;
-  height: 100vh;
+  background-position: right center;
+  height:100vh;
   color: white !important;
   width: 100%;
   div {
@@ -70,18 +70,21 @@ li {
 
     &:hover {
       background-color: #fff;
-      color: #00bcd4;
+      color: $primary;
     }
 
     &:hover .hr-bar {
-      border: #00bcd4 solid 1px;
+      border: $primary solid 1px;
     }
   }
 }
 
 .bannner-text {
-  font-weight: 500 !important;
-  font-size: 50px !important;
+  font-weight: 510 !important;
+  font-size: 45px !important;
+  .br-toggle{
+    display:static;
+  }
 }
 .fac-con {
   display: flex;
@@ -317,5 +320,17 @@ th {
   .bannner-text {
     font-weight: 510 !important;
     font-size: 40px !important;
+  .br-toggle{
+    display:none;
+  }
+  }
+  .banner {
+  background: linear-gradient(270deg , rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)60%),
+    url("/img/cover.png");
+  background-size: cover;
+  background-position: right center;
+  height:100vh;
+  color: white !important;
+  width: 100%;
   }
 }
