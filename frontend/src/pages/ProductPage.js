@@ -28,7 +28,7 @@ const ProductPage = ({ history, match }) => {
 	const productDetails = useSelector((state) => state.productDetails);
 	const { loading, error, product } = productDetails;
 
-	const { user } = useSelector((state) => state.userInfo);
+	const { user } = useSelector((state) => state.auth);
 	const reviewSubmitHandler = (e) => {
 		e.preventDefault();
 		dispatch(
@@ -153,7 +153,7 @@ const ProductPage = ({ history, match }) => {
 									})}
 							</Carousel>
 						</Col>
-						<Col sm={12} md={6} className='my-auto'>
+						<Col sm={12} md={3} className='my-auto'>
 							<h3>{product.name}</h3>
 							<Ratings
 								value={product.ratingsAverage}
@@ -178,7 +178,7 @@ const ProductPage = ({ history, match }) => {
 								}`}</strong>
 							</div>
 						</Col>
-						<Col sm={12} md={6} className='my-auto'>
+						<Col sm={12} md={3}>
 							<ListGroup>
 								<ListGroup.Item>
 									<Row>

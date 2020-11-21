@@ -16,10 +16,10 @@ function GetAllCakes({ history }) {
 	const [currentPage, setCurrentPage] = useState(1);
 	const limit = 3;
 
-	const products = useSelector((state) => state.productList.products);
+	const productList = useSelector((state) => state.productList);
+	const products = productList.products;
 	const noofpages = Math.ceil(products.totalLength / limit);
 	const dataprod = products.data || [];
-	const productList = useSelector((state) => state.productList);
 	const { loading, error } = productList;
 
 	const sideNavtoggle = () => {
