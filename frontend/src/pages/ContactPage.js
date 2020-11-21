@@ -31,9 +31,9 @@ function ContactForm() {
 		}, 4000);
 	};
 	return (
-		<div className='container-contact'>
+		<div className='container-contact mt-4 w-30'>
 			<span className='bg-circle'></span>
-			<div className='form-contact'>
+			<div className='form-contact w-30'>
 				<div className='contact-info'>
 					<h3 className='title-contact'>Let's get in touch</h3>
 					<p className='text-contact'>
@@ -82,7 +82,7 @@ function ContactForm() {
 					</div>
 				</div>
 
-				<div className='contact-form'>
+				<div className='contact-form w-30'>
 					<span className='circle one'></span>
 					<span className='circle two'></span>
 

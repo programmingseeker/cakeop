@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
 
 $primary: #00bcd4;
 $text-color: #5f6368;
@@ -12,23 +12,24 @@ $footer-primary-bg: #3c444c;
 $footer-secondary-bg: #5f6368;
 
 :root {
-  font-family: "Lato", sans-serif;
-  color: $text-color !important;
-  outline: none !important;
-  border: none;
-  background-color: #fafafa;
+	font-family: 'Lato', sans-serif;
+	color: $text-color !important;
+	outline: none !important;
+	border: none;
+	background-color: #fafafa;
+	&:hover {
+		outline: none !important;
+		box-shadow: none;
+	}
+	&:active {
+		outline: none !important;
+		box-shadow: none;
+	}
 }
-body:hover,
-body:active,
-body:focus,
-body {
-  outline: none !important;
-  border: none;
-}
-@import "./stylesheets/main";
-@import "./stylesheets/rangeSlider";
-@import "./stylesheets/accountpage";
-@import "./stylesheets/sidenav";
-@import "./stylesheets/contactpage";
+@import './stylesheets/main';
+@import './stylesheets/rangeSlider';
+@import './stylesheets/accountpage';
+@import './stylesheets/sidenav';
+@import './stylesheets/contactpage';
 
-@import "bootstrap/scss/bootstrap";
+@import 'bootstrap/scss/bootstrap';
