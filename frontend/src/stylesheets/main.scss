@@ -41,11 +41,11 @@ li {
   margin-top: 10rem !important;
 }
 .banner {
-  background: linear-gradient(90deg , rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)70%),
-    url("/img/cover1.png");
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 70%),
+    url("/img/cover.png");
   background-size: cover;
   background-position: right center;
-  height:100vh;
+  height: 100vh;
   color: white !important;
   width: 100%;
   div {
@@ -80,13 +80,13 @@ li {
 }
 
 .bannner-text {
-  // font-weight: 510 !important;
-  // font-size: 45px !important;
-    letter-spacing: .05em;
-  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
-               0px -5px 16px rgba(255,255,255,0.3);
-    .br-toggle{
-    display:static;
+  font-weight: 510 !important;
+  font-size: 45px !important;
+  letter-spacing: 0.05em;
+  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
+    0px -5px 16px rgba(255, 255, 255, 0.3);
+  .br-toggle {
+    display: static;
   }
 }
 .fac-con {
@@ -321,18 +321,22 @@ th {
   }
   .bannner-text {
     font-size: 40px !important;
-  .br-toggle{
-    display:none;
+    .br-toggle {
+      display: none;
+    }
   }
-}
-  
-.banner {
-  background: linear-gradient(270deg , rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0)60%),
-    url("/img/cover1.png");
-  background-size: cover;
-  background-position: right center;
-  height:100vh;
-  color: white !important;
-  width: 100%;
+
+  .banner {
+    background: linear-gradient(
+        270deg,
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0) 60%
+      ),
+      url("/img/cover.png");
+    background-size: cover;
+    background-position: right center;
+    height: 100vh;
+    color: white !important;
+    width: 100%;
   }
 }
