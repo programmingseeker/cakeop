@@ -153,7 +153,7 @@ const ProductPage = ({ history, match }) => {
 									})}
 							</Carousel>
 						</Col>
-						<Col>
+						<Col sm={12} md={6} className='my-auto'>
 							<h3>{product.name}</h3>
 							<Ratings
 								value={product.ratingsAverage}
@@ -170,12 +170,15 @@ const ProductPage = ({ history, match }) => {
 							<div className='my-1'>
 								Weight:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<strong>{`${
-								product.weight >= 1000 ? product.weight / 1000 : product.weight
-								} ${product.weight >= 1000 ? 'kg' : 'gm'}`
-							}</strong>
+									product.weight >= 1000
+										? product.weight / 1000
+										: product.weight
+								} ${
+									product.weight >= 1000 ? 'kg' : 'gm'
+								}`}</strong>
 							</div>
 						</Col>
-						<Col>
+						<Col sm={12} md={6} className='my-auto'>
 							<ListGroup>
 								<ListGroup.Item>
 									<Row>
@@ -249,7 +252,7 @@ const ProductPage = ({ history, match }) => {
 						</Col>
 					</Row>
 					<Row>
-						<Col md={6}>
+						<Col sm={12} md={6}>
 							<br />
 							{user ? (
 								<Form onSubmit={reviewSubmitHandler}>

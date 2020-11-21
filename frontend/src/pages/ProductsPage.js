@@ -90,7 +90,7 @@ function GetAllCakes({ history }) {
 				maxWidth: '1230px',
 			}}
 		>
-			<aside id='sidebar-wrapper'>
+			<aside id='sidebar-wrapper container'>
 				<Nav className='sidebar-nav justify-content-center' as='ul'>
 					<div className='d-flex align-items-center '>
 						<img src='/img/icons/filter.svg' alt='filter icon' />
@@ -138,7 +138,7 @@ function GetAllCakes({ history }) {
 					</Dropdown>
 				</Nav>
 				<br />
-				<Nav className='d-flex flex-column align-items-center justify-content-center '>
+				<Nav className='d-flex flex-column align-items-center justify-content-center container'>
 					<h2
 						className='text-white pl-2'
 						style={{ fontWeight: '600' }}
@@ -253,31 +253,31 @@ function GetAllCakes({ history }) {
 				{loading ? (
 					<Loader />
 				) : (
-					<>
+					<Container>
 						<h4 className='mt-2 text-color'>
 							Available:{' '}
 							<span className='text-primary font-weight-bold'>
 								{products.totalLength}
 							</span>
 						</h4>
-						<div className='d-flex flex-wrap'>
-							{dataprod.map((product) => {
-								return (
-									<div
-										className='justify-content-center'
-										key={product.id}
-										style={{
-											padding:
-												'0px -10px 0px -10px!important',
-										}}
-									>
-										<ProductCardUI product={product} />
-									</div>
-								);
-							})}
-						</div>
+						{/* <div className='d-flex flex-wrap'> */}
+						{dataprod.map((product) => {
+							return (
+								<div
+									className='justify-content-center center-screen mr-5'
+									key={product.id}
+									style={{
+										padding:
+											'0px -10px 0px -10px!important',
+									}}
+								>
+									<ProductCardUI product={product} />
+								</div>
+							);
+						})}
+						{/* </div> */}
 						{renderPaginate()}
-					</>
+					</Container>
 				)}
 			</section>
 		</Container>
