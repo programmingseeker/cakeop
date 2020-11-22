@@ -442,3 +442,22 @@ th {
     display: none;
   }
 }
+
+textarea:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+label:focus,
+.btn:active,
+.btn.active,
+a.active,
+a:focus {
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
