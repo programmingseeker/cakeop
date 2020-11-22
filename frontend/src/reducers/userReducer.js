@@ -23,9 +23,7 @@ export const authReducer = (state = {}, action) => {
 			return {
 				...state,
 				loading: false,
-				status: action.payload.status,
-				message: action.payload.message,
-				user: action.payload.user,
+				user: action.payload,
 			};
 		case USER_LOGIN_FAIL:
 			return { ...state, loading: false, error: action.payload };
@@ -35,9 +33,7 @@ export const authReducer = (state = {}, action) => {
 			return {
 				...state,
 				loading: false,
-				status: action.payload.status,
-				message: action.payload.message,
-				user: action.payload.user,
+				user: action.payload,
 			};
 		case USER_REGISTER_FAIL:
 			return { ...state, loading: false, error: action.payload };
@@ -47,29 +43,12 @@ export const authReducer = (state = {}, action) => {
 			return {
 				...state,
 				loading: false,
-				status: action.payload.status,
-				message: action.payload.message,
-				user: action.payload.user,
+				user: action.payload,
 			};
 		case USER_GOOGLE_LOGIN_FAIL:
 			return { ...state, loading: false, error: action.payload };
 
 		case USER_LOGOUT:
-			return {};
-		default:
-			return state;
-	}
-};
-
-export const userInfoReducer = (state = {}, action) => {
-	switch (action.type) {
-		case USER_INFO_REQUEST:
-			return { ...state, loading: true };
-		case USER_INFO_SUCCESS:
-			return { ...state, loading: false, user: action.payload };
-		case USER_INFO_FAIL:
-			return { ...state, loading: false, error: action.payload };
-		case USER_INFO_RESET:
 			return {};
 		default:
 			return state;

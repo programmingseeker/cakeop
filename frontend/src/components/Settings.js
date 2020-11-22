@@ -17,7 +17,6 @@ import { getUserInfo } from './../actions/userActions';
 function Settings() {
 	const dispatch = useDispatch();
 	const [showModal, setShowModal] = useState(false);
-	const [currentUser, setCurrentUser] = useState({});
 	const [uploading, setUploading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
 	const [successMessage, setSuccessMessage] = useState('');
@@ -26,9 +25,7 @@ function Settings() {
 	const [newPassword, setNewPassword] = useState('');
 	const [newConfirmPassword, setConfirmNewPassword] = useState('');
 
-	const userInfo = useSelector((state) => state.userInfo);
-	const { user } = userInfo;
-
+	const { user } = useSelector((state) => state.auth);
 	const uploadProfileImageHandler = async (e) => {
 		const file = e.target.files[0];
 		const formData = new FormData();
@@ -70,9 +67,7 @@ function Settings() {
 				setSuccessMessage('');
 			}, 3000);
 		}
-
-		setCurrentUser(user);
-	}, [errorMessage, successMessage, user]);
+	}, [errorMessage, successMessage]);
 
 	return (
 		<Container>
@@ -86,7 +81,7 @@ function Settings() {
 						readOnly
 						plaintext
 						className='text-muted drop-shadow input'
-						defaultValue={currentUser.username}
+						defaultValue={user.username}
 					/>
 				</Form.Group>
 
@@ -99,7 +94,7 @@ function Settings() {
 						readOnly
 						plaintext
 						className='text-muted drop-shadow input'
-						defaultValue={currentUser.email}
+						defaultValue={user.email}
 					/>
 				</Form.Group>
 			</Form>
@@ -107,9 +102,9 @@ function Settings() {
 				<Image
 					id='myImg'
 					src={
-						currentUser.googleId
-							? currentUser.profileImage
-							: `/img/user/${currentUser.profileImage}`
+						user.googleId
+							? user.profileImage
+							: `/img/user/${user.profileImage}`
 					}
 					alt='User Profile'
 					className='profile-photo'
@@ -131,7 +126,7 @@ function Settings() {
 							</Button>
 							<Image
 								id='myImg'
-								src={`/img/user/${currentUser.profileImage}`}
+								src={`/img/user/${user.profileImage}`}
 								alt='User Profile'
 								className='profile-photo'
 								style={{ width: '25rem' }}

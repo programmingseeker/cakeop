@@ -18,7 +18,7 @@ function Shipping({ history }) {
 	const submitHandler = (e) => {
 		e.preventDefault();
 		dispatch(saveShippingAddress({ address, city, area, postalCode }));
-		history.push('/payment');
+		history.replace('/payment');
 	};
 	const isFilled = address && city && postalCode && area;
 

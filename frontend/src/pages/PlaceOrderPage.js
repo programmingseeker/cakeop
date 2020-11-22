@@ -40,7 +40,7 @@ const PlaceOrderPage = ({ history }) => {
 
 	useEffect(() => {
 		if (success) {
-			history.push(`/order/${order._id}`);
+			history.replace(`/order/${order._id}`);
 			dispatch({ type: ORDER_CREATE_RESET });
 		}
 		// eslint-disable-next-line

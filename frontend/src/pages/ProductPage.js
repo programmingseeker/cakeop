@@ -28,7 +28,7 @@ const ProductPage = ({ history, match }) => {
 	const productDetails = useSelector((state) => state.productDetails);
 	const { loading, error, product } = productDetails;
 
-	const { user } = useSelector((state) => state.userInfo);
+	const { user } = useSelector((state) => state.auth);
 	const reviewSubmitHandler = (e) => {
 		e.preventDefault();
 		dispatch(
@@ -153,7 +153,7 @@ const ProductPage = ({ history, match }) => {
 									})}
 							</Carousel>
 						</Col>
-						<Col>
+						<Col sm={12} md={3} className='my-auto'>
 							<h3>{product.name}</h3>
 							<Ratings
 								value={product.ratingsAverage}
@@ -170,12 +170,15 @@ const ProductPage = ({ history, match }) => {
 							<div className='my-1'>
 								Weight:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<strong>{`${
-								product.weight >= 1000 ? product.weight / 1000 : product.weight
-								} ${product.weight >= 1000 ? 'kg' : 'gm'}`
-							}</strong>
+									product.weight >= 1000
+										? product.weight / 1000
+										: product.weight
+								} ${
+									product.weight >= 1000 ? 'kg' : 'gm'
+								}`}</strong>
 							</div>
 						</Col>
-						<Col>
+						<Col sm={12} md={3}>
 							<ListGroup>
 								<ListGroup.Item>
 									<Row>
@@ -249,7 +252,7 @@ const ProductPage = ({ history, match }) => {
 						</Col>
 					</Row>
 					<Row>
-						<Col md={6}>
+						<Col sm={12} md={6}>
 							<br />
 							{user ? (
 								<Form onSubmit={reviewSubmitHandler}>

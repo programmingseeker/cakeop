@@ -9,10 +9,8 @@ import Bookings from '../components/Bookings';
 function ProfilePage() {
 	const [sideNav, setsideNav] = useState(false);
 	const [currentTab, setCurrentTab] = useState('settings');
-	const [currentUser, setCurrentUser] = useState({});
 
-	const userInfo = useSelector((state) => state.userInfo);
-	const { user } = userInfo;
+	const { user } = useSelector((state) => state.auth);
 	const sideNavtoggle = () => {
 		const a = sideNav ? false : true;
 		setsideNav(a);
@@ -35,9 +33,6 @@ function ProfilePage() {
 		}
 	};
 
-	useEffect(() => {
-		setCurrentUser(user);
-	}, [user, setCurrentUser]);
 
 	return (
 		<Tab.Container defaultActiveKey='settings'>
@@ -83,7 +78,7 @@ function ProfilePage() {
 							</Nav.Link>
 						</Nav.Item>
 
-						{currentUser.userType === 'admin' ? (
+						{user.userType === 'admin' ? (
 							<Nav.Item as='li'>
 								<LinkContainer to='/admindash'>
 									<Nav.Link

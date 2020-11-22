@@ -7,14 +7,9 @@ import { logout } from './../actions/userActions';
 import FormContent from './FormContent';
 
 const Header = () => {
-	const [user, setUser] = useState({});
 	const dispatch = useDispatch();
-	const { user: userdata } = useSelector((state) => state.userInfo);
+	const { user } = useSelector((state) => state.auth);
 	const [showModal, setshowModal] = useState(false);
-	useEffect(() => {
-		setUser(userdata);
-	}, [userdata]);
-
 	const showModalHandler = () => {
 		setshowModal(true);
 	};

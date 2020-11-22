@@ -8,8 +8,10 @@ const catchAsync = require('./../utils/catchAsync.js');
 const AppError = require('./../utils/appError.js');
 dotenv.config();
 
-const sendJWTResponse = (userInfo, message, statusCode, res) => {
-	const token = createJWT(jwt, userInfo.id, userInfo.userType);
+const sendJWTResponse = (user, message, statusCode, res) => {
+	const token = createJWT(jwt, user.id);
+	user.password = undefined;
+	user.__v = undefined;
 	res.cookie('jwt', token, {
 		httpOnly: true,
 		expires: new Date(
@@ -19,11 +21,7 @@ const sendJWTResponse = (userInfo, message, statusCode, res) => {
 	res.status(statusCode).json({
 		status: 'success',
 		message,
-		user: {
-			createdAt: userInfo.createdAt,
-			userType: userInfo.userType,
-			username: userInfo.username,
-		},
+		user,
 	});
 };
 

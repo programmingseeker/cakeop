@@ -13,13 +13,13 @@ const PaymentScreen = ({ history }) => {
 	const { shippingAddress } = cart;
 
 	if (!shippingAddress) {
-		history.push('/shipping');
+		history.goBack();
 	}
 
 	const submitHandler = (e) => {
 		e.preventDefault();
 		dispatch(savePaymentMethod(paymentMethod));
-		history.push('/placeorder');
+		history.replace('/placeorder');
 	};
 
 	return (
