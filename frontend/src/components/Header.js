@@ -22,6 +22,15 @@ const Header = () => {
     dispatch(logout());
   };
 
+  const ImageWithName = () => {
+    const a = user.username ? user.username : "";
+    return (
+      <>
+        <img src={`/img/user/${user.profileImage}`}></img>
+        <span className="align-slef-center"> {a}</span>
+      </>
+    );
+  };
   const HeaderContentHandler = () => {
     return (
       <Nav className="ml-auto text-center">
@@ -59,36 +68,34 @@ const Header = () => {
         </LinkContainer>
 
         {user ? (
-          <NavDropdown
-            title={user.username ? user.username : ""}
-            id="username"
-            onClick={hideModalHandler}
-          >
-            <LinkContainer
-              to="/profile"
-              onClick={() => setDisableInputIsChecked(!disableInputIsChecked)}
-            >
-              <NavDropdown.Item>Profile</NavDropdown.Item>
-            </LinkContainer>
-
-            <NavDropdown.Item
-              as="button"
-              className="text-decoration-none text-dark"
-              onClick={onClickLogoutHandler}
-            >
-              Log Out
-            </NavDropdown.Item>
-          </NavDropdown>
+          <>
+            <NavDropdown title={<ImageWithName />} id="username">
+              <LinkContainer
+                to="/profile"
+                onClick={() => setDisableInputIsChecked(!disableInputIsChecked)}
+              >
+                <NavDropdown.Item className="text-center">
+                  Profile
+                </NavDropdown.Item>
+              </LinkContainer>
+              <NavDropdown.Item
+                className="text-center"
+                onClick={onClickLogoutHandler}
+              >
+                Log Out
+              </NavDropdown.Item>
+            </NavDropdown>
+          </>
         ) : (
           <>
-            <div
+            {/* <div
               onClick={() => setDisableInputIsChecked(!disableInputIsChecked)}
-            >
-              <Nav.Link onClick={showModalHandler}>
-                <i className="fas fa-user pr-2"></i>
-                Log In / Sign Up
-              </Nav.Link>
-            </div>
+            > */}
+            <Nav.Link onClick={showModalHandler}>
+              <i className="fas fa-user pr-2"></i>
+              Log In / Sign Up
+            </Nav.Link>
+            {/* </div> */}
             {showModal && (
               <Route
                 render={({ history, location }) => (
@@ -131,9 +138,9 @@ const Header = () => {
               onClick={() => setDisableInputIsChecked(!disableInputIsChecked)}
               checked={disableInputIsChecked}
             />
-            <span></span>
-            <span></span>
-            <span></span>
+            <span className="header-nav-button"></span>
+            <span className="header-nav-button"></span>
+            <span className="header-nav-button"></span>
             <ul id="menu">
               <HeaderContentHandler />
             </ul>
