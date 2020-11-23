@@ -21,6 +21,12 @@ import {
 	ORDER_PAY_REQUEST,
 	ORDER_PAY_RESET,
 	ORDER_PAY_SUCCESS,
+	ORDER_CREATE_ERROR_RESET,
+	ORDER_DETAILS_ERROR_RESET,
+	ORDER_PAY_ERROR_RESET,
+	ORDER_DELIVER_ERROR_RESET,
+	ORDER_LIST_ERROR_RESET,
+	ORDER_LIST_MY_ERROR_RESET,
 } from '../constants/orderConstants';
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -38,6 +44,8 @@ export const orderCreateReducer = (state = {}, action) => {
 			return { ...state, loading: false, error: action.payload };
 		case ORDER_CREATE_RESET:
 			return {};
+		case ORDER_CREATE_ERROR_RESET:
+			return { ...state, error: undefined };
 		default:
 			return state;
 	}
@@ -54,6 +62,8 @@ export const orderDetailsReducer = (
 			return { ...state, loading: false, order: action.payload };
 		case ORDER_DETAILS_FAIL:
 			return { ...state, loading: false, error: action.payload };
+		case ORDER_DETAILS_ERROR_RESET:
+			return { ...state, error: undefined };
 		default:
 			return state;
 	}
@@ -67,8 +77,11 @@ export const orderPayReducer = (state = {}, action) => {
 			return { ...state, loading: false, success: true };
 		case ORDER_PAY_FAIL:
 			return { ...state, loading: false, error: action.payload };
+		case ORDER_PAY_ERROR_RESET:
+			return { ...state, error: undefined };
 		case ORDER_PAY_RESET:
 			return {};
+
 		default:
 			return state;
 	}
@@ -84,6 +97,8 @@ export const orderDeliverReducer = (state = {}, action) => {
 			return { ...state, loading: false, error: action.payload };
 		case ORDER_DELIVER_RESET:
 			return {};
+		case ORDER_DELIVER_ERROR_RESET:
+			return { ...state, error: undefined };
 		default:
 			return state;
 	}
@@ -99,6 +114,8 @@ export const orderListMyReducer = (state = { orders: [] }, action) => {
 			return { ...state, loading: false, error: action.payload };
 		case ORDER_LIST_MY_RESET:
 			return { orders: [] };
+		case ORDER_LIST_MY_ERROR_RESET:
+			return { orders: [], error: undefined };
 		default:
 			return state;
 	}
@@ -112,6 +129,8 @@ export const orderListReducer = (state = { orders: [] }, action) => {
 			return { ...state, loading: false, orders: action.payload };
 		case ORDER_LIST_FAIL:
 			return { ...state, loading: false, error: action.payload };
+		case ORDER_LIST_ERROR_RESET:
+			return { ...state, error: undefined };
 		default:
 			return state;
 	}

@@ -13,6 +13,7 @@ import {
 	USER_GOOGLE_LOGIN_FAIL,
 	USER_GOOGLE_LOGIN_REQUEST,
 	USER_GOOGLE_LOGIN_SUCCESS,
+	USER_ERROR_RESET,
 } from './../constants/userConstants';
 
 export const authReducer = (state = {}, action) => {
@@ -50,6 +51,8 @@ export const authReducer = (state = {}, action) => {
 
 		case USER_LOGOUT:
 			return {};
+		case USER_ERROR_RESET:
+			return { ...state, error: undefined };
 		default:
 			return state;
 	}
