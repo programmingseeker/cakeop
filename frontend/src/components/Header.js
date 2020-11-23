@@ -11,7 +11,7 @@ const Header = () => {
   const { user } = useSelector((state) => state.auth);
   const [showModal, setshowModal] = useState(false);
   const [disableInputIsChecked, setDisableInputIsChecked] = useState(false);
-
+  const [navbar, setNavbar] = useState(false);
   const showModalHandler = () => {
     setshowModal(true);
   };
@@ -22,13 +22,27 @@ const Header = () => {
     dispatch(logout());
   };
 
+  const changeBackground = () => {
+    if (window.location.pathname === "/") {
+      console.log(window.pageYOffset);
+      window.pageYOffset >= 136 ? setNavbar(true) : setNavbar(false);
+    } else {
+      setNavbar(true);
+    }
+  };
+
+  // useEffect(() => {
+  // }, [window.location.pathname]);
+
+  window.addEventListener("scroll", changeBackground);
+
   const ImageWithName = () => {
     const a = user.username ? user.username : "";
     return (
-      <>
+      <span className="align-slef-center">
         <img src={`/img/user/${user.profileImage}`}></img>
-        <span className="align-slef-center"> {a}</span>
-      </>
+        <span> {a}</span>
+      </span>
     );
   };
   const HeaderContentHandler = () => {
@@ -114,14 +128,18 @@ const Header = () => {
     );
   };
   return (
-    <Navbar expand="lg" bg="white" fixed="top" className="shadow">
-      <Container className="text-center">
+    <Navbar
+      expand="lg"
+      fixed="top"
+      className={`${navbar ? "shadow active-nav" : "active-nav-inverse"}`}
+    >
+      <Container className={`text-center`}>
         <LinkContainer to="/">
           <Navbar.Brand>
             <img
               alt="Logo"
-              src="/img/icons/logo.svg"
-              className="d-inline-block align-middle"
+              src={`/img/icons/${navbar ? "logo.svg" : "logo1.svg"}`}
+              className="d-inline-block align-middle "
             />
             {"  "}
             <span className="align-middle h2 font-weight-bold">CakeOp</span>
@@ -135,7 +153,8 @@ const Header = () => {
           <div title="Menu" id="menuToggle">
             <input
               type="checkbox"
-              onClick={() => setDisableInputIsChecked(!disableInputIsChecked)}
+              onClick={() => setNavbar(!navbar)}
+              onChange={() => setDisableInputIsChecked(!disableInputIsChecked)}
               checked={disableInputIsChecked}
             />
             <span className="header-nav-button"></span>
