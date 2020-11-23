@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Nav, Tab, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -32,7 +32,6 @@ function ProfilePage() {
 				return <div> this is a wrong page</div>;
 		}
 	};
-
 
 	return (
 		<Tab.Container defaultActiveKey='settings'>
