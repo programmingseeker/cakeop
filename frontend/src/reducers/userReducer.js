@@ -1,6 +1,5 @@
 import {
 	USER_INFO_REQUEST,
-	USER_INFO_RESET,
 	USER_INFO_SUCCESS,
 	USER_INFO_FAIL,
 	USER_LOGIN_FAIL,
@@ -13,6 +12,7 @@ import {
 	USER_GOOGLE_LOGIN_FAIL,
 	USER_GOOGLE_LOGIN_REQUEST,
 	USER_GOOGLE_LOGIN_SUCCESS,
+	USER_ERROR_RESET,
 } from './../constants/userConstants';
 
 export const authReducer = (state = {}, action) => {
@@ -47,9 +47,16 @@ export const authReducer = (state = {}, action) => {
 			};
 		case USER_GOOGLE_LOGIN_FAIL:
 			return { ...state, loading: false, error: action.payload };
-
+		case USER_INFO_REQUEST:
+			return { ...state, loading: true };
+		case USER_INFO_SUCCESS:
+			return { ...state, loading: false, user: action.payload };
+		case USER_INFO_FAIL:
+			return { ...state, loading: false, error: action.payload };
 		case USER_LOGOUT:
 			return {};
+		case USER_ERROR_RESET:
+			return { ...state, error: undefined };
 		default:
 			return state;
 	}

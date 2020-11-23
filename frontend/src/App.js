@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -20,19 +20,28 @@ import ProductEditPage from './pages/ProductEditPage';
 import ProductAddPage from './pages/ProductAddPage';
 import OrderPage from './pages/OrderPage';
 import ContactPage from './pages/ContactPage';
+import RouteMiddleware from './components/RouteMiddleware';
 
 function App() {
 	return (
 		<Router>
 			<Header />
 			<Switch>
-				<Route exact path='/' component={HomePage} />
-				<Route exact path='/login' component={LoginPage} />
-				<Route exact path='/signup' component={SignupPage} />
-				<Route exact path='/cakes' component={ProductsPage} />
-				<Route exact path='/cakes/:id' component={ProductPage} />
-				<Route exact path='/cart/:id?' component={CartPage} />
-				<Route exact path='/contactus' component={ContactPage} />
+				<RouteMiddleware exact path='/' component={HomePage} />
+				<RouteMiddleware exact path='/login' component={LoginPage} />
+				<RouteMiddleware exact path='/signup' component={SignupPage} />
+				<RouteMiddleware exact path='/cakes' component={ProductsPage} />
+				<RouteMiddleware
+					exact
+					path='/cakes/:id'
+					component={ProductPage}
+				/>
+				<RouteMiddleware exact path='/cart/:id?' component={CartPage} />
+				<RouteMiddleware
+					exact
+					path='/contactus'
+					component={ContactPage}
+				/>
 				<ProtectRoute
 					exact
 					path='/order/:id'
@@ -83,7 +92,7 @@ function App() {
 					restrictTo={['admin']}
 				/>
 
-				<Route path='*' component={NotFound404} />
+				<RouteMiddleware path='*' component={NotFound404} />
 			</Switch>
 			<Footer />
 		</Router>

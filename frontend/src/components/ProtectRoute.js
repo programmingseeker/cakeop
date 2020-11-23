@@ -1,16 +1,19 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { clearErrors } from '../actions/appActions';
 
 const ProtectRoute = ({ component: Component, restrictTo, ...rest }) => {
-	let isAuthenticated = false;
+	const dispatch = useDispatch();
 	const { user } = useSelector((state) => state.auth);
+	let isAuthenticated = false;
 	if (user) {
 		const { userType } = user;
 		if (restrictTo.includes(userType)) {
 			isAuthenticated = true;
 		}
 	}
+	dispatch(clearErrors());
 	return (
 		<Route
 			{...rest}

@@ -53,18 +53,6 @@ function ProfilePage() {
             <Nav.Item as="li">
               <Nav.Link
                 as="text"
-                onClick={() => curentTabHandler("reviews")}
-                className="sidenav-icon cursor-pointer"
-                active={currentTab === "reviews" ? true : false}
-              >
-                <i className="fa fa-star" />
-                Reviews
-              </Nav.Link>
-            </Nav.Item>
-
-            <Nav.Item as="li">
-              <Nav.Link
-                as="text"
                 onClick={() => curentTabHandler("bookings")}
                 active={currentTab === "bookings" ? true : false}
                 className="sidenav-icon cursor-pointer"
