@@ -10,6 +10,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const [showModal, setshowModal] = useState(false);
+  const [disableInputIsChecked, setDisableInputIsChecked] = useState(false);
+
   const showModalHandler = () => {
     setshowModal(true);
   };
@@ -23,21 +25,33 @@ const Header = () => {
   const HeaderContentHandler = () => {
     return (
       <Nav className="ml-auto text-center">
-        <LinkContainer to="#about" className="px-3">
+        <LinkContainer
+          to="#about"
+          className="px-3"
+          onClick={() => setDisableInputIsChecked(!disableInputIsChecked)}
+        >
           <Nav.Link>
             <i className="fas fa-users fa-lg px-2"></i>
             About Us
           </Nav.Link>
         </LinkContainer>
 
-        <LinkContainer to="/contactus" className="px-3">
+        <LinkContainer
+          to="/contactus"
+          className="px-3"
+          onClick={() => setDisableInputIsChecked(!disableInputIsChecked)}
+        >
           <Nav.Link>
             <i className="fas fa-phone-alt px-2"></i>
             Contact Us
           </Nav.Link>
         </LinkContainer>
 
-        <LinkContainer to="/cart" className="px-3">
+        <LinkContainer
+          to="/cart"
+          className="px-3"
+          onClick={() => setDisableInputIsChecked(!disableInputIsChecked)}
+        >
           <Nav.Link>
             <i className="fas fa-shopping-cart px-2"></i>
             Cart
@@ -50,7 +64,10 @@ const Header = () => {
             id="username"
             onClick={hideModalHandler}
           >
-            <LinkContainer to="/profile">
+            <LinkContainer
+              to="/profile"
+              onClick={() => setDisableInputIsChecked(!disableInputIsChecked)}
+            >
               <NavDropdown.Item>Profile</NavDropdown.Item>
             </LinkContainer>
 
@@ -64,10 +81,14 @@ const Header = () => {
           </NavDropdown>
         ) : (
           <>
-            <Nav.Link onClick={showModalHandler}>
-              <i className="fas fa-user pr-2"></i>
-              Log In / Sign Up
-            </Nav.Link>
+            <div
+              onClick={() => setDisableInputIsChecked(!disableInputIsChecked)}
+            >
+              <Nav.Link onClick={showModalHandler}>
+                <i className="fas fa-user pr-2"></i>
+                Log In / Sign Up
+              </Nav.Link>
+            </div>
             {showModal && (
               <Route
                 render={({ history, location }) => (
@@ -105,7 +126,11 @@ const Header = () => {
 
         <nav className="mobilescreen">
           <div title="Menu" id="menuToggle">
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              onClick={() => setDisableInputIsChecked(!disableInputIsChecked)}
+              checked={disableInputIsChecked}
+            />
             <span></span>
             <span></span>
             <span></span>

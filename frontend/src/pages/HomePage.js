@@ -65,7 +65,7 @@ function HomePage() {
               </h1>
               <p
                 className="h5 my-3 mb-2 text-white"
-                style={{ "text-shadow": "2px 3px 2px rgba(0,0,0,0.2)" }}
+                style={{ textShadow: "2px 3px 2px rgba(0,0,0,0.2)" }}
               >
                 Have your dream Custom cakes made just for you
                 <br className="br-toggle" />
