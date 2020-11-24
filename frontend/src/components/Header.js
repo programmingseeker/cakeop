@@ -49,7 +49,7 @@ const Header = () => {
     if (location.pathname !== "/") {
       setNavbar(true);
     } else {
-      setNavbar(!navbar);
+      if (!navbar) setNavbar(!navbar);
     }
   };
   const ImageWithName = () => {
