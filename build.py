@@ -25,7 +25,7 @@ GREEN = "\033[92m"
 RED = "\033[31m"
 YELLOW = "\033[93m"
 
-print(f"{GREEN} Changing directory to {YELLOW}{FRONTEND_DIR}{CLEAR}")
+print(f"{GREEN}Changing directory to {YELLOW}{FRONTEND_DIR}{CLEAR}")
 os.chdir(FRONTEND_DIR)
 print(f"{GREEN}running react build script{CLEAR}")
 os.system("npm run build")
@@ -63,34 +63,34 @@ if os.path.isdir(FRONTEND_BUILD_DIR) and os.path.isdir(PROD_BUILD_PUBLIC_DIR):
 
     print(f"{GREEN}completed moving frontend {YELLOW}build{CLEAR} files{CLEAR}")
 
-print(f"{GREEN}Modifying {YELLOW}{PROD_HTML_FILE}{CLEAR}")
-with open(PROD_HTML_FILE, "r+") as f:
-    data = f.read()
-    js_content = re.search(r"<script>(.*?)</script>", data)
-    js_string = js_content.group(1)
-    js_string_remove = js_content.group(0)
-    new_data = data.replace(
-        js_string_remove, f'<script src="/static/js/startscript.js"></script>'
-    )
-    with open(PROD_START_JS_FILE, "w") as js_start_script:
-        js_start_script.write(js_string)
+# print(f"{GREEN}Modifying {YELLOW}{PROD_HTML_FILE}{CLEAR}")
+# with open(PROD_HTML_FILE, "r+") as f:
+#     data = f.read()
+#     js_content = re.search(r"<script>(.*?)</script>", data)
+#     js_string = js_content.group(1)
+#     js_string_remove = js_content.group(0)
+#     new_data = data.replace(
+#         js_string_remove, f'<script src="/static/js/startscript.js"></script>'
+#     )
+#     with open(PROD_START_JS_FILE, "w") as js_start_script:
+#         js_start_script.write(js_string)
 
-with open(PROD_HTML_FILE, "w") as f:
-    f.write(new_data)
+# with open(PROD_HTML_FILE, "w") as f:
+#     f.write(new_data)
 
 
-print(f"{GREEN}Copying {YELLOW}{DOTENV_FILE}{CLEAR}")
-shutil.copy2(DOTENV_FILE, PROD_BUILD_DIR)
+# print(f"{GREEN}Copying {YELLOW}{DOTENV_FILE}{CLEAR}")
+# shutil.copy2(DOTENV_FILE, PROD_BUILD_DIR)
 
-print(f"{GREEN}Updating {YELLOW}{PROD_PACKAGE_JSON}{CLEAR}")
-with open(BACKEND_PACKAGE_JSON, "r") as f:
-    data = json.load(f)
-    new_data = {}
-    for dataField in data.keys():
-        if dataField != "devDependencies":
-            new_data[dataField] = data[dataField]
-    with open(PROD_PACKAGE_JSON, "w") as f1:
-        f1.write(json.dumps(new_data))
+# print(f"{GREEN}Updating {YELLOW}{PROD_PACKAGE_JSON}{CLEAR}")
+# with open(BACKEND_PACKAGE_JSON, "r") as f:
+#     data = json.load(f)
+#     new_data = {}
+#     for dataField in data.keys():
+#         if dataField != "devDependencies":
+#             new_data[dataField] = data[dataField]
+#     with open(PROD_PACKAGE_JSON, "w") as f1:
+#         f1.write(json.dumps(new_data))
 
 
 print(f"{CYAN}CLEANING FILES annd Folders...{CLEAR}")
@@ -99,10 +99,10 @@ print(f"{RED}Removed {YELLOW}{BACKEND_DIST_DIR}{CLEAR}")
 os.rmdir(FRONTEND_BUILD_DIR)
 print(f"{RED}Removed {YELLOW}{FRONTEND_BUILD_DIR}{CLEAR}")
 
-print(f"{GREEN}Changing directory to{YELLOW}{PROD_BUILD_DIR}{CLEAR}")
-os.chdir(PROD_BUILD_DIR)
-print(f"{GREEN}Deploying to heroku...{CLEAR}")
-os.system("git add .")
-os.system('git commit -m "production build"')
-os.system("git push")
-print(f"{GREEN}Project deployed to heroku...{CLEAR}")
+# print(f"{GREEN}Changing directory to{YELLOW}{PROD_BUILD_DIR}{CLEAR}")
+# os.chdir(PROD_BUILD_DIR)
+# print(f"{GREEN}Deploying to heroku...{CLEAR}")
+# os.system("git add .")
+# os.system('git commit -m "production build v4"')
+# os.system("git push")
+# print(f"{GREEN}Project deployed to heroku...{CLEAR}")
