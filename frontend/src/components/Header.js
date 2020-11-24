@@ -25,7 +25,6 @@ const Header = () => {
 
   const changeBackground = () => {
     if (location.pathname === "/") {
-      console.log(window.pageYOffset);
       window.pageYOffset >= 136 ? setNavbar(true) : setNavbar(false);
     } else {
       setNavbar(true);
@@ -40,11 +39,19 @@ const Header = () => {
     } else {
       window.scrollTo(window.scrollX, window.scrollY - 1);
       window.scrollTo(window.scrollX, window.scrollY + 1);
+      setNavbar(false);
     }
   }, [location.pathname]);
 
   window.addEventListener("scroll", changeBackground);
 
+  const navbarOnClick = () => {
+    if (location.pathname !== "/") {
+      setNavbar(true);
+    } else {
+      setNavbar(!navbar);
+    }
+  };
   const ImageWithName = () => {
     const a = user.username ? user.username : "";
     return (
@@ -163,7 +170,7 @@ const Header = () => {
             <div title="Menu" id="menuToggle">
               <input
                 type="checkbox"
-                onClick={() => setNavbar(!navbar)}
+                onClick={navbarOnClick}
                 onChange={() =>
                   setDisableInputIsChecked(!disableInputIsChecked)
                 }

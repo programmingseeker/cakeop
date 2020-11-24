@@ -52,7 +52,6 @@ function ProfilePage() {
 
             <Nav.Item as="li">
               <Nav.Link
-                as="text"
                 onClick={() => curentTabHandler("bookings")}
                 active={currentTab === "bookings" ? true : false}
                 className="sidenav-icon cursor-pointer"
@@ -65,7 +64,6 @@ function ProfilePage() {
               <Nav.Item as="li">
                 <LinkContainer to="/admindash">
                   <Nav.Link
-                    as="text"
                     onClick={() => curentTabHandler("admindash")}
                     className={`sidenav-icon cursor-pointer ${
                       currentTab === "admindash" ? "active" : ""
