@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import { Route } from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "./../actions/userActions";
@@ -8,6 +8,7 @@ import FormContent from "./FormContent";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const { user } = useSelector((state) => state.auth);
   const [showModal, setshowModal] = useState(false);
   const [disableInputIsChecked, setDisableInputIsChecked] = useState(false);
@@ -23,16 +24,24 @@ const Header = () => {
   };
 
   const changeBackground = () => {
-    if (window.location.pathname === "/") {
+    if (location.pathname === "/") {
       console.log(window.pageYOffset);
       window.pageYOffset >= 136 ? setNavbar(true) : setNavbar(false);
     } else {
       setNavbar(true);
+      window.removeEventListener("scroll", changeBackground);
     }
   };
 
-  // useEffect(() => {
-  // }, [window.location.pathname]);
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      setNavbar(true);
+      window.removeEventListener("scroll", changeBackground);
+    } else {
+      window.scrollTo(window.scrollX, window.scrollY - 1);
+      window.scrollTo(window.scrollX, window.scrollY + 1);
+    }
+  }, [location.pathname]);
 
   window.addEventListener("scroll", changeBackground);
 
@@ -128,45 +137,49 @@ const Header = () => {
     );
   };
   return (
-    <Navbar
-      expand="lg"
-      fixed="top"
-      className={`${navbar ? "shadow active-nav" : "active-nav-inverse"}`}
-    >
-      <Container className={`text-center`}>
-        <LinkContainer to="/">
-          <Navbar.Brand>
-            <img
-              alt="Logo"
-              src={`/img/icons/${navbar ? "logo.svg" : "logo1.svg"}`}
-              className="d-inline-block align-middle "
-            />
-            {"  "}
-            <span className="align-middle h2 font-weight-bold">CakeOp</span>
-          </Navbar.Brand>
-        </LinkContainer>
-        <div className="header-content">
-          <HeaderContentHandler />
-        </div>
-
-        <nav className="mobilescreen">
-          <div title="Menu" id="menuToggle">
-            <input
-              type="checkbox"
-              onClick={() => setNavbar(!navbar)}
-              onChange={() => setDisableInputIsChecked(!disableInputIsChecked)}
-              checked={disableInputIsChecked}
-            />
-            <span className="header-nav-button"></span>
-            <span className="header-nav-button"></span>
-            <span className="header-nav-button"></span>
-            <ul id="menu">
-              <HeaderContentHandler />
-            </ul>
+    <>
+      <Navbar
+        expand="lg"
+        fixed="top"
+        className={`${navbar ? "shadow active-nav" : "active-nav-inverse"}`}
+      >
+        <Container className={`text-center`}>
+          <LinkContainer to="/">
+            <Navbar.Brand>
+              <img
+                alt="Logo"
+                src={`/img/icons/${navbar ? "logo.svg" : "logo1.svg"}`}
+                className="d-inline-block align-middle "
+              />
+              {"  "}
+              <span className="align-middle h2 font-weight-bold">CakeOp</span>
+            </Navbar.Brand>
+          </LinkContainer>
+          <div className="header-content">
+            <HeaderContentHandler />
           </div>
-        </nav>
-      </Container>
-    </Navbar>
+
+          <nav className="mobilescreen">
+            <div title="Menu" id="menuToggle">
+              <input
+                type="checkbox"
+                onClick={() => setNavbar(!navbar)}
+                onChange={() =>
+                  setDisableInputIsChecked(!disableInputIsChecked)
+                }
+                checked={disableInputIsChecked}
+              />
+              <span className="header-nav-button"></span>
+              <span className="header-nav-button"></span>
+              <span className="header-nav-button"></span>
+              <ul id="menu">
+                <HeaderContentHandler />
+              </ul>
+            </div>
+          </nav>
+        </Container>
+      </Navbar>
+    </>
   );
 };
 
