@@ -1,3 +1,4 @@
+
 import os
 import shutil
 import re
@@ -48,7 +49,8 @@ if not os.path.isdir(PROD_BUILD_PUBLIC_DIR):
 if os.path.isdir(BACKEND_DIST_DIR) and os.path.isdir(PROD_BUILD_DIR):
     for file in os.listdir(BACKEND_DIST_DIR):
         shutil.move(
-            os.path.join(BACKEND_DIST_DIR, file), os.path.join(PROD_BUILD_DIR, file)
+            os.path.join(BACKEND_DIST_DIR, file), os.path.join(
+                PROD_BUILD_DIR, file)
         )
     print(f"{GREEN}completed moving backend bundeled files{CLEAR}")
 
@@ -57,7 +59,8 @@ if os.path.isdir(FRONTEND_BUILD_DIR) and os.path.isdir(PROD_BUILD_PUBLIC_DIR):
     for files in os.listdir(FRONTEND_BUILD_DIR):
         print(f"{GREEN}moving {YELLOW}{files} {CLEAR}")
         try:
-            shutil.move(os.path.join(FRONTEND_BUILD_DIR, files), PROD_BUILD_PUBLIC_DIR)
+            shutil.move(os.path.join(FRONTEND_BUILD_DIR, files),
+                        PROD_BUILD_PUBLIC_DIR)
         except shutil.Error:
             print("file already exist")
 

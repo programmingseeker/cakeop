@@ -20,6 +20,7 @@ exports.sendmail = catchAsync(async (req, res) => {
     html: `<h3>Name : ${req.body.username}</h3><h3>Email : ${req.body.email}</h3><h3>PhoneNumber : ${req.body.phone}</h3><h3>Message : ${req.body.message}</h3>`,
   };
 
+  console.log(req.bod.email);
   await transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
