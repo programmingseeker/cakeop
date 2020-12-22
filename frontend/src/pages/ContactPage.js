@@ -95,7 +95,7 @@ function ContactForm() {
                   setFocus("focus");
                 }}
                 onBlur={() => {
-                  setFocus(null);
+                  e.target.value === "" ? setFocus(null) : setFocus("focus");
                 }}
                 type="text-contact"
                 name="name"
@@ -114,7 +114,7 @@ function ContactForm() {
                   setFocus("focus");
                 }}
                 onBlur={() => {
-                  setFocus(null);
+                  e.target.value === "" ? setFocus(null) : setFocus("focus");
                 }}
                 type="email"
                 name="email"
@@ -133,7 +133,7 @@ function ContactForm() {
                   setFocus("focus");
                 }}
                 onBlur={() => {
-                  setFocus(null);
+                  e.target.value === "" ? setFocus(null) : setFocus("focus");
                 }}
                 type="numeric"
                 name="phone"
@@ -159,7 +159,7 @@ function ContactForm() {
                   setFocus("focus");
                 }}
                 onBlur={() => {
-                  setFocus(null);
+                  e.target.value === "" ? setFocus(null) : setFocus("focus");
                 }}
                 onChange={(e) => {
                   setmessage(e.target.value);
